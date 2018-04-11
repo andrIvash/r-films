@@ -1,25 +1,14 @@
 @import 's1.scss';
-$blue:   grey;
-
-@custom-media --small-viewport (max-width: 30em);
+$main-background:   grey;
 
 
 body {
-    background: $blue;
+    background: $main-background;
     font-color: red;
 }
-div {
+
+.wrapper {
     display: flex;
-
-}
-
-.main {
-
-    &_title {
-        color: $blue;
-    }
-
-    @media (--small-viewport) {
-        /* styles for small viewport */
-    }
+    flex-direction: column;
+    align-items: flex-start;
 }

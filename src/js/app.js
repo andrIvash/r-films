@@ -1,5 +1,6 @@
 import '../styles/app.scss';
-console.log('app1.js');
+import '../js/components/Header';
+console.log('app.js');
 
 import React from 'react';
 import {render} from 'react-dom';
