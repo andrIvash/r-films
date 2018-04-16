@@ -9,4 +9,3 @@ ReactDOM.render(
   header,
   document.getElementById('header')
 );
-  
