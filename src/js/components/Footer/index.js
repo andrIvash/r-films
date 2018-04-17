@@ -1,12 +1,9 @@
 import React, { PureComponent } from 'react';
-import { Socials } from '../Socials';
+import Socials from '../Socials';
 
 export default class Footer extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      socials: [{ name: 'fb' }, { name: 'tw' }, { name: 'ln' }],
-    };
+  state = {
+    socials: [{ name: 'fb' }, { name: 'tw' }, { name: 'ln' }],
   }
 
   render() {
