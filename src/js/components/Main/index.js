@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import Logo from '../Logo';
 
 type Props = {};
 
@@ -8,17 +7,16 @@ type State = {
   count: number,
 };
 
-class Header extends Component<Props, State> {
+class Content extends Component<Props, State> {
   render() {
     return (
-      <div className='header app__header bg-dark'>
+      <main className='content app__main'>
         <div className='container'>
-          <Logo />
-
+          content
         </div>
-      </div>
+      </main>
     );
   }
 }
 
-export default Header;
+export default Content;

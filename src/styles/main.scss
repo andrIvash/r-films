@@ -1,0 +1,74 @@
+@import 'mixins';
+@import 'fonts';
+
+// ----------------------------------- variable --------------------------------//
+
+$color-layout: #eee;
+$color-logo: #B72E43;
+
+$color-main: #223843;//#333;
+$color-sale: #EFF1F3;//#fc411d;
+$color-nonactive: #DBD3D8;//#a0a0a0;
+$color-active: #D77A61;//#722509;
+$color-white: #fff;
+
+
+$sign-font: 'Lato', sans-serif;
+$base-font: 'Playfair Display', serif;
+
+
+
+// ------------------------------ base styles ---------------------------------//
+
+html {
+  @include desktop() {
+    font-size: 16px;
+  }
+
+  @include laptop() {
+    font-size: 16px;
+  }
+
+  @include minilaptop() {
+    font-size: 14px;
+  }
+
+  @include tablet() {
+    font-size: 12px;
+  }
+
+  @include phone() {
+    font-size: 11px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  background: $color-white;
+  min-width: 320px;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: rem(800px);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  position: relative;
+  height: 100%;
+}

@@ -1,14 +1,13 @@
-@import 's1.scss';
-$main-background:   grey;
+@import './node_modules/bootstrap/scss/bootstrap.scss';
+@import 'main';
+@import '../js/components/**/*.scss';
 
-
-body {
-    background: $main-background;
-    font-color: red;
+.app__inner {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.app__content {
+  flex: 1 0 auto;
 }
