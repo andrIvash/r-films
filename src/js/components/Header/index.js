@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import Logo from '../Logo';
+import Search from '../Search';
 
 type Props = {};
 
@@ -14,7 +15,7 @@ class Header extends Component<Props, State> {
       <div className='header app__header bg-dark'>
         <div className='container'>
           <Logo />
-
+          <Search />
         </div>
       </div>
     );

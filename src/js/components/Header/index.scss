@@ -1,10 +1,5 @@
 .header {
   min-height: rem(200px);
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: left;
   background-image: 
     linear-gradient(to right, rgba(52, 58, 64, 1), rgba(255, 255, 255, 0)),
     url('../images/fons2.jpg');
@@ -13,6 +8,11 @@
   background-repeat: no-repeat, repeat;
 
   .container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
     margin-top: rem(10px);
+    text-align: left;
   }
 }

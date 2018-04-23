@@ -4,10 +4,10 @@
 
 .app__inner {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
-.app__content {
-  flex: 1 0 auto;
+.app__logo {
+  margin-bottom: rem(20px);
 }
