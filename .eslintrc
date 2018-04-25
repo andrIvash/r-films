@@ -1,4 +1,5 @@
-{
+{ 
+  "extends": ["airbnb", "plugin:jest/recommended"],
   "parserOptions": {
     "ecmaVersion": 6,
     "ecmaFeatures": {
@@ -9,13 +10,15 @@
     "es6": true,
     "browser": true,
     "mocha": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parser": "babel-eslint",
   "plugins": [
     "react",
     "import",
-    "prefer-object-spread"
+    "prefer-object-spread",
+    "jest"
   ],
   "settings": {
     "import/ignore": [
@@ -33,7 +36,8 @@
     "$": true,
     "ga": true,
     "jQuery": true,
-    "router": true
+    "router": true,
+    "jest/globals": true
   },
   "rules": {
     "block-scoped-var": 0,
@@ -189,7 +193,8 @@
     "react/prop-types": 2,
     "react/react-in-jsx-scope": 2,
     "react/self-closing-comp": 2,
-
+    "react/jsx-filename-extension": 0,
+    "react/prefer-stateless-function": 0,
     "import/default": 2,
     "import/export": 2,
     "import/extensions": [ 0, "always" ],
@@ -199,8 +204,14 @@
     "import/newline-after-import": 2,
     "import/no-duplicates": 2,
     "import/no-unresolved": 2,
-    "import/unambiguous": 2,
+    "import/unambiguous": 0,
 
-    "prefer-object-spread/prefer-object-spread": 2
+    "prefer-object-spread/prefer-object-spread": 2,
+
+    "jest/no-disabled-tests": 1,
+    "jest/no-focused-tests": 2,
+    "jest/no-identical-title": 2,
+    "jest/prefer-to-have-length": 1,
+    "jest/valid-expect": 2
   }
 }
