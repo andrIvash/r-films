@@ -1,13 +1,10 @@
-import '../styles/app.scss';
-console.log('app1.js');
-
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import App from './components/App';
+import '../styles/app.scss';
+import '../js/components/Header';
 
 render(
-  <App/>,
-  document.getElementById('app')
+  <App />,
+  document.getElementById('app'),
 );
-
-

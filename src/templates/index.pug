@@ -4,6 +4,6 @@ block title
     | Index page
 
 block main
-    h1 index22
-    //-img(src=require("../images/menu.svg") width="100")
-    #app!= body
+    .wrapper
+        header(id="header")
+        #app(class="app")!= body
