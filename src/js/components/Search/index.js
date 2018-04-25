@@ -1,13 +1,43 @@
 // @flow
 import React, { Component } from 'react';
+import * as sign from './enterSign.svg';
 
-type Props = {};
+type Props = {
+  submitSearch: (data: string) => void,
+};
 
 type State = {
-  count: number,
+  searchText: string
 };
 
 class Search extends Component<Props, State> {
+  state = {
+    searchText: '',
+  };
+
+  handleChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
+    const { value } = event.target;
+    this.setState({
+      searchText: value,
+    });
+  }
+
+  handleKeyPress = (event: SyntheticKeyboardEvent<>) => {
+    if (event.key === 'Enter') {
+      this.handleSearch();
+    }
+  }
+
+  handleSearch = () => {
+    const data = this.state.searchText;
+    if (data.length > 0) {
+      this.props.submitSearch(data);
+      this.setState({
+        searchText: '',
+      });
+    }
+  }
+
   render() {
     return (
       <div className='search app__search'>
@@ -17,23 +47,21 @@ class Search extends Component<Props, State> {
             aria-label='Search'
             className='search__input form-control'
             name='search'
-            placeholder='Search phrase'
+            onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
+            placeholder='Search phrase...'
             type='text'
+            value={this.state.searchText}
           />
-          <div className='search__sign'>
-            <svg height='484.5px' viewBox='0 0 484.5 484.5' width='484.5px' x='0px' y='0px'>
-              <g>
-                <g id='keyboard-return'>
-                  <polygon points='433.5,114.75 433.5,216.75 96.9,216.75 188.7,124.95 153,89.25 0,242.25 153,395.25 188.7,359.55 96.9,267.75
-                    484.5,267.75 484.5,114.75'
-                  />
-                </g>
-              </g>
-            </svg>
-          </div>
+          <img alt='search sign' className='search__sign' src={sign} />
         </div>
         <div className='search__controls'>
-          <button className='search__submit' type='button'> Search </button>
+          <button
+            className='search__submit'
+            onClick={this.handleSearch}
+            type='button'
+            > Search
+          </button>
         </div>
       </div>
     );

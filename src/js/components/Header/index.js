@@ -3,19 +3,21 @@ import React, { Component } from 'react';
 import Logo from '../Logo';
 import Search from '../Search';
 
-type Props = {};
-
-type State = {
-  count: number,
+type Props = {
+  onSearch: (data: string) => void,
 };
 
-class Header extends Component<Props, State> {
+class Header extends Component<Props> {
+
   render() {
+    const { onSearch } = this.props;
     return (
       <div className='header app__header bg-dark'>
         <div className='container'>
           <Logo />
-          <Search />
+          <Search
+            submitSearch={onSearch}
+          />
         </div>
       </div>
     );
