@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import * as sign from './enterSign.svg';
+import FilterSearch from '../FilterSearch';
 
 type Props = {
   submitSearch: (data: string) => void,
@@ -38,6 +39,12 @@ class Search extends Component<Props, State> {
     }
   }
 
+  changeFilter = (event: SyntheticInputEvent<HTMLInputElement>): void => {
+    const { target } = event;
+    target.checked = true;
+    console.log(target.value);
+  }
+
   render() {
     return (
       <div className='search app__search'>
@@ -56,8 +63,9 @@ class Search extends Component<Props, State> {
           <img alt='search sign' className='search__sign' src={sign} />
         </div>
         <div className='search__controls'>
+          <FilterSearch onChange={this.changeFilter} />
           <button
-            className='search__submit'
+            className='search__submit btn btn-lg btn-primary'
             onClick={this.handleSearch}
             type='button'
             > Search

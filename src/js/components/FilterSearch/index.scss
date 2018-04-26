@@ -1,0 +1,22 @@
+.filter-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-search__title {
+  font-family: $sign-font;
+  font-size: rem(12px);
+  color: $color-layout;
+  text-transform: uppercase;
+  margin-right: rem(10px);
+}
+
+.filter-search__label {
+  width: rem(70px);
+  height: rem(30px);
+  font-family: $sign-font;
+  font-size: rem(10px);
+  margin: 0 rem(5px);
+  text-transform: uppercase;
+}

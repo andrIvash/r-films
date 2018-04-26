@@ -58,3 +58,29 @@
     height: rem(15px);
   }
 }
+
+.search__controls {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: rem(20px);
+}
+
+.search__submit {
+  width: rem(100px);
+  height: rem(40px);
+  font-family: $sign-font;
+  font-size: rem(14px);
+  margin: 0 rem(5px);
+  text-transform: uppercase;
+}
+
+.search__submit {
+  background-color: $color-logo;
+  border-color: $color-logo;
+  &:hover {
+    background-color: $color-logo-dark;
+    border-color: $color-logo-dark;
+  }
+}
