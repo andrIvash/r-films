@@ -11,8 +11,11 @@ class Content extends Component<Props, State> {
   render() {
     return (
       <main className='content app__main'>
-        <div className='container'>
-          content
+        <div className='content__top'>
+          <div className='container'> 
+          </div>
+        </div>
+        <div className='container'> 
         </div>
       </main>
     );
