@@ -2,31 +2,44 @@
 import React from 'react';
 
 type Props = {
- onChange: (data: string) => void
+ onChange: (ev: SynteticInputIvent) => void,
+ selected: string
 }
 
-const FilterSearch = props => (
+const FilterSearch = (props: Props) => (
   <div className='filter-search'>
     <div className='filter-search__title'>Search By</div>
     <div className='btn-group-toggle'>
-      <label className='filter-search__label btn btn-secondary' htmlFor='genre'>
+      <label
+        className={props.selected === 'genre' ?
+        'filter-search__label btn btn-secondary active' :
+        'filter-search__label btn btn-secondary'}
+        htmlFor='genre'
+        >
         <input
           autoComplete='off'
           className='filter-search__btn'
           id='genre'
           name='options'
-          onClick={props.onChange}
+          onChange={props.onChange}
           type='radio'
+          value='genre'
         /> Genre
       </label>
-      <label className='filter-search__label btn btn-secondary' htmlFor='title'>
+      <label
+        className={props.selected === 'title' ?
+        'filter-search__label btn btn-secondary active' :
+        'filter-search__label btn btn-secondary'}
+        htmlFor='title'
+        >
         <input
           autoComplete='off'
           className='filter-search__btn'
           id='title'
           name='options'
-          onClick={props.onChange}
+          onChange={props.onChange}
           type='radio'
+          value='title'
         /> Title
       </label>
     </div>

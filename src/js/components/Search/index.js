@@ -4,16 +4,18 @@ import * as sign from './enterSign.svg';
 import FilterSearch from '../FilterSearch';
 
 type Props = {
-  submitSearch: (data: string) => void,
+  submitSearch: (data: string) => void
 };
 
 type State = {
-  searchText: string
+  searchText: string,
+  searchFilter: string,
 };
 
 class Search extends Component<Props, State> {
   state = {
     searchText: '',
+    searchFilter: 'title',
   };
 
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
@@ -41,11 +43,14 @@ class Search extends Component<Props, State> {
 
   changeFilter = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     const { target } = event;
-    target.checked = true;
     console.log(target.value);
+    this.setState({
+      searchFilter: target.value,
+    });
   }
 
   render() {
+    const { searchFilter, searchText } = this.state;
     return (
       <div className='search app__search'>
         <h1 className='search__title'> Find your movie </h1>
@@ -58,12 +63,15 @@ class Search extends Component<Props, State> {
             onKeyPress={this.handleKeyPress}
             placeholder='Search phrase...'
             type='text'
-            value={this.state.searchText}
+            value={searchText}
           />
           <img alt='search sign' className='search__sign' src={sign} />
         </div>
         <div className='search__controls'>
-          <FilterSearch onChange={this.changeFilter} />
+          <FilterSearch
+            onChange={this.changeFilter}
+            selected={searchFilter}
+          />
           <button
             className='search__submit btn btn-lg btn-primary'
             onClick={this.handleSearch}
