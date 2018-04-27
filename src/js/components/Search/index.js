@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import * as sign from './enterSign.svg';
 import FilterSearch from '../FilterSearch';
+import SearchButton from '../SearchButton';
 
 type Props = {
   submitSearch: (data: string) => void
@@ -72,12 +73,7 @@ class Search extends Component<Props, State> {
             onChange={this.changeFilter}
             selected={searchFilter}
           />
-          <button
-            className='search__submit btn btn-lg btn-primary'
-            onClick={this.handleSearch}
-            type='button'
-            > Search
-          </button>
+          <SearchButton handleSearch={this.handleSearch} />
         </div>
       </div>
     );

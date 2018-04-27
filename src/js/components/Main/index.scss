@@ -5,4 +5,8 @@
   height: rem(40px);
   width: 100%;
   background-color: $color-background-light;
+
+  .container {
+    align-items: center;
+  }
 }
