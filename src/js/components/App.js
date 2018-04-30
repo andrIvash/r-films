@@ -20,7 +20,6 @@ class App extends Component<{}, State> {
     films: [],
     selectedGenre: 'Drama',
     posterData: {},
-    error: '',
   }
 
   componentDidMount() {
@@ -33,7 +32,7 @@ class App extends Component<{}, State> {
         }
       })
       .then(data => this.setState({ films: data.data }))
-      .catch(error => this.setState({ error: error }));
+      .catch(error => console.log(error));
   }
 
   onFilmSelect = (id: number): void => {
