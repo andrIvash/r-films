@@ -20,7 +20,7 @@ const Poster = (props: Props) => (
       <h5 className='film__subtitle'>{props.data.tagline}</h5>
       <div className='film__info'>
         <div className='film__year'>{props.data.release_date.substr(0, 4)}</div>
-        <div className='film__latency'>{props.data.runtime}</div>
+        <div className='film__latency'>{props.data.runtime ? `${props.data.runtime} min` : ''}</div>
       </div>
       <p className='film__desq'>{props.data.overview}
       </p>

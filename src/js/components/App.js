@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
+import ErrorBoundary from './ErrorBoundary';
 import { views, routes } from '../helpers';
 
 type State = {
@@ -67,19 +68,21 @@ class App extends Component<{}, State> {
 
     return (
       <div className='app__inner'>
-        <Header
-          onSearch={this.doSearch}
-          posterData={posterData}
-          toSearch={this.toSearch}
-          view={view}
-        />
-        <Main
-          films={films}
-          genre={selectedGenre}
-          onFilmSelect={this.onFilmSelect}
-          view={view}
-        />
-        <Footer />
+        <ErrorBoundary>
+          <Header
+            onSearch={this.doSearch}
+            posterData={posterData}
+            toSearch={this.toSearch}
+            view={view}
+          />
+          <Main
+            films={films}
+            genre={selectedGenre}
+            onFilmSelect={this.onFilmSelect}
+            view={view}
+          />
+          <Footer />
+        </ErrorBoundary>
       </div>
     );
   }

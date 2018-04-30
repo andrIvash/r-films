@@ -6,4 +6,18 @@
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+
+  .main-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-logo;
+    font-size: rem(24px);
+  }
 }
