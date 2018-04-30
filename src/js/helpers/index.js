@@ -3,3 +3,7 @@ export const views = {
   POSTER: 'POSTER',
 };
 
+export const routes = {
+  base: 'http://react-cdp-api.herokuapp.com',
+};
+

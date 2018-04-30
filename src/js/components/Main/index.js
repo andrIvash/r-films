@@ -2,33 +2,85 @@
 import React, { Component } from 'react';
 import ContentInfo from '../ContentInfo';
 import ExtraInfo from '../ExtraInfo';
+import FilterContent from '../FilterContent';
+import { views } from '../../helpers';
 
 type Props = {
-  onSelect: (ev: SynteticInputIvent) => void,
-  films: [{name: string}],
-  view: string
+  onFilterSelect: (ev: SynteticInputIvent) => void,
+  onFilmSelect: (ev: SynteticInputIvent) => void,
+  films: [],
+  view: string,
+  genre: string
 };
 
 type State = {
-  count: number,
+  selected: string,
 };
 
 class Content extends Component<Props, State> {
+  state = {
+    selected: 'rating',
+  }
+
+  onFilterSelect = (event: SyntheticInputEvent<HTMLInputElement>): void => {
+    const { target } = event;
+    console.log(target.value);
+    this.setState({
+      selected: target.value,
+    });
+  }
+
+  filterData = () => {
+    return this.props.films.sort((a, b) => {
+      return this.state.selected === 'rating' ?
+        a.vote_average > b.vote_average :
+        a.release_date.substr(0,4) < b.release_date.substr(0,4);
+    });
+  }
+
+  showFilter = () => {
+    const { view } = this.props;
+    const { selected } = this.state;
+
+    return view === views.POSTER ?
+      null :
+      <FilterContent
+        onFilterSelect={this.onFilterSelect}
+        selected={selected}
+      />;
+  }
+
+  renderExtraInfo = () => {
+    const { films, view, genre } = this.props;
+
+    if (films && films.length) {
+      return (
+        <div className='container'>
+          <ExtraInfo
+            data={ view === views.POSTER ? genre : films.length.toString()}
+            view={view}
+          />
+          {this.showFilter()}
+        </div>
+      );
+    }
+    return null;
+  }
 
   render() {
-    const { films, onSelect, view } = this.props;
+    const { onFilmSelect } = this.props;
 
     return (
       <main className='content app__main'>
         <div className='content__top'>
           <div className='container'>
-            <ExtraInfo view={view} />
+            {this.renderExtraInfo()}
           </div>
         </div>
         <div className='container'>
           <ContentInfo
-            films={films}
-            onSelect={onSelect}
+            films={this.filterData()}
+            onFilmSelect={onFilmSelect}
           />
         </div>
       </main>

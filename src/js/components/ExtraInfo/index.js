@@ -3,7 +3,6 @@ import React from 'react';
 import { views } from '../../helpers';
 
 type Props = {
-  onSelect: (ev: SynteticInputIvent) => void,
   data: string,
   view: string
 }

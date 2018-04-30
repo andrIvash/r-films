@@ -3,17 +3,22 @@ import React from 'react';
 import FilmItem from '../FilmItem';
 
 type Props = {
- onSelect: (ev: SynteticInputIvent) => void,
- films: [{name: string}]
+ onFilmSelect: (id: number) => void,
+ films: []
 }
 
 function filmItems(props: Props) {
-  const { films, onSelect } = props;
-
   if (props.films && props.films.length) {
-    return films.map(item => (
-      <li className='film-list__item' key={item}>
-        <FilmItem film={item} onSelect={onSelect} />
+    return props.films.map((item, ndx) => (
+      <li
+        className='film-list__item'
+        key={item.id}
+        >
+        <FilmItem
+          film={item}
+          id={item.id}
+          onFilmSelect={props.onFilmSelect}
+        />
       </li>
     ));
   }

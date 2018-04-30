@@ -9,7 +9,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 
   @include tablet() {
     justify-content: center;
@@ -22,7 +22,7 @@
   font-weight: 700;
   font-size: rem(40px);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-top: rem(-30px);
   @include centered();
@@ -32,6 +32,5 @@
 .film-list__item {
   width: rem(225px);
   min-height: rem(380px);
-  border: 1px solid black;
   margin: rem(15px);
 }
