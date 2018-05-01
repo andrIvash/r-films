@@ -7,7 +7,7 @@ import SearchButton from '../SearchButton';
 import { views } from '../../helpers';
 
 type Props = {
-  onSearch: (data: string) => void,
+  onSearch: (data: string, filter:string) => void,
   toSearch: () => void,
   view: string,
   posterData: {

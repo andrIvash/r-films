@@ -4,7 +4,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import ErrorBoundary from './ErrorBoundary';
-import { views, routes } from '../helpers';
+import { views, routes, get } from '../helpers';
 
 type State = {
   view: string,
@@ -23,16 +23,13 @@ class App extends Component<{}, State> {
   }
 
   componentDidMount() {
-    fetch(`${routes.base}/movies`)
+    get(`${routes.base}/movies`)
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Something went wrong ...');
-        }
-      })
-      .then(data => this.setState({ films: data.data }))
-      .catch(error => console.log(error));
+        console.log('Success!', response);
+        this.setState({ films: response.data });
+      }, (error) => {
+        console.warn('Failed!', error);
+      });
   }
 
   onFilmSelect = (id: number): void => {
@@ -46,8 +43,17 @@ class App extends Component<{}, State> {
     });
   }
 
-  doSearch = (data: string) => {
-    console.log('do search', data);
+  doSearch = (data: string, filter: string) => {
+    console.log('do search', data, filter);
+    get(`${routes.base}/movies`, {
+      search: data,
+      searchBy: filter,
+    }).then((response) => {
+      console.log('Success!', response);
+      this.setState({ films: response.data });
+    }, (error) => {
+      console.warn('Failed!', error);
+    });
   }
 
   toSearch = () => {

@@ -5,7 +5,7 @@ import FilterSearch from '../FilterSearch';
 import SearchButton from '../SearchButton';
 
 type Props = {
-  submitSearch: (data: string) => void
+  submitSearch: (data: string, filter:string) => void
 };
 
 type State = {
@@ -35,7 +35,7 @@ class Search extends Component<Props, State> {
   handleSearch = () => {
     const data = this.state.searchText;
     if (data.length > 0) {
-      this.props.submitSearch(data);
+      this.props.submitSearch(data, this.state.searchFilter);
       this.setState({
         searchText: '',
       });
