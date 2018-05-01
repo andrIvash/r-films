@@ -11,7 +11,7 @@ const FilterSearch = (props: Props) => (
     <div className='filter-search__title'>Search By</div>
     <div className='btn-group-toggle'>
       <label
-        className={props.selected === 'genre' ?
+        className={props.selected === 'genres' ?
         'filter-search__label btn btn-secondary active' :
         'filter-search__label btn btn-secondary'}
         htmlFor='genre'
@@ -23,7 +23,7 @@ const FilterSearch = (props: Props) => (
           name='options'
           onChange={props.onChange}
           type='radio'
-          value='genre'
+          value='genres'
         /> Genre
       </label>
       <label

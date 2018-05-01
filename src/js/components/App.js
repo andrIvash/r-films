@@ -23,36 +23,40 @@ class App extends Component<{}, State> {
   }
 
   componentDidMount() {
-    get(`${routes.base}/movies`)
-      .then((response) => {
-        console.log('Success!', response);
-        this.setState({ films: response.data });
-      }, (error) => {
-        console.warn('Failed!', error);
-      });
+    this.sendQuery(`${routes.base}/movies`);
   }
 
   onFilmSelect = (id: number): void => {
     console.log('select');
     console.log(id);
+    const film = this.state.films.find(film => film.id === id);
+    const genre = this.state.films.find(film => film.id === id).genres[0];
 
     this.setState({
       view: views.POSTER,
-      posterData: this.state.films.find(film => film.id === id),
-      selectedGenre: this.state.films.find(film => film.id === id).genres[0],
+      posterData: film,
+      selectedGenre: genre,
+    });
+    this.sendQuery(`${routes.base}/movies`, {
+      search: genre,
+      searchBy: 'genres',
+    });
+  }
+
+  sendQuery = (url: string, query?: {search?: string, searchBy?: string}) => {
+    get(url, query).then((response) => {
+      console.log('Success!', response);
+      this.setState({ films: response.data });
+    }, (error) => {
+      console.warn('Failed!', error);
     });
   }
 
   doSearch = (data: string, filter: string) => {
     console.log('do search', data, filter);
-    get(`${routes.base}/movies`, {
+    this.sendQuery(`${routes.base}/movies`, {
       search: data,
       searchBy: filter,
-    }).then((response) => {
-      console.log('Success!', response);
-      this.setState({ films: response.data });
-    }, (error) => {
-      console.warn('Failed!', error);
     });
   }
 
