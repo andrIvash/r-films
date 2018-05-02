@@ -37,3 +37,6 @@ app/assets/
 node_modules/
 .sass-cache
 npm-debug.log
+
+__snapshots__
+coverage/
