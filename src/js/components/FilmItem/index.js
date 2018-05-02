@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 
 type Props = {
   film: {
@@ -20,28 +20,21 @@ type Props = {
   onFilmSelect: (id: number) => void,
 }
 
-class FilmItem extends Component<Props, {}> {
+const FilmItem = (props:Props) => {
+  const { film, onFilmSelect, id } = props;
 
-  onSelectHandler = () => {
-    this.props.onFilmSelect(this.props.id);
-  };
-
-  render() {
-    const { film } = this.props;
-
-    return (
-      <div className='film-item' onClick={this.onSelectHandler}>
-        <div className='film-item__img-wrap'>
-          <img alt='film' className='film-item__img' src={film.poster_path} />
-        </div>
-        <div className='film-item__info'>
-          <div className='film-item__title'>{film.title}</div>
-          <div className='film-item__year'>{film.release_date.substr(0,4)}</div>
-        </div>
-        <div className='film-item__genre'>{film.genres[0]}</div>
+  return (
+    <div className='film-item' onClick={() => {onFilmSelect(id)}}>
+      <div className='film-item__img-wrap'>
+        <img alt='film' className='film-item__img' src={film.poster_path} />
       </div>
-    );
-  }
-}
+      <div className='film-item__info'>
+        <div className='film-item__title'>{film.title}</div>
+        <div className='film-item__year'>{film.release_date.substr(0,4)}</div>
+      </div>
+      <div className='film-item__genre'>{film.genres[0]}</div>
+    </div>
+  );
+};
 
 export default FilmItem;
