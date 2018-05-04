@@ -14,10 +14,11 @@ type State = {
 };
 
 class Search extends Component<Props, State> {
+
   state = {
     searchText: '',
     searchFilter: 'title',
-  };
+  }
 
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     const { value } = event.target;

@@ -10,9 +10,12 @@
     "stage-0",
     "flow"
   ],
+  "plugins": [
+    "transform-class-properties"
+  ],
   "env": {
     "test": {
-      "presets": [["env"], "react"]
+      "presets": [["env"], "stage-0", "react", "flow"]
     }
   }
 }

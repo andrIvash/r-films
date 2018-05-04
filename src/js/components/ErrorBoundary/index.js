@@ -6,7 +6,7 @@ type State = {
 };
 
 type Props = {
-
+  
 };
 
 class ErrorBoundary extends Component<State, Props> {

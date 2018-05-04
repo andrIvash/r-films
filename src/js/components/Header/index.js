@@ -15,7 +15,7 @@ type Props = {
   },
 };
 
-function topHeader(props: Props) {
+const topHeader = (props: Props) => {
   const { view, toSearch } = props;
   if ( view === views.POSTER ) {
     return (
@@ -26,26 +26,22 @@ function topHeader(props: Props) {
     );
   }
   return <div className='header__top'> <Logo /> </div>;
-}
+};
 
-function contentHeader( props: Props ) {
+const contentHeader = ( props: Props ) => {
   const { view, onSearch, posterData } = props;
   return view === views.POSTER ?
     <Poster data={posterData} /> :
     <Search submitSearch={onSearch} />;
-}
+};
 
-class Header extends Component<Props> {
-  render() {
-    return (
-      <div className='header app__header bg-dark'>
-        <div className='container'>
-          {topHeader(this.props)}
-          {contentHeader(this.props)}
-        </div>
-      </div>
-    );
-  }
-}
+const Header = ( props: Props ) => (
+  <div className='header app__header bg-dark'>
+    <div className='container'>
+      {topHeader(props)}
+      {contentHeader(props)}
+    </div>
+  </div>
+);
 
 export default Header;
