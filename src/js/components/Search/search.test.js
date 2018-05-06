@@ -54,4 +54,16 @@ describe('Search', () => {
     wrapper.find('.form-control').simulate('keypress', event);
     expect(props.submitSearch).toHaveBeenCalledTimes(1);
   });
+
+  it('should not emit submitSearch when not Enter button clcked', () => {
+    const props = {
+      submitSearch: jest.fn(),
+    };
+    const wrapper = shallow(
+      <Search {...props} /> );
+    const event = { key: 'b' };
+    wrapper.instance().setState({ searchText: 'text' });
+    wrapper.find('.form-control').simulate('keypress', event);
+    expect(props.submitSearch).not.toHaveBeenCalledTimes(1);
+  });
 });
