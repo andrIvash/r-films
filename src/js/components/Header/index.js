@@ -4,7 +4,7 @@ import Logo from '../Logo';
 import Search from '../Search';
 import Poster from '../Poster';
 import SearchButton from '../SearchButton';
-import { views } from '../../helpers';
+import helpers from '../../helpers';
 
 type Props = {
   onSearch: (data: string, filter:string) => void,
@@ -17,7 +17,7 @@ type Props = {
 
 const topHeader = (props: Props) => {
   const { view, toSearch } = props;
-  if ( view === views.POSTER ) {
+  if ( view === helpers.views.POSTER ) {
     return (
       <div className='header__top'>
         <Logo />
@@ -30,7 +30,7 @@ const topHeader = (props: Props) => {
 
 const contentHeader = ( props: Props ) => {
   const { view, onSearch, posterData } = props;
-  return view === views.POSTER ?
+  return view === helpers.views.POSTER ?
     <Poster data={posterData} /> :
     <Search submitSearch={onSearch} />;
 };

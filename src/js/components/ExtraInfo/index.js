@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { views } from '../../helpers';
+import helpers from '../../helpers';
 
 type Props = {
   data: string,
@@ -9,7 +9,7 @@ type Props = {
 
 function showInfo( props: Props ) {
   const { view, data } = props;
-  return view === views.POSTER ?
+  return view === helpers.views.POSTER ?
     <div className='extra-info__content'>Films by {data} genre</div> :
     <div className='extra-info__content'>{data} movies found</div>;
 }

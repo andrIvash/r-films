@@ -4,7 +4,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import ErrorBoundary from './ErrorBoundary';
-import { views, routes, get } from '../helpers';
+import helpers from '../helpers';
 
 type State = {
   view: string,
@@ -16,14 +16,14 @@ type State = {
 class App extends Component<{}, State> {
 
   state = {
-    view: views.COMMON,
+    view: helpers.views.COMMON,
     films: [],
     selectedGenre: 'Drama',
     posterData: {},
   }
 
   componentDidMount() {
-    this.sendQuery(`${routes.base}/movies`);
+    this.sendQuery(`${helpers.routes.base}/movies`);
   }
 
   onFilmSelect = (id: number): void => {
@@ -33,18 +33,18 @@ class App extends Component<{}, State> {
     const genre = this.state.films.find(film => film.id === id).genres[0];
 
     this.setState({
-      view: views.POSTER,
+      view: helpers.views.POSTER,
       posterData: film,
       selectedGenre: genre,
     });
-    this.sendQuery(`${routes.base}/movies`, {
+    this.sendQuery(`${helpers.routes.base}/movies`, {
       search: genre,
       searchBy: 'genres',
     });
   }
 
   sendQuery = (url: string, query?: {search?: string, searchBy?: string}) => {
-    get(url, query).then((response) => {
+    helpers.getData(url, query).then((response) => {
       console.log('Success!', response);
       this.setState({ films: response.data });
     }, (error) => {
@@ -54,7 +54,7 @@ class App extends Component<{}, State> {
 
   doSearch = (data: string, filter: string) => {
     console.log('do search', data, filter);
-    this.sendQuery(`${routes.base}/movies`, {
+    this.sendQuery(`${helpers.routes.base}/movies`, {
       search: data,
       searchBy: filter,
     });
@@ -63,7 +63,7 @@ class App extends Component<{}, State> {
   toSearch = () => {
     console.log('to search');
     this.setState({
-      view: views.COMMON,
+      view: helpers.views.COMMON,
     });
   }
 
