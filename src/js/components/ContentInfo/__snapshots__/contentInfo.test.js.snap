@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentInfo should render correctly 1`] = `
+<div
+  className="content-info"
+>
+  <ul
+    className="film-list"
+  >
+    <h2
+      className="no-data"
+    >
+      No films found
+    </h2>
+  </ul>
+</div>
+`;

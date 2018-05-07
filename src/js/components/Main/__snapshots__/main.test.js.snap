@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main should render correctly 1`] = `
+<main
+  className="content app__main"
+>
+  <div
+    className="content__top"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="container"
+      >
+        <ExtraInfo
+          data="2"
+        />
+        <FilterContent
+          onFilterSelect={[Function]}
+          selected="rating"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <ContentInfo
+      films={
+        Array [
+          1,
+          2,
+        ]
+      }
+    />
+  </div>
+</main>
+`;

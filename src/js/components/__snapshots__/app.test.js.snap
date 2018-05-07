@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render correctly 1`] = `
+<div
+  className="app__inner"
+>
+  <ErrorBoundary>
+    <Header
+      onSearch={[Function]}
+      posterData={Object {}}
+      toSearch={[Function]}
+      view="COMMON"
+    />
+    <Content
+      films={Array []}
+      genre="Drama"
+      onFilmSelect={[Function]}
+      view="COMMON"
+    />
+    <Footer />
+  </ErrorBoundary>
+</div>
+`;

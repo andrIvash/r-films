@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterSearch should render correctly 1`] = `
+<div
+  className="filter-search"
+>
+  <div
+    className="filter-search__title"
+  >
+    Search By
+  </div>
+  <div
+    className="btn-group-toggle"
+  >
+    <label
+      className="filter-search__label btn btn-secondary"
+      htmlFor="genre"
+    >
+      <input
+        autoComplete="off"
+        className="filter-search__btn"
+        id="genre"
+        name="options"
+        type="radio"
+        value="genres"
+      />
+       Genre
+    </label>
+    <label
+      className="filter-search__label btn btn-secondary"
+      htmlFor="title"
+    >
+      <input
+        autoComplete="off"
+        className="filter-search__btn"
+        id="title"
+        name="options"
+        type="radio"
+        value="title"
+      />
+       Title
+    </label>
+  </div>
+</div>
+`;

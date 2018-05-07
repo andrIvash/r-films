@@ -11,17 +11,18 @@ export type Film = {
   overview: string,
   budget: number,
   revenue: number,
-  runtime: number,
+  runtime?: number,
   genres: Array<string>,
 }
 
 export type PosterData = {
   title: string,
   poster_path: string,
-  vote_average: string,
+  vote_average: number,
   tagline: string,
   release_date: string,
-  runtime?: string
+  overview: string,
+  runtime?: number
 }
 
 export type View = 'COMMON' | 'POSTER';

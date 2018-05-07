@@ -44,7 +44,6 @@ class Search extends Component<Props, State> {
 
   changeFilter = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     const { target } = event;
-    console.log(target.value);
     this.setState({
       searchFilter: target.value,
     });

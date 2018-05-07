@@ -5,7 +5,7 @@ import Search from '../Search';
 import Poster from '../Poster';
 import SearchButton from '../SearchButton';
 import { views } from '../../helpers';
-import { PosterData, View } from '../../flow-types.js';
+import type { PosterData, View } from '../../flow-types.js';
 
 type Props = {
   onSearch: (data: string, filter:string) => void,
@@ -34,17 +34,13 @@ function contentHeader( props: Props ) {
     <Search submitSearch={onSearch} />;
 }
 
-class Header extends Component<Props> {
-  render() {
-    return (
-      <div className='header app__header bg-dark'>
-        <div className='container'>
-          {topHeader(this.props)}
-          {contentHeader(this.props)}
-        </div>
-      </div>
-    );
-  }
-}
+const Header = (props: Props) => (
+  <div className='header app__header bg-dark'>
+    <div className='container'>
+      {topHeader(props)}
+      {contentHeader(props)}
+    </div>
+  </div>
+);
 
 export default Header;

@@ -5,7 +5,7 @@ import Main from './Main';
 import Footer from './Footer';
 import ErrorBoundary from './ErrorBoundary';
 import { views, routes, get } from '../helpers';
-import { Film, PosterData, View } from '../flow-types.js';
+import type { Film, PosterData, View } from '../flow-types.js';
 
 type State = {
   view: View,
@@ -20,7 +20,14 @@ class App extends Component<{}, State> {
     view: views.COMMON,
     films: [],
     selectedGenre: 'Drama',
-    posterData: {},
+    posterData: {
+      title: '',
+      poster_path: '',
+      vote_average: 0,
+      tagline: '',
+      release_date: '',
+      overview: '',
+    },
   }
 
   componentDidMount() {
@@ -29,7 +36,7 @@ class App extends Component<{}, State> {
 
   onFilmSelect = (id: number): void => {
     const film = this.state.films.find(film => film.id === id);
-    const genre = film.genres[0];
+    const genre = film ? film.genres[0] : '';
 
     this.setState({
       view: views.POSTER,
@@ -59,7 +66,6 @@ class App extends Component<{}, State> {
   }
 
   toSearch = () => {
-    console.log('to search');
     this.setState({
       view: views.COMMON,
     });
