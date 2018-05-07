@@ -5,12 +5,13 @@ import Main from './Main';
 import Footer from './Footer';
 import ErrorBoundary from './ErrorBoundary';
 import { views, routes, get } from '../helpers';
+import { Film, PosterData, View } from '../flow-types.js';
 
 type State = {
-  view: string,
-  films: [],
+  view: View,
+  films: Array<Film>,
   selectedGenre: string,
-  posterData: {},
+  posterData: PosterData,
 };
 
 class App extends Component<{}, State> {
@@ -27,10 +28,8 @@ class App extends Component<{}, State> {
   }
 
   onFilmSelect = (id: number): void => {
-    console.log('select');
-    console.log(id);
     const film = this.state.films.find(film => film.id === id);
-    const genre = this.state.films.find(film => film.id === id).genres[0];
+    const genre = film.genres[0];
 
     this.setState({
       view: views.POSTER,
@@ -45,10 +44,9 @@ class App extends Component<{}, State> {
 
   sendQuery = (url: string, query?: {search?: string, searchBy?: string}) => {
     get(url, query).then((response) => {
-      console.log('Success!', response);
       this.setState({ films: response.data });
-    }, (error) => {
-      console.warn('Failed!', error);
+    }).catch((e) => {
+      console.warn('error:', e);
     });
   }
 

@@ -1,10 +1,11 @@
 // @flow
 import React from 'react';
 import { views } from '../../helpers';
+import { View } from '../../flow-types.js';
 
 type Props = {
   data: string,
-  view: string
+  view: View
 }
 
 function showInfo( props: Props ) {

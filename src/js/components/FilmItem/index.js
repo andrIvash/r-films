@@ -1,21 +1,9 @@
 // @flow
 import React from 'react';
+import { Film } from '../../flow-types.js';
 
 type Props = {
-  film: {
-    id: number,
-    title: string,
-    tagline: string,
-    vote_average: number,
-    vote_count: number,
-    release_date: string,
-    poster_path: string,
-    overview: string,
-    budget: number,
-    revenue: number,
-    runtime: number,
-    genres: Array<string>,
-  },
+  film: Film,
   id: number,
   onFilmSelect: (id: number) => void,
 }

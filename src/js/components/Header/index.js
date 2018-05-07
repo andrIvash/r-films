@@ -5,14 +5,13 @@ import Search from '../Search';
 import Poster from '../Poster';
 import SearchButton from '../SearchButton';
 import { views } from '../../helpers';
+import { PosterData, View } from '../../flow-types.js';
 
 type Props = {
   onSearch: (data: string, filter:string) => void,
   toSearch: () => void,
-  view: string,
-  posterData: {
-    title: string,
-  },
+  view: View,
+  posterData: PosterData,
 };
 
 function topHeader(props: Props) {

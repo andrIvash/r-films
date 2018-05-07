@@ -1,10 +1,9 @@
 // @flow
 import React from 'react';
+import { PosterData } from '../../flow-types.js';
 
 type Props = {
- data: {
-   title: string,
- }
+ data: PosterData
 }
 
 const Poster = (props: Props) => (

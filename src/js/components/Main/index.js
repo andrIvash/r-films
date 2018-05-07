@@ -4,12 +4,13 @@ import ContentInfo from '../ContentInfo';
 import ExtraInfo from '../ExtraInfo';
 import FilterContent from '../FilterContent';
 import { views } from '../../helpers';
+import { Film, View } from '../../flow-types.js';
 
 type Props = {
   onFilterSelect: (ev: SynteticInputIvent) => void,
   onFilmSelect: (ev: SynteticInputIvent) => void,
-  films: [],
-  view: string,
+  films: Array<Film>,
+  view: View,
   genre: string
 };
 
@@ -57,7 +58,7 @@ class Content extends Component<Props, State> {
       return (
         <div className='container'>
           <ExtraInfo
-            data={ view === views.POSTER ? genre : films.length.toString()}
+            data={view === views.POSTER ? genre : films.length.toString()}
             view={view}
           />
           {this.showFilter()}

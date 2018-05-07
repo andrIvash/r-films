@@ -1,10 +1,11 @@
 // @flow
 import React from 'react';
 import FilmItem from '../FilmItem';
+import { Film } from '../../flow-types.js';
 
 type Props = {
  onFilmSelect: (id: number) => void,
- films: []
+ films: Array<Film>
 }
 
 function filmItems(props: Props) {
@@ -28,7 +29,14 @@ function filmItems(props: Props) {
 const ContentInfo = (props: Props) => (
   <div className='content-info'>
     <ul className='film-list'>
+
       {filmItems(props)}
+
+      {props.films.length && props.films.length ? (
+        props.films.map(film => <FilmItem {...film} onFilmSelect={props.onFilmSelect} />)
+      ) : (
+        <h2 className='no-data'>No films found</h2>
+      )}
     </ul>
   </div>
 );
