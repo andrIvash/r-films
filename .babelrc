@@ -8,8 +8,9 @@
     }],
     "react",
     "stage-0",
-    "flow"
+    "flow",
   ],
+  "retainLines": true,
   "plugins": [
     "transform-class-properties"
   ],

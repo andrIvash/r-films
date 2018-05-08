@@ -1,22 +1,25 @@
 // @flow
 import React from 'react';
 import helpers from '../../helpers';
+import type { View } from '../../flow-types.js';
 
 type Props = {
   data: string,
-  view: string
+  view: View
 }
 
 function showInfo( props: Props ) {
   const { view, data } = props;
   return view === helpers.views.POSTER ?
-    <div className='extra-info__content'>Films by {data} genre</div> :
-    <div className='extra-info__content'>{data} movies found</div>;
+    `Films by ${data} genre` :
+    `${data} movies found`;
 }
 
 const ExtraInfo = (props: Props) => (
   <div className='extra-info'>
-    {showInfo(props)}
+    <div className='extra-info__content'>
+      {showInfo(props)}
+    </div>
   </div>
 );
 

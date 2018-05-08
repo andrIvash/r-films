@@ -4,38 +4,40 @@ import ContentInfo from '../ContentInfo';
 import ExtraInfo from '../ExtraInfo';
 import FilterContent from '../FilterContent';
 import helpers from '../../helpers';
+import type { Film, View } from '../../flow-types.js';
 
 type Props = {
-  onFilterSelect: (ev: SynteticInputIvent) => void,
   onFilmSelect: (ev: SynteticInputIvent) => void,
-  films: [],
-  view: string,
+  films: Array<Film>,
+  view: View,
   genre: string
 };
 
 type State = {
   selected: string,
+  filteredData: Array<Film>,
 };
 
 class Content extends Component<Props, State> {
   state = {
     selected: 'rating',
+    filteredData: [],
   }
 
   onFilterSelect = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     const { target } = event;
-    console.log(target.value);
+    this.filterData(target.value);
     this.setState({
       selected: target.value,
     });
   }
 
-  filterData = () => {
-    return this.props.films.sort((a, b) => {
-      return this.state.selected === 'rating' ?
-        a.vote_average > b.vote_average :
-        a.release_date.substr(0,4) < b.release_date.substr(0,4);
-    });
+  filterData = (selected: string):void => {
+    const filteredData = this.props.films.sort((a, b): any => (
+      selected === 'rating' ?
+        a.vote_average < b.vote_average :
+        a.release_date.substr(0, 4) < b.release_date.substr(0, 4)));
+    this.setState({ filteredData });
   }
 
   showFilter = () => {
@@ -57,7 +59,9 @@ class Content extends Component<Props, State> {
       return (
         <div className='container'>
           <ExtraInfo
-            data={view === helpers.views.POSTER ? genre : films.length.toString()}
+            data={view === helpers.views.POSTER ?
+              genre :
+              films.length.toString()}
             view={view}
           />
           {this.showFilter()}
@@ -68,7 +72,8 @@ class Content extends Component<Props, State> {
   }
 
   render() {
-    const { onFilmSelect } = this.props;
+    const { onFilmSelect, films } = this.props;
+    const { filteredData } = this.state;
 
     return (
       <main className='content app__main'>
@@ -79,7 +84,7 @@ class Content extends Component<Props, State> {
         </div>
         <div className='container'>
           <ContentInfo
-            films={this.filterData()}
+            films={filteredData && filteredData.length ? filteredData : films}
             onFilmSelect={onFilmSelect}
           />
         </div>

@@ -5,12 +5,13 @@ import Main from './Main';
 import Footer from './Footer';
 import ErrorBoundary from './ErrorBoundary';
 import helpers from '../helpers';
+import type { Film, PosterData, View } from '../flow-types.js';
 
 type State = {
-  view: string,
-  films: [],
+  view: View,
+  films: Array<Film>,
   selectedGenre: string,
-  posterData: {},
+  posterData: PosterData,
 };
 
 class App extends Component<{}, State> {
@@ -19,7 +20,14 @@ class App extends Component<{}, State> {
     view: helpers.views.COMMON,
     films: [],
     selectedGenre: 'Drama',
-    posterData: {},
+    posterData: {
+      title: '',
+      poster_path: '',
+      vote_average: 0,
+      tagline: '',
+      release_date: '',
+      overview: '',
+    },
   }
 
   componentDidMount() {
@@ -27,10 +35,8 @@ class App extends Component<{}, State> {
   }
 
   onFilmSelect = (id: number): void => {
-    console.log('select');
-    console.log(id);
     const film = this.state.films.find(film => film.id === id);
-    const genre = this.state.films.find(film => film.id === id).genres[0];
+    const genre = film ? film.genres[0] : '';
 
     this.setState({
       view: helpers.views.POSTER,
@@ -45,10 +51,9 @@ class App extends Component<{}, State> {
 
   sendQuery = (url: string, query?: {search?: string, searchBy?: string}) => {
     helpers.getData(url, query).then((response) => {
-      console.log('Success!', response);
       this.setState({ films: response.data });
-    }, (error) => {
-      console.warn('Failed!', error);
+    }).catch((e) => {
+      console.warn('error:', e);
     });
   }
 
@@ -61,7 +66,6 @@ class App extends Component<{}, State> {
   }
 
   toSearch = () => {
-    console.log('to search');
     this.setState({
       view: helpers.views.COMMON,
     });

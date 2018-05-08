@@ -1,18 +1,17 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import Logo from '../Logo';
 import Search from '../Search';
 import Poster from '../Poster';
 import SearchButton from '../SearchButton';
 import helpers from '../../helpers';
+import type { PosterData, View } from '../../flow-types.js';
 
 type Props = {
   onSearch: (data: string, filter:string) => void,
   toSearch: () => void,
-  view: string,
-  posterData: {
-    title: string,
-  },
+  view: View,
+  posterData: PosterData,
 };
 
 const topHeader = (props: Props) => {
@@ -35,7 +34,7 @@ const contentHeader = ( props: Props ) => {
     <Search submitSearch={onSearch} />;
 };
 
-const Header = ( props: Props ) => (
+const Header = (props: Props) => (
   <div className='header app__header bg-dark'>
     <div className='container'>
       {topHeader(props)}

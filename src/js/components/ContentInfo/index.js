@@ -1,34 +1,26 @@
 // @flow
 import React from 'react';
 import FilmItem from '../FilmItem';
+import type { Film } from '../../flow-types.js';
 
 type Props = {
  onFilmSelect: (id: number) => void,
- films: []
-}
-
-function filmItems(props: Props) {
-  if (props.films && props.films.length) {
-    return props.films.map((item, ndx) => (
-      <li
-        className='film-list__item'
-        key={item.id}
-        >
-        <FilmItem
-          film={item}
-          id={item.id}
-          onFilmSelect={props.onFilmSelect}
-        />
-      </li>
-    ));
-  }
-  return <h2 className='no-data'>No films found</h2>;
+ films: Array<Film>
 }
 
 const ContentInfo = (props: Props) => (
   <div className='content-info'>
     <ul className='film-list'>
-      {filmItems(props)}
+      {props.films.length && props.films.length ? (
+        props.films.map(film => (
+          <FilmItem
+            film={film}
+            id={film.id}
+            key={film.id}
+            onFilmSelect={props.onFilmSelect}
+          />)))
+      : (<h2 className='no-data'>No films found</h2>)
+      }
     </ul>
   </div>
 );

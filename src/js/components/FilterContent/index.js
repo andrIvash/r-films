@@ -5,6 +5,7 @@ type Props = {
  onFilterSelect: (ev: SynteticInputIvent) => void,
  selected: string
 }
+
 const FilterContent = (props: Props) => (
   <div className='filter-content'>
     <div className='filter-content__title'>Sort By</div>
