@@ -1,11 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+// @flow
+import React, { Component } from 'react';
+import Logo from '../Logo';
+import Search from '../Search';
+import Poster from '../Poster';
+import SearchButton from '../SearchButton';
+import { views } from '../../helpers';
+import type { PosterData, View } from '../../flow-types.js';
 
-const header =  React.createElement('div', {className: 'header'},
-  React.createElement('div', {className: 'title header__title'}, 'netflixroulette')
+type Props = {
+  onSearch: (data: string, filter:string) => void,
+  toSearch: () => void,
+  view: View,
+  posterData: PosterData,
+};
+
+function topHeader(props: Props) {
+  const { view, toSearch } = props;
+  if ( view === views.POSTER ) {
+    return (
+      <div className='header__top'>
+        <Logo />
+        <SearchButton handleSearch={toSearch} />
+      </div>
+    );
+  }
+  return <div className='header__top'> <Logo /> </div>;
+}
+
+function contentHeader( props: Props ) {
+  const { view, onSearch, posterData } = props;
+  return view === views.POSTER ?
+    <Poster data={posterData} /> :
+    <Search submitSearch={onSearch} />;
+}
+
+const Header = (props: Props) => (
+  <div className='header app__header bg-dark'>
+    <div className='container'>
+      {topHeader(props)}
+      {contentHeader(props)}
+    </div>
+  </div>
 );
 
-ReactDOM.render(
-  header,
-  document.getElementById('header')
-);
+export default Header;

@@ -1,0 +1,12 @@
+.content__top {
+  height: rem(40px);
+  width: 100%;
+  background-color: $color-background-light;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

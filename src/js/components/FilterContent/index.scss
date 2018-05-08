@@ -1,0 +1,23 @@
+.filter-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $sign-font;
+  font-size: rem(16px);
+  font-weight: 500;
+  color: $color-background;
+}
+
+.filter-content__label {
+  margin-bottom: 0;
+  margin-left: rem(15px);
+  cursor: pointer;
+}
+
+.filter-content__label.active {
+  color: $color-logo;
+}
+
+.filter-content__input {
+  display: none;
+}

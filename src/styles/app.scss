@@ -1,14 +1,23 @@
-@import 's1.scss';
-$main-background:   grey;
+@import './node_modules/bootstrap/scss/bootstrap.scss';
+@import 'main';
+@import '../js/components/**/*.scss';
 
+.app__inner {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 
-body {
-    background: $main-background;
-    font-color: red;
-}
-
-.wrapper {
+  .main-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    color: $color-logo;
+    font-size: rem(24px);
+  }
 }

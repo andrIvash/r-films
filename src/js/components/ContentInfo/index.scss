@@ -1,0 +1,36 @@
+.content-info {
+  width: 100%;
+}
+
+.film-list {
+  margin: rem(20px) 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  @include tablet() {
+    justify-content: center;
+  }
+}
+
+.no-data {
+  color: $color-background;
+  font-family: $sign-font;
+  font-weight: 700;
+  font-size: rem(40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: rem(-30px);
+  @include centered();
+  top: rem(-80px);
+}
+
+.film-list__item {
+  width: rem(225px);
+  min-height: rem(380px);
+  margin: rem(15px);
+}

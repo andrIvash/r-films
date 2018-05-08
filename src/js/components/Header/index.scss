@@ -1,0 +1,26 @@
+.header {
+  min-height: rem(200px);
+  background-image: 
+    linear-gradient(to right, rgba(52, 58, 64, 1), rgba(0, 0, 0, 0.75)),
+    url('../images/fons2.jpg');
+  background-position: center center, center center;
+  background-size: contain, contain;
+  background-repeat: no-repeat, repeat;
+
+  .container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: rem(20px);
+    text-align: left;
+  }
+
+  .header__top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: rem(20px);
+  }
+}

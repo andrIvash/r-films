@@ -1,18 +1,13 @@
-import React, { PureComponent } from 'react';
-import Socials from '../Socials';
+// @flow
+import React from 'react';
+import Logo from '../Logo';
 
-export default class Footer extends PureComponent {
-  state = {
-    socials: [{ name: 'fb' }, { name: 'tw' }, { name: 'ln' }],
-  }
+const Footer = () => (
+  <footer className='footer app__footer bg-dark'>
+    <div className='container'>
+      <Logo />
+    </div>
+  </footer>
+);
 
-  render() {
-    return (
-      <footer className='footer app__footer'>
-        footer
-        <Socials socials={this.state.socials} />
-      </footer>
-    );
-  }
-}
-
+export default Footer;
