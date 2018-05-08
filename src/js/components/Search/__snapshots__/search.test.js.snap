@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search should render correctly 1`] = `
+<div
+  className="search app__search"
+>
+  <h1
+    className="search__title"
+  >
+     Find your movie 
+  </h1>
+  <div
+    className="search__input-wrapper input-group mb-3"
+  >
+    <input
+      aria-label="Search"
+      className="search__input form-control"
+      name="search"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Search phrase..."
+      type="text"
+      value=""
+    />
+    <img
+      alt="search sign"
+      className="search__sign"
+      src={
+        Object {
+          "default": "",
+        }
+      }
+    />
+  </div>
+  <div
+    className="search__controls"
+  >
+    <FilterSearch
+      onChange={[Function]}
+      selected="title"
+    />
+    <SearchButton
+      handleSearch={[Function]}
+    />
+  </div>
+</div>
+`;
