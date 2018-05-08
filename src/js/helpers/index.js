@@ -1,10 +1,10 @@
-export default {
-  formatQueryParams: params => (
-    `?${Object.keys(params).map(key => (
-      `${key}=${encodeURIComponent(params[key])}`
-    )).join('&')}`
-  ),
+const formatQueryParams = params => (
+  `?${Object.keys(params).map(key => (
+    `${key}=${encodeURIComponent(params[key])}`
+  )).join('&')}`
+);
 
+export default {
   views: {
     COMMON: 'COMMON',
     POSTER: 'POSTER',
@@ -19,7 +19,7 @@ export default {
       const req = new XMLHttpRequest();
       let combinedUrl = url;
       if (query) {
-        combinedUrl = `${url}${this.formatQueryParams(query)}`;
+        combinedUrl = `${url}${formatQueryParams(query)}`;
         console.log(combinedUrl);
       }
       req.open('GET', combinedUrl);

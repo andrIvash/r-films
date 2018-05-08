@@ -84,6 +84,7 @@ describe('Main', () => {
     };
     const wrapper = shallow(
       <Main {...props} /> );
+      wrapper.instance().filterData('data');
     expect(props.films[0].id).toEqual(2);
   });
 });
