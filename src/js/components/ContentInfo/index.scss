@@ -26,7 +26,7 @@
   align-items: center;
   margin-top: rem(-30px);
   @include centered();
-  top: rem(-80px);
+  padding-bottom: 5 rem;
 }
 
 .film-list__item {
