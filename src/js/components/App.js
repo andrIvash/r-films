@@ -1,5 +1,7 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getFilmsIfNeeded } from '../actions';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -14,7 +16,11 @@ type State = {
   posterData: PosterData,
 };
 
-class App extends Component<{}, State> {
+type Props = {
+  dispatch: (func: ()=>{}) => {},
+};
+
+class App extends Component<Props, State> {
 
   state = {
     view: helpers.views.COMMON,
@@ -31,7 +37,8 @@ class App extends Component<{}, State> {
   }
 
   componentDidMount() {
-    this.sendQuery(`${helpers.routes.base}/movies`);
+    const { dispatch } = this.props;
+    dispatch(getFilmsIfNeeded(`${helpers.routes.base}/movies`));
   }
 
   onFilmSelect = (id: number): void => {
@@ -101,4 +108,7 @@ class App extends Component<{}, State> {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({ state });
+
+export default connect(mapStateToProps)(App);
+
