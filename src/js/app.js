@@ -9,14 +9,14 @@ import App from './components/App';
 import '../styles/app.scss';
 import '../js/components/Header';
 
-// const middleware = [ thunk ]
-// if (process.env.NODE_ENV !== 'production') {
-//   middleware.push(createLogger())
-// }
+// const initialState = {
+//   films:[]
+// };
 
 const store = createStore(
+  // initialState,
   reducer,
-  // applyMiddleware(...middleware)
+  applyMiddleware(thunk),
 );
 
 const app = document.getElementById('app');

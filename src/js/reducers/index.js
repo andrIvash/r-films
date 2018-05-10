@@ -1,40 +1,40 @@
 import { combineReducers } from 'redux';
-import { REQUEST_FILMS, RECEIVE_FILMS } from '../actions';
-import helpers from '../helpers';
+import { ITEMS_IS_LOADING, RECEIVE_FILMS, ITEMS_HAS_ERRORED } from '../actions';
 
-const films = (state = {
-  view: helpers.views.COMMON,
-  selectedGenre: 'Drama',
-  posterData: {
-    title: '',
-    poster_path: '',
-    vote_average: 0,
-    tagline: '',
-    release_date: '',
-    overview: '',
-  },
-  isFetching: false,
-  films: [],
-}, action) => {
-  switch (action.type) {
-    case REQUEST_FILMS:
-      return {
-        ...state,
-        isFetching: true,
-      };
-    case RECEIVE_FILMS:
-      return {
-        ...state,
-        isFetching: false,
-        films: action.items,
-      };
-    default:
-      return state;
-  }
+export const itemsHasErrored = (state = false, action) => {
+    switch (action.type) {
+        case ITEMS_HAS_ERRORED:
+            return action.hasErrored;
+
+        default:
+            return state;
+    }
+};
+
+export const itemsIsLoading = (state = false, action) => {
+    switch (action.type) {
+        case ITEMS_IS_LOADING:
+            return action.isLoading;
+
+        default:
+            return state;
+    }
+};
+
+export const items = (state = [], action) => {
+    switch (action.type) {
+        case RECEIVE_FILMS:
+            return action.items;
+
+        default:
+            return state;
+    }
 };
 
 const rootReducer = combineReducers({
-  films,
+  items,
+  itemsHasErrored,
+  itemsIsLoading,
 });
 
 export default rootReducer;

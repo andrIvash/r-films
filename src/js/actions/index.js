@@ -4,34 +4,40 @@ import helpers from '../helpers';
  */
 
 export const REQUEST_FILMS = 'REQUEST_FILMS';
-export const REQUEST_FILM = 'REQUEST_FILM';
+export const ITEMS_IS_LOADING = 'ITEMS_IS_LOADING';
 export const RECEIVE_FILMS = 'RECEIVE_FILMS';
+export const ITEMS_HAS_ERRORED = 'ITEMS_HAS_ERRORED';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
 /*
  * action creators
  */
 
-export const requestFilms = request => ({
-  type: REQUEST_FILMS,
-  request,
+export const itemsIsLoading = bool => ({
+  type: ITEMS_IS_LOADING,
+  isLoading: bool,
 });
 
-export const receiveFilms = response => ({
+export const receiveFilms = items => ({
   type: RECEIVE_FILMS,
-  items: response.data,
+  items,
 });
 
-const getFilms = request => dispatch => {
-  dispatch(requestFilms(request));
-  return helpers.getFilms(`${helpers.routes.base}/movies`)
-    .then(response => dispatch(receiveFilms(response)));
+export const itemsHasErrored = bool => ({
+  type: ITEMS_HAS_ERRORED,
+  hasErrored: bool,
+});
+
+export const getFilms = request => dispatch => {
+  dispatch(itemsIsLoading(true));
+  helpers.getData(request)
+    .then(response => {
+      dispatch(itemsIsLoading(false));
+      return response;
+    })
+    .then(response => {
+      dispatch(receiveFilms(response.data));
+    })
+    .catch(() => dispatch(itemsHasErrored(true)));
 };
 
-export const getFilmsIfNeeded = request => (dispatch, getState) => {
-  const { films, isFetching } = getState();
-  if (!films || isFetching) {
-    return dispatch(getFilms(request));
-  }
-  return getState();
-};
