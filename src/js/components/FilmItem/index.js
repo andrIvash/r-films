@@ -8,11 +8,12 @@ type Props = {
   onFilmSelect: (id: number) => void,
 }
 
+
 const FilmItem = (props:Props) => {
   const { film, onFilmSelect, id } = props;
 
   return (
-    <li className='film-list__item' onClick={() => {onFilmSelect(id)}}>
+    <li className='film-list__item' onClick={() => { onFilmSelect(id) }}>
       <div className='film-item'>
         <div className='film-item__img-wrap'>
           <img alt='film' className='film-item__img' src={film.poster_path} />

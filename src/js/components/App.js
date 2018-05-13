@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getFilms } from '../actions';
+import { getFilms, selectFilm, changeView } from '../actions';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -10,72 +10,35 @@ import helpers from '../helpers';
 import type { Film, PosterData, View } from '../flow-types.js';
 
 type State = {
-  view: View,
-  selectedGenre: string,
-  posterData: PosterData,
+  // view: View,
+  // selectedGenre: string,
+  // posterData: PosterData,
 };
 
 type Props = {
-  fetchData: (url: string) => Array<Film> | null,
+  fetchData: (url: string,
+    query?: {search: string, searchBy: string}) => Array<Film> | null,
   films: Array<Film>,
   hasErrored: boolean,
   isLoading: boolean,
+  selectedGenre: string,
+  view: View,
+  posterData: PosterData,
+  onChangeView: () => {},
+  onFilmSelect: () => {}
 };
 
 class App extends Component<Props, State> {
-
-  state = {
-    view: helpers.views.COMMON,
-    selectedGenre: 'Drama',
-    posterData: {
-      title: '',
-      poster_path: '',
-      vote_average: 0,
-      tagline: '',
-      release_date: '',
-      overview: '',
-    },
-  }
 
   componentDidMount() {
     this.props.fetchData(`${helpers.routes.base}/movies`);
   }
 
-  onFilmSelect = (id: number): void => {
-    const film = this.props.films.find(film => film.id === id);
-    const genre = film ? film.genres[0] : '';
-
-    this.setState({
-      view: helpers.views.POSTER,
-      posterData: film,
-      selectedGenre: genre,
-    });
-    this.sendQuery(`${helpers.routes.base}/movies`, {
-      search: genre,
-      searchBy: 'genres',
-    });
-  }
-
-  // sendQuery = (url: string, query?: {search?: string, searchBy?: string}) =>
-    // {
-    // helpers.getData(url, query).then((response) => {
-    //   this.setState({ films: response.data });
-    // }).catch((e) => {
-    //   console.warn('error:', e);
-    // });
-  // }
-
   doSearch = (data: string, filter: string) => {
     console.log('do search', data, filter);
-    this.sendQuery(`${helpers.routes.base}/movies`, {
+    this.props.fetchData(`${helpers.routes.base}/movies`, {
       search: data,
       searchBy: filter,
-    });
-  }
-
-  toSearch = () => {
-    this.setState({
-      view: helpers.views.COMMON,
     });
   }
 
@@ -84,9 +47,12 @@ class App extends Component<Props, State> {
       selectedGenre,
       view,
       posterData,
-    } = this.state;
-
-    const {hasErrored, isLoading, films} = this.props;
+      onChangeView,
+      onFilmSelect,
+      hasErrored,
+      isLoading,
+      films,
+    } = this.props;
 
     if (hasErrored) {
       return (
@@ -101,7 +67,22 @@ class App extends Component<Props, State> {
     }
 
     if (isLoading) {
-      return <p>Loading…</p>;
+      return (
+        <div className='app__inner'>
+          <ErrorBoundary>
+            <Header
+              onSearch={this.doSearch}
+              posterData={posterData}
+              toSearch={onChangeView}
+              view={view}
+            />
+            <main className='content app__main'>
+              <p className='loading'>Loading…</p>
+            </main>
+            <Footer />
+          </ErrorBoundary>
+        </div>
+      );
     }
     return (
       <div className='app__inner'>
@@ -109,13 +90,13 @@ class App extends Component<Props, State> {
           <Header
             onSearch={this.doSearch}
             posterData={posterData}
-            toSearch={this.toSearch}
+            toSearch={onChangeView}
             view={view}
           />
           <Main
             films={films}
             genre={selectedGenre}
-            onFilmSelect={this.onFilmSelect}
+            onFilmSelect={onFilmSelect}
             view={view}
           />
           <Footer />
@@ -125,9 +106,11 @@ class App extends Component<Props, State> {
   }
 }
 const mapDispatchToProps = (dispatch) => {
-    return {
-      fetchData: (url) => dispatch(getFilms(url)),
-    };
+  return {
+    fetchData: (url, query) => dispatch(getFilms(url, query)),
+    onFilmSelect: id => dispatch(selectFilm(id)),
+    onChangeView: () => dispatch(changeView()),
+  };
 };
 
 const mapStateToProps = state => {
@@ -135,8 +118,10 @@ const mapStateToProps = state => {
       films: state.items,
       hasErrored: state.itemsHasErrored,
       isLoading: state.itemsIsLoading,
+      posterData: state.selectFilm.posterData,
+      selectedGenre: state.selectFilm.selectedGenre,
+      view: state.changeView.view,
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-

@@ -21,7 +21,7 @@ const FilterContent = (props: Props) => (
           className='filter-content__input'
           id='release'
           name='filter'
-          onChange={props.onFilterSelect}
+          onChange={(ev) => props.onFilterSelect(ev.target)}
           type='radio'
           value='release'
         /> release date
@@ -37,7 +37,7 @@ const FilterContent = (props: Props) => (
           className='filter-content__input'
           id='rating'
           name='filter'
-          onChange={props.onFilterSelect}
+          onChange={(ev) => props.onFilterSelect(ev.target)}
           type='radio'
           value='rating'
         /> rating

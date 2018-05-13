@@ -1,13 +1,15 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ContentInfo from '../ContentInfo';
 import ExtraInfo from '../ExtraInfo';
 import FilterContent from '../FilterContent';
 import helpers from '../../helpers';
 import type { Film, View } from '../../flow-types.js';
+import { filterData, selectDataFilter } from '../../actions';
 
 type Props = {
-  onFilmSelect: (ev: SynteticInputIvent) => void,
+  onFilmSelect: (ev: SyntheticInputEvent) => void,
   films: Array<Film>,
   view: View,
   genre: string
@@ -19,35 +21,34 @@ type State = {
 };
 
 class Content extends Component<Props, State> {
-  state = {
-    selected: 'rating',
-    filteredData: [],
-  }
+  // state = {
+  //   selected: 'rating',
+  //   filteredData: [],
+  // }
 
-  onFilterSelect = (event: SyntheticInputEvent<HTMLInputElement>): void => {
-    const { target } = event;
-    this.filterData(target.value);
-    this.setState({
-      selected: target.value,
-    });
-  }
+  // onFilterSelect = (event: SyntheticInputEvent<HTMLInputElement>): void => {
+  //   const { target } = event;
+  //   this.filterData(target.value);
+  //   this.setState({
+  //     selected: target.value,
+  //   });
+  // }
 
-  filterData = (selected: string):void => {
-    const filteredData = this.props.films.sort((a, b): any => (
-      selected === 'rating' ?
-        a.vote_average < b.vote_average :
-        a.release_date.substr(0, 4) < b.release_date.substr(0, 4)));
-    this.setState({ filteredData });
-  }
+  // filterData = (selected: string):void => {
+  //   const filteredData = this.props.films.sort((a, b): any => (
+  //     selected === 'rating' ?
+  //       a.vote_average < b.vote_average :
+  //       a.release_date.substr(0, 4) < b.release_date.substr(0, 4)));
+  //   this.setState({ filteredData });
+  // }
 
   showFilter = () => {
-    const { view } = this.props;
-    const { selected } = this.state;
+    const { view, onFilterSelect, selected } = this.props;
 
     return view === helpers.views.POSTER ?
       null :
       <FilterContent
-        onFilterSelect={this.onFilterSelect}
+        onFilterSelect={onFilterSelect}
         selected={selected}
       />;
   }
@@ -72,9 +73,8 @@ class Content extends Component<Props, State> {
   }
 
   render() {
-    const { onFilmSelect, films } = this.props;
-    const { filteredData } = this.state;
-
+    const { onFilmSelect, films, filteredData } = this.props;
+  
     return (
       <main className='content app__main'>
         <div className='content__top'>
@@ -93,4 +93,21 @@ class Content extends Component<Props, State> {
   }
 }
 
-export default Content;
+const mapDispatchToProps = dispatch => {
+  return {
+    onFilterSelect: elem => {
+      dispatch(selectDataFilter(elem));
+      dispatch(filterData());
+    },
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+      selected: state.selectDataFilter.selected,
+      filteredData: state.filterData.filteredFilms,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);
+
