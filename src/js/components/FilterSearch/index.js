@@ -2,7 +2,7 @@
 import React from 'react';
 
 type Props = {
- onChange: (ev: SynteticInputIvent) => void,
+ changeFilter: (elem: HTMLElement) => void,
  selected: string
 }
 
@@ -21,7 +21,7 @@ const FilterSearch = (props: Props) => (
           className='filter-search__btn'
           id='genre'
           name='options'
-          onChange={props.onChange}
+          onChange={(ev) => {props.changeFilter(ev.target);}}
           type='radio'
           value='genres'
         /> Genre
@@ -37,7 +37,7 @@ const FilterSearch = (props: Props) => (
           className='filter-search__btn'
           id='title'
           name='options'
-          onChange={props.onChange}
+          onChange={(ev) => {props.changeFilter(ev.target);}}
           type='radio'
           value='title'
         /> Title

@@ -1,31 +1,22 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import * as sign from './enterSign.svg';
 import FilterSearch from '../FilterSearch';
 import SearchButton from '../SearchButton';
+import { changeSearchFilter,
+  changeSearchText, clearSearchText } from '../../actions';
 
 type Props = {
-  submitSearch: (data: string, filter:string) => void
-};
-
-type State = {
+  submitSearch: (data: string, filter:string) => void,
   searchText: string,
   searchFilter: string,
+  clearText: () => void,
+  handleChange: (elem: HTMLElement) => void,
+  changeFilter: (elem: HTMLElement) => void,
 };
 
-class Search extends Component<Props, State> {
-
-  state = {
-    searchText: '',
-    searchFilter: 'title',
-  }
-
-  handleChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
-    const { value } = event.target;
-    this.setState({
-      searchText: value,
-    });
-  }
+class Search extends Component<Props> {
 
   handleKeyPress = (event: SyntheticKeyboardEvent<>) => {
     if (event.key === 'Enter') {
@@ -34,24 +25,15 @@ class Search extends Component<Props, State> {
   }
 
   handleSearch = () => {
-    const data = this.state.searchText;
-    if (data.length > 0) {
-      this.props.submitSearch(data, this.state.searchFilter);
-      this.setState({
-        searchText: '',
-      });
+    const {searchText, searchFilter, clearText, submitSearch } = this.props;
+    if (searchText.length > 0) {
+      submitSearch(searchText, searchFilter);
+      clearText();
     }
   }
 
-  changeFilter = (event: SyntheticInputEvent<HTMLInputElement>): void => {
-    const { target } = event;
-    this.setState({
-      searchFilter: target.value,
-    });
-  }
-
   render() {
-    const { searchFilter, searchText } = this.state;
+    const { searchText, handleChange, changeFilter, searchFilter } = this.props;
     return (
       <div className='search app__search'>
         <h1 className='search__title'> Find your movie </h1>
@@ -60,7 +42,7 @@ class Search extends Component<Props, State> {
             aria-label='Search'
             className='search__input form-control'
             name='search'
-            onChange={this.handleChange}
+            onChange={(ev) => {handleChange(ev.target);}}
             onKeyPress={this.handleKeyPress}
             placeholder='Search phrase...'
             type='text'
@@ -70,7 +52,7 @@ class Search extends Component<Props, State> {
         </div>
         <div className='search__controls'>
           <FilterSearch
-            onChange={this.changeFilter}
+            changeFilter={changeFilter}
             selected={searchFilter}
           />
           <SearchButton handleSearch={this.handleSearch} />
@@ -80,4 +62,19 @@ class Search extends Component<Props, State> {
   }
 }
 
-export default Search;
+const mapDispatchToProps = dispatch => {
+  return {
+    changeFilter: (elem) => dispatch(changeSearchFilter(elem)),
+    handleChange: (elem) => dispatch(changeSearchText(elem)),
+    clearText: () => dispatch(clearSearchText()),
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+      searchFilter: state.changeSearchFilter.searchFilter,
+      searchText: state.changeSearchText.searchText,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

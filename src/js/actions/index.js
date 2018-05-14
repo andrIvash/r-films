@@ -15,10 +15,32 @@ export const CHANGE_VIEW_POSTER = 'CHANGE_VIEW_POSTER';
 export const SELECT_SEARCH_FILTER = 'SELECT_SEARCH_FILTER';
 export const SELECT_DATA_FILTER = 'SELECT_DATA_FILTER';
 export const FILTER_DATA = 'FILTER_DATA';
+export const CHANGE_SEARCH_FILTER = 'CHANGE_SEARCH_FILTER';
+export const CHANGE_SEARCH_TEXT = 'CHANGE_SEARCH_TEXT';
+export const CLEAR_SEARCH_TEXT = 'CLEAR_SEARCH_TEXT';
 
 /*
  * action creators
  */
+export const clearSearchText = () => {
+  return {
+    type: CLEAR_SEARCH_TEXT,
+  };
+};
+
+export const changeSearchText = (elem: HTMLElement) => {
+  return {
+    type: CHANGE_SEARCH_TEXT,
+    value: elem.value,
+  };
+};
+
+export const changeSearchFilter = (elem: HTMLElement) => {
+  return {
+    type: CHANGE_SEARCH_FILTER,
+    value: elem.value,
+  };
+};
 
 export const selectDataFilter = (elem: HTMLElement) => {
   return {
