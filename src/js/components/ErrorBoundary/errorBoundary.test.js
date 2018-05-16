@@ -1,11 +1,6 @@
 import React from 'react';
 import ErrorBoundary from './index';
 
-// const ProblemChild = () => (
-//   throw new Error()
-//   // return <div className='main-error'>Error: Something went wrong.</div>; // eslint-disable-line
-// );
-
 describe('ErrorBoundary', () => {
   it('should be defined', () => {
     expect(ErrorBoundary).toBeDefined();
