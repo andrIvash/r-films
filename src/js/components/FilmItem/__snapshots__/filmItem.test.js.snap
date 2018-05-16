@@ -2,37 +2,36 @@
 
 exports[`FilmItem should render correctly 1`] = `
 <li
-  className="film-list__item"
-  onClick={[Function]}
+  class="film-list__item"
 >
   <div
-    className="film-item"
+    class="film-item"
   >
     <div
-      className="film-item__img-wrap"
+      class="film-item__img-wrap"
     >
       <img
         alt="film"
-        className="film-item__img"
+        class="film-item__img"
         src="http://test"
       />
     </div>
     <div
-      className="film-item__info"
+      class="film-item__info"
     >
       <div
-        className="film-item__title"
+        class="film-item__title"
       >
         title
       </div>
       <div
-        className="film-item__year"
+        class="film-item__year"
       >
         1924
       </div>
     </div>
     <div
-      className="film-item__genre"
+      class="film-item__genre"
     >
       drama
     </div>

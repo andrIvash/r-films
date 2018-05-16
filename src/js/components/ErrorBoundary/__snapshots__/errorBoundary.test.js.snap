@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ErrorBoundary should render correctly 1`] = `""`;
+exports[`ErrorBoundary should render children 1`] = `
+<div>
+  children
+</div>
+`;
+
+exports[`ErrorBoundary should render children if error 1`] = `
+<div>
+  children
+</div>
+`;

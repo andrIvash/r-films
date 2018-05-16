@@ -2,54 +2,54 @@
 
 exports[`Poster should render correctly 1`] = `
 <div
-  className="poster"
+  class="poster"
 >
   <div
-    className="poster__img-wrap"
+    class="poster__img-wrap"
   >
     <img
       alt="file poster"
-      className="poster__img"
+      class="poster__img"
     />
   </div>
   <div
-    className="poster__info film"
+    class="poster__info film"
   >
     <div
-      className="film__header"
+      class="film__header"
     >
       <h1
-        className="film__title"
+        class="film__title"
       >
         title
       </h1>
       <div
-        className="film__score"
+        class="film__score"
       >
         http://test
       </div>
     </div>
     <h5
-      className="film__subtitle"
+      class="film__subtitle"
     >
       tagline
     </h5>
     <div
-      className="film__info"
+      class="film__info"
     >
       <div
-        className="film__year"
+        class="film__year"
       >
         1924
       </div>
       <div
-        className="film__latency"
+        class="film__latency"
       >
         100 min
       </div>
     </div>
     <p
-      className="film__desq"
+      class="film__desq"
     />
   </div>
 </div>

@@ -2,8 +2,7 @@
 
 exports[`SearchButton should render correctly 1`] = `
 <button
-  className="search-button btn btn-lg btn-primary"
-  onClick={[MockFunction]}
+  class="search-button btn btn-lg btn-primary"
   type="button"
 >
    Search

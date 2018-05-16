@@ -2,16 +2,81 @@
 
 exports[`ContentInfo should render correctly 1`] = `
 <div
-  className="content-info"
+  class="content-info"
 >
   <ul
-    className="film-list"
+    class="film-list"
   >
-    <h2
-      className="no-data"
+    <li
+      class="film-list__item"
     >
-      No films found
-    </h2>
+      <div
+        class="film-item"
+      >
+        <div
+          class="film-item__img-wrap"
+        >
+          <img
+            alt="film"
+            class="film-item__img"
+          />
+        </div>
+        <div
+          class="film-item__info"
+        >
+          <div
+            class="film-item__title"
+          >
+            title
+          </div>
+          <div
+            class="film-item__year"
+          >
+            1992
+          </div>
+        </div>
+        <div
+          class="film-item__genre"
+        >
+          Drama
+        </div>
+      </div>
+    </li>
+    <li
+      class="film-list__item"
+    >
+      <div
+        class="film-item"
+      >
+        <div
+          class="film-item__img-wrap"
+        >
+          <img
+            alt="film"
+            class="film-item__img"
+          />
+        </div>
+        <div
+          class="film-item__info"
+        >
+          <div
+            class="film-item__title"
+          >
+            title2
+          </div>
+          <div
+            class="film-item__year"
+          >
+            1994
+          </div>
+        </div>
+        <div
+          class="film-item__genre"
+        >
+          Drama
+        </div>
+      </div>
+    </li>
   </ul>
 </div>
 `;
