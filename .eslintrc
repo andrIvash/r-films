@@ -37,7 +37,10 @@
     "ga": true,
     "jQuery": true,
     "router": true,
-    "jest/globals": true
+    "jest/globals": true,
+    "shallow": true,
+    "mount": true,
+    "render": true
   },
   "rules": {
     "block-scoped-var": 0,
@@ -181,7 +184,7 @@
     "react/display-name": 2,
     "react/jsx-boolean-value": [ 2, "always" ],
     "react/jsx-closing-bracket-location": [ 2, { "selfClosing": "line-aligned", "nonEmpty": "props-aligned" } ],
-    "react/jsx-no-undef": 2,
+    "react/jsx-no-undef": [2, { "allowGlobals": true } ],
     "react/jsx-sort-props": [ 2, { "ignoreCase": true } ],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,

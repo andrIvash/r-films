@@ -2,46 +2,80 @@
 
 exports[`Search should render correctly 1`] = `
 <div
-  className="search app__search"
+  class="search app__search"
 >
   <h1
-    className="search__title"
+    class="search__title"
   >
      Find your movie 
   </h1>
   <div
-    className="search__input-wrapper input-group mb-3"
+    class="search__input-wrapper input-group mb-3"
   >
     <input
       aria-label="Search"
-      className="search__input form-control"
+      class="search__input form-control"
       name="search"
-      onChange={[Function]}
-      onKeyPress={[Function]}
       placeholder="Search phrase..."
       type="text"
       value=""
     />
     <img
       alt="search sign"
-      className="search__sign"
-      src={
-        Object {
-          "default": "",
-        }
-      }
+      class="search__sign"
+      src="[object Object]"
     />
   </div>
   <div
-    className="search__controls"
+    class="search__controls"
   >
-    <FilterSearch
-      onChange={[Function]}
-      selected="title"
-    />
-    <SearchButton
-      handleSearch={[Function]}
-    />
+    <div
+      class="filter-search"
+    >
+      <div
+        class="filter-search__title"
+      >
+        Search By
+      </div>
+      <div
+        class="btn-group-toggle"
+      >
+        <label
+          class="filter-search__label btn btn-secondary"
+          for="genre"
+        >
+          <input
+            autocomplete="off"
+            class="filter-search__btn"
+            id="genre"
+            name="options"
+            type="radio"
+            value="genres"
+          />
+           Genre
+        </label>
+        <label
+          class="filter-search__label btn btn-secondary active"
+          for="title"
+        >
+          <input
+            autocomplete="off"
+            class="filter-search__btn"
+            id="title"
+            name="options"
+            type="radio"
+            value="title"
+          />
+           Title
+        </label>
+      </div>
+    </div>
+    <button
+      class="search-button btn btn-lg btn-primary"
+      type="button"
+    >
+       Search
+    </button>
   </div>
 </div>
 `;

@@ -2,10 +2,10 @@
 
 exports[`ExtraInfo should render correctly 1`] = `
 <div
-  className="extra-info"
+  class="extra-info"
 >
   <div
-    className="extra-info__content"
+    class="extra-info__content"
   >
      movies found
   </div>

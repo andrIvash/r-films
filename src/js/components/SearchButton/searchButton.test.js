@@ -1,16 +1,19 @@
 import React from 'react';
 import SearchButton from './index';
 
-const props = {
-  handleSearch: jest.fn(),
-};
+let props = {};
 
 describe('SearchButton', () => {
+  beforeEach(() => {
+    props = {
+      handleSearch: jest.fn(),
+    };
+  });
   it('should be defined', () => {
     expect(SearchButton).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = shallow(
+    const wrapper = render(
       <SearchButton {...props} /> );
     expect(wrapper).toMatchSnapshot();
   });

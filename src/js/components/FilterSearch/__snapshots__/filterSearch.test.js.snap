@@ -2,23 +2,23 @@
 
 exports[`FilterSearch should render correctly 1`] = `
 <div
-  className="filter-search"
+  class="filter-search"
 >
   <div
-    className="filter-search__title"
+    class="filter-search__title"
   >
     Search By
   </div>
   <div
-    className="btn-group-toggle"
+    class="btn-group-toggle"
   >
     <label
-      className="filter-search__label btn btn-secondary"
-      htmlFor="genre"
+      class="filter-search__label btn btn-secondary active"
+      for="genre"
     >
       <input
-        autoComplete="off"
-        className="filter-search__btn"
+        autocomplete="off"
+        class="filter-search__btn"
         id="genre"
         name="options"
         type="radio"
@@ -27,12 +27,12 @@ exports[`FilterSearch should render correctly 1`] = `
        Genre
     </label>
     <label
-      className="filter-search__label btn btn-secondary"
-      htmlFor="title"
+      class="filter-search__label btn btn-secondary"
+      for="title"
     >
       <input
-        autoComplete="off"
-        className="filter-search__btn"
+        autocomplete="off"
+        class="filter-search__btn"
         id="title"
         name="options"
         type="radio"

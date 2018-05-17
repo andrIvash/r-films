@@ -6,7 +6,7 @@ describe('Footer', () => {
     expect(Footer).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = shallow(
+    const wrapper = render(
       <Footer /> );
     expect(wrapper).toMatchSnapshot();
   });

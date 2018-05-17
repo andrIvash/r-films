@@ -1,24 +1,26 @@
 import React from 'react';
 import FilterSearch from './index';
 
-const props = {};
+let props = {};
 
 describe('FilterSearch', () => {
+  beforeEach(() => {
+    props = {
+      onChange: jest.fn(),
+      selected: 'genres',
+    };
+  });
   it('should be defined', () => {
     expect(FilterSearch).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = shallow(
+    const wrapper = render(
       <FilterSearch {...props} /> );
     expect(wrapper).toMatchSnapshot();
   });
 
   it(`should calls onChange 
     when genres input is selected`, () => {
-    const props = {
-      onChange: jest.fn(),
-      selected: 'genres',
-    };
     const wrapper = shallow(
       <FilterSearch {...props} /> );
     wrapper.find('#genre').simulate('change');
@@ -28,10 +30,8 @@ describe('FilterSearch', () => {
 
   it(`should calls onChange 
     when title input is selected`, () => {
-    const props = {
-      onChange: jest.fn(),
-      selected: 'title',
-    };
+    props.selected = 'title';
+
     const wrapper = shallow(
       <FilterSearch {...props} /> );
     wrapper.find('#title').simulate('change');

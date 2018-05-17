@@ -2,23 +2,23 @@
 
 exports[`FilterContent should render correctly 1`] = `
 <div
-  className="filter-content"
+  class="filter-content"
 >
   <div
-    className="filter-content__title"
+    class="filter-content__title"
   >
     Sort By
   </div>
   <div
-    className="filter-content__group"
+    class="filter-content__group"
   >
     <label
-      className="filter-content__label"
-      htmlFor="release"
+      class="filter-content__label active"
+      for="release"
     >
       <input
-        autoComplete="off"
-        className="filter-content__input"
+        autocomplete="off"
+        class="filter-content__input"
         id="release"
         name="filter"
         type="radio"
@@ -27,12 +27,12 @@ exports[`FilterContent should render correctly 1`] = `
        release date
     </label>
     <label
-      className="filter-content__label"
-      htmlFor="rating"
+      class="filter-content__label"
+      for="rating"
     >
       <input
-        autoComplete="off"
-        className="filter-content__input"
+        autocomplete="off"
+        class="filter-content__input"
         id="rating"
         name="filter"
         type="radio"

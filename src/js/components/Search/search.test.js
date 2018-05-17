@@ -3,24 +3,25 @@ import Search from './index';
 import FilterSearch from '../FilterSearch';
 import SearchButton from '../SearchButton';
 
-const props = {};
+let props = {};
 
 describe('Search', () => {
+  beforeEach(() => {
+    props = {
+      submitSearch: jest.fn(),
+    };
+  });
   it('should be defined', () => {
     expect(Search).toBeDefined();
   });
 
   it('should render correctly', () => {
-    const wrapper = shallow(
+    const wrapper = render(
       <Search {...props} /> );
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should emit search when click button', () => {
-    const props = {
-      submitSearch: jest.fn(),
-    };
-
     const wrapper = mount(
       <Search {...props} /> );
     wrapper.instance().setState({ searchText: 'text' });
@@ -44,9 +45,6 @@ describe('Search', () => {
   });
 
   it('should emit submitSearch when Enter clcked', () => {
-    const props = {
-      submitSearch: jest.fn(),
-    };
     const wrapper = shallow(
       <Search {...props} /> );
     const event = { key: 'Enter' };
@@ -56,9 +54,6 @@ describe('Search', () => {
   });
 
   it('should not emit submitSearch when not Enter button clcked', () => {
-    const props = {
-      submitSearch: jest.fn(),
-    };
     const wrapper = shallow(
       <Search {...props} /> );
     const event = { key: 'b' };

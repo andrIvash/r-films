@@ -6,15 +6,14 @@ describe('Logo', () => {
     expect(Logo).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = shallow(
+    const wrapper = render(
       <Logo /> );
     expect(wrapper).toMatchSnapshot();
   });
   it('should render a proper logo', () => {
     const wrapper = shallow(
       <Logo /> );
-    expect(wrapper.find('.logo')
-      .text())
+    expect(wrapper.find('.logo').text())
       .toBe('netflixroulette');
   });
 });

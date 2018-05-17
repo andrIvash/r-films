@@ -2,7 +2,7 @@
 
 exports[`Logo should render correctly 1`] = `
 <div
-  className="logo app__logo"
+  class="logo app__logo"
 >
   netflixroulette
 </div>

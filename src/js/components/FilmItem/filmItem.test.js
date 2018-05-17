@@ -1,23 +1,26 @@
 import React from 'react';
 import FilmItem from './index';
 
-const props = {
-  film: {
-    poster_path: 'http://test',
-    release_date: '1924',
-    title: 'title',
-    genres: ['drama'],
-  },
-  id: 22,
-  onFilmSelect: jest.fn(),
-};
+let props = {};
 
 describe('FilmItem', () => {
+  beforeEach(()=> {
+    props = {
+      film: {
+        poster_path: 'http://test',
+        release_date: '1924',
+        title: 'title',
+        genres: ['drama'],
+      },
+      id: 22,
+      onFilmSelect: jest.fn(),
+    };
+  });
   it('should be defined', () => {
     expect(FilmItem).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = shallow(
+    const wrapper = render(
       <FilmItem {...props} /> );
     expect(wrapper).toMatchSnapshot();
   });
