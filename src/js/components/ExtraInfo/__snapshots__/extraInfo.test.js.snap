@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExtraInfo should render correctly 1`] = `
+<div
+  class="extra-info"
+>
+  <div
+    class="extra-info__content"
+  >
+     movies found
+  </div>
+</div>
+`;

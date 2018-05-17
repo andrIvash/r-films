@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmItem should render correctly 1`] = `
+<li
+  class="film-list__item"
+>
+  <div
+    class="film-item"
+  >
+    <div
+      class="film-item__img-wrap"
+    >
+      <img
+        alt="film"
+        class="film-item__img"
+        src="http://test"
+      />
+    </div>
+    <div
+      class="film-item__info"
+    >
+      <div
+        class="film-item__title"
+      >
+        title
+      </div>
+      <div
+        class="film-item__year"
+      >
+        1924
+      </div>
+    </div>
+    <div
+      class="film-item__genre"
+    >
+      drama
+    </div>
+  </div>
+</li>
+`;

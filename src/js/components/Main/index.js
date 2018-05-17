@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ContentInfo from '../ContentInfo';
 import ExtraInfo from '../ExtraInfo';
 import FilterContent from '../FilterContent';
-import { views } from '../../helpers';
+import helpers from '../../helpers';
 import type { Film, View } from '../../flow-types.js';
 
 type Props = {
@@ -44,7 +44,7 @@ class Content extends Component<Props, State> {
     const { view } = this.props;
     const { selected } = this.state;
 
-    return view === views.POSTER ?
+    return view === helpers.views.POSTER ?
       null :
       <FilterContent
         onFilterSelect={this.onFilterSelect}
@@ -59,7 +59,9 @@ class Content extends Component<Props, State> {
       return (
         <div className='container'>
           <ExtraInfo
-            data={view === views.POSTER ? genre : films.length.toString()}
+            data={view === helpers.views.POSTER ?
+              genre :
+              films.length.toString()}
             view={view}
           />
           {this.showFilter()}

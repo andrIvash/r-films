@@ -11,7 +11,7 @@ type Props = {
 const ContentInfo = (props: Props) => (
   <div className='content-info'>
     <ul className='film-list'>
-      {props.films.length && props.films.length ? (
+      {props.films.length ? (
         props.films.map(film => (
           <FilmItem
             film={film}

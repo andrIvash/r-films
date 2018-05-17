@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterContent should render correctly 1`] = `
+<div
+  class="filter-content"
+>
+  <div
+    class="filter-content__title"
+  >
+    Sort By
+  </div>
+  <div
+    class="filter-content__group"
+  >
+    <label
+      class="filter-content__label active"
+      for="release"
+    >
+      <input
+        autocomplete="off"
+        class="filter-content__input"
+        id="release"
+        name="filter"
+        type="radio"
+        value="release"
+      />
+       release date
+    </label>
+    <label
+      class="filter-content__label"
+      for="rating"
+    >
+      <input
+        autocomplete="off"
+        class="filter-content__input"
+        id="rating"
+        name="filter"
+        type="radio"
+        value="rating"
+      />
+       rating
+    </label>
+  </div>
+</div>
+`;

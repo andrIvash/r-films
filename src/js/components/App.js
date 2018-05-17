@@ -4,7 +4,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import ErrorBoundary from './ErrorBoundary';
-import { views, routes, get } from '../helpers';
+import helpers from '../helpers';
 import type { Film, PosterData, View } from '../flow-types.js';
 
 type State = {
@@ -17,7 +17,7 @@ type State = {
 class App extends Component<{}, State> {
 
   state = {
-    view: views.COMMON,
+    view: helpers.views.COMMON,
     films: [],
     selectedGenre: 'Drama',
     posterData: {
@@ -31,7 +31,7 @@ class App extends Component<{}, State> {
   }
 
   componentDidMount() {
-    this.sendQuery(`${routes.base}/movies`);
+    this.sendQuery(`${helpers.routes.base}/movies`);
   }
 
   onFilmSelect = (id: number): void => {
@@ -39,18 +39,18 @@ class App extends Component<{}, State> {
     const genre = film ? film.genres[0] : '';
 
     this.setState({
-      view: views.POSTER,
+      view: helpers.views.POSTER,
       posterData: film,
       selectedGenre: genre,
     });
-    this.sendQuery(`${routes.base}/movies`, {
+    this.sendQuery(`${helpers.routes.base}/movies`, {
       search: genre,
       searchBy: 'genres',
     });
   }
 
   sendQuery = (url: string, query?: {search?: string, searchBy?: string}) => {
-    get(url, query).then((response) => {
+    helpers.getData(url, query).then((response) => {
       this.setState({ films: response.data });
     }).catch((e) => {
       console.warn('error:', e);
@@ -59,7 +59,7 @@ class App extends Component<{}, State> {
 
   doSearch = (data: string, filter: string) => {
     console.log('do search', data, filter);
-    this.sendQuery(`${routes.base}/movies`, {
+    this.sendQuery(`${helpers.routes.base}/movies`, {
       search: data,
       searchBy: filter,
     });
@@ -67,7 +67,7 @@ class App extends Component<{}, State> {
 
   toSearch = () => {
     this.setState({
-      view: views.COMMON,
+      view: helpers.views.COMMON,
     });
   }
 

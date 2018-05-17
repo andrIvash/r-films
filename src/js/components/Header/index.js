@@ -1,10 +1,10 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import Logo from '../Logo';
 import Search from '../Search';
 import Poster from '../Poster';
 import SearchButton from '../SearchButton';
-import { views } from '../../helpers';
+import helpers from '../../helpers';
 import type { PosterData, View } from '../../flow-types.js';
 
 type Props = {
@@ -14,9 +14,9 @@ type Props = {
   posterData: PosterData,
 };
 
-function topHeader(props: Props) {
+const topHeader = (props: Props) => {
   const { view, toSearch } = props;
-  if ( view === views.POSTER ) {
+  if ( view === helpers.views.POSTER ) {
     return (
       <div className='header__top'>
         <Logo />
@@ -25,14 +25,14 @@ function topHeader(props: Props) {
     );
   }
   return <div className='header__top'> <Logo /> </div>;
-}
+};
 
-function contentHeader( props: Props ) {
+const contentHeader = ( props: Props ) => {
   const { view, onSearch, posterData } = props;
-  return view === views.POSTER ?
+  return view === helpers.views.POSTER ?
     <Poster data={posterData} /> :
     <Search submitSearch={onSearch} />;
-}
+};
 
 const Header = (props: Props) => (
   <div className='header app__header bg-dark'>

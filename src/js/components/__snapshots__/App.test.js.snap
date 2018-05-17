@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render correctly 1`] = `
+<div
+  class="app__inner"
+>
+  <div
+    class="header app__header bg-dark"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="header__top"
+      >
+         
+        <div
+          class="logo app__logo"
+        >
+          netflixroulette
+        </div>
+         
+      </div>
+      <div
+        class="search app__search"
+      >
+        <h1
+          class="search__title"
+        >
+           Find your movie 
+        </h1>
+        <div
+          class="search__input-wrapper input-group mb-3"
+        >
+          <input
+            aria-label="Search"
+            class="search__input form-control"
+            name="search"
+            placeholder="Search phrase..."
+            type="text"
+            value=""
+          />
+          <img
+            alt="search sign"
+            class="search__sign"
+            src="[object Object]"
+          />
+        </div>
+        <div
+          class="search__controls"
+        >
+          <div
+            class="filter-search"
+          >
+            <div
+              class="filter-search__title"
+            >
+              Search By
+            </div>
+            <div
+              class="btn-group-toggle"
+            >
+              <label
+                class="filter-search__label btn btn-secondary"
+                for="genre"
+              >
+                <input
+                  autocomplete="off"
+                  class="filter-search__btn"
+                  id="genre"
+                  name="options"
+                  type="radio"
+                  value="genres"
+                />
+                 Genre
+              </label>
+              <label
+                class="filter-search__label btn btn-secondary active"
+                for="title"
+              >
+                <input
+                  autocomplete="off"
+                  class="filter-search__btn"
+                  id="title"
+                  name="options"
+                  type="radio"
+                  value="title"
+                />
+                 Title
+              </label>
+            </div>
+          </div>
+          <button
+            class="search-button btn btn-lg btn-primary"
+            type="button"
+          >
+             Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main
+    class="content app__main"
+  >
+    <div
+      class="content__top"
+    >
+      <div
+        class="container"
+      />
+    </div>
+    <div
+      class="container"
+    >
+      <div
+        class="content-info"
+      >
+        <ul
+          class="film-list"
+        >
+          <h2
+            class="no-data"
+          >
+            No films found
+          </h2>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer
+    class="footer app__footer bg-dark"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="logo app__logo"
+      >
+        netflixroulette
+      </div>
+    </div>
+  </footer>
+</div>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should render correctly 1`] = `
+<footer
+  class="footer app__footer bg-dark"
+>
+  <div
+    class="container"
+  >
+    <div
+      class="logo app__logo"
+    >
+      netflixroulette
+    </div>
+  </div>
+</footer>
+`;
