@@ -16,7 +16,23 @@ type Props = {
   changeFilter: (elem: HTMLElement) => void,
 };
 
+<<<<<<< HEAD
 export class Search extends Component<Props> {
+=======
+class Search extends Component<Props, State> {
+
+  state = {
+    searchText: '',
+    searchFilter: 'title',
+  }
+
+  handleChange = (event: SyntheticInputEvent<HTMLInputElement>): void => {
+    const { value } = event.target;
+    this.setState({
+      searchText: value,
+    });
+  }
+>>>>>>> source
 
   handleKeyPress = (event: SyntheticKeyboardEvent<>) => {
     if (event.key === 'Enter') {

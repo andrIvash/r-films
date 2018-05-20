@@ -6,8 +6,13 @@ let props = {};
 describe('FilterSearch', () => {
   beforeEach(() => {
     props = {
+<<<<<<< HEAD
       selected: 'genres',
       changeFilter: jest.fn(),
+=======
+      onChange: jest.fn(),
+      selected: 'genres',
+>>>>>>> source
     };
   });
   it('should be defined', () => {
