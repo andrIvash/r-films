@@ -22,77 +22,20 @@ type Props = {
   onFilmSelect: () => {}
 };
 
-<<<<<<< HEAD
 export class App extends Component<Props, {}> {
 
   componentDidMount() {
     this.props.fetchData(`${helpers.routes.base}/movies`);
-=======
-class App extends Component<{}, State> {
-
-  state = {
-    view: helpers.views.COMMON,
-    films: [],
-    selectedGenre: 'Drama',
-    posterData: {
-      title: '',
-      poster_path: '',
-      vote_average: 0,
-      tagline: '',
-      release_date: '',
-      overview: '',
-    },
-  }
-
-  componentDidMount() {
-    this.sendQuery(`${helpers.routes.base}/movies`);
-  }
-
-  onFilmSelect = (id: number): void => {
-    const film = this.state.films.find(film => film.id === id);
-    const genre = film ? film.genres[0] : '';
-
-    this.setState({
-      view: helpers.views.POSTER,
-      posterData: film,
-      selectedGenre: genre,
-    });
-    this.sendQuery(`${helpers.routes.base}/movies`, {
-      search: genre,
-      searchBy: 'genres',
-    });
-  }
-
-  sendQuery = (url: string, query?: {search?: string, searchBy?: string}) => {
-    helpers.getData(url, query).then((response) => {
-      this.setState({ films: response.data });
-    }).catch((e) => {
-      console.warn('error:', e);
-    });
->>>>>>> source
   }
 
   doSearch = (data: string, filter: string) => {
     console.log('do search', data, filter);
-<<<<<<< HEAD
     this.props.fetchData(`${helpers.routes.base}/movies`, {
-=======
-    this.sendQuery(`${helpers.routes.base}/movies`, {
->>>>>>> source
       search: data,
       searchBy: filter,
     });
   }
 
-<<<<<<< HEAD
-=======
-  toSearch = () => {
-    this.setState({
-      view: helpers.views.COMMON,
-    });
-  }
-
->>>>>>> source
   render() {
     const {
       selectedGenre,
