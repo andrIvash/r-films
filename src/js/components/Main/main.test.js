@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 import configureMockStore from 'redux-mock-store';
 import CombinedMain, { Main } from './index';
 import FilterContent from '../FilterContent';
@@ -7,12 +6,6 @@ import ExtraInfo from '../ExtraInfo';
 
 const mockStore = configureMockStore();
 
-=======
-import Main from './index';
-import FilterContent from '../FilterContent';
-import ExtraInfo from '../ExtraInfo';
-
->>>>>>> source
 let props = {};
 
 describe('Main', () => {
@@ -48,7 +41,6 @@ describe('Main', () => {
       <Main {...props} /> );
     expect(wrapper.find(ExtraInfo)).not.toHaveLength(1);
   });
-<<<<<<< HEAD
   it('should change filter when onFilterSelect emit', () => {
     const wrapper = mount(
       <Main {...props} /> );
@@ -81,19 +73,4 @@ describe('CombinedMain', () => {
       expect(wrapper.props().selected).toBe('rating');
     });
 
-=======
-  it('should change state when onFilterSelect emit', () => {
-    const wrapper = mount(
-      <Main {...props} /> );
-    wrapper.find(FilterContent).find('#release').simulate('change');
-    expect(wrapper.state().selected).toEqual('release');
-    expect(wrapper.state().selected).not.toEqual('raiting');
-  });
-  it('should filter data due to props', () => {
-    const wrapper = shallow(
-      <Main {...props} /> );
-      wrapper.instance().filterData('data');
-    expect(props.films[0].id).toEqual(2);
-  });
->>>>>>> source
 });

@@ -55,11 +55,7 @@ exports[`Search should render correctly 1`] = `
            Genre
         </label>
         <label
-<<<<<<< HEAD
           class="filter-search__label btn btn-secondary"
-=======
-          class="filter-search__label btn btn-secondary active"
->>>>>>> source
           for="title"
         >
           <input
