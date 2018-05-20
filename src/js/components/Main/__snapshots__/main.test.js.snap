@@ -48,7 +48,7 @@ exports[`Main should render correctly 1`] = `
                release date
             </label>
             <label
-              class="filter-content__label active"
+              class="filter-content__label"
               for="rating"
             >
               <input

@@ -20,27 +20,7 @@ type State = {
   filteredData: Array<Film>,
 };
 
-class Content extends Component<Props, State> {
-  // state = {
-  //   selected: 'rating',
-  //   filteredData: [],
-  // }
-
-  // onFilterSelect = (event: SyntheticInputEvent<HTMLInputElement>): void => {
-  //   const { target } = event;
-  //   this.filterData(target.value);
-  //   this.setState({
-  //     selected: target.value,
-  //   });
-  // }
-
-  // filterData = (selected: string):void => {
-  //   const filteredData = this.props.films.sort((a, b): any => (
-  //     selected === 'rating' ?
-  //       a.vote_average < b.vote_average :
-  //       a.release_date.substr(0, 4) < b.release_date.substr(0, 4)));
-  //   this.setState({ filteredData });
-  // }
+export class Main extends Component<Props, State> {
 
   showFilter = () => {
     const { view, onFilterSelect, selected } = this.props;
@@ -74,7 +54,7 @@ class Content extends Component<Props, State> {
 
   render() {
     const { onFilmSelect, films, filteredData } = this.props;
-  
+
     return (
       <main className='content app__main'>
         <div className='content__top'>
@@ -95,8 +75,8 @@ class Content extends Component<Props, State> {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFilterSelect: elem => {
-      dispatch(selectDataFilter(elem));
+    onFilterSelect: (value: string) => {
+      dispatch(selectDataFilter(value));
       dispatch(filterData());
     },
   };
@@ -109,5 +89,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Content);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 

@@ -21,7 +21,7 @@ const FilterSearch = (props: Props) => (
           className='filter-search__btn'
           id='genre'
           name='options'
-          onChange={(ev) => {props.changeFilter(ev.target);}}
+          onChange={(ev) => {props.changeFilter(ev.target.value);}}
           type='radio'
           value='genres'
         /> Genre
@@ -37,7 +37,7 @@ const FilterSearch = (props: Props) => (
           className='filter-search__btn'
           id='title'
           name='options'
-          onChange={(ev) => {props.changeFilter(ev.target);}}
+          onChange={(ev) => {props.changeFilter(ev.target.value);}}
           type='radio'
           value='title'
         /> Title

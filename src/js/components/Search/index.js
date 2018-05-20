@@ -16,7 +16,7 @@ type Props = {
   changeFilter: (elem: HTMLElement) => void,
 };
 
-class Search extends Component<Props> {
+export class Search extends Component<Props> {
 
   handleKeyPress = (event: SyntheticKeyboardEvent<>) => {
     if (event.key === 'Enter') {
@@ -33,7 +33,7 @@ class Search extends Component<Props> {
   }
 
   render() {
-    const { searchText, handleChange, changeFilter, searchFilter } = this.props;
+    const { searchText, changeFilter, searchFilter } = this.props;
     return (
       <div className='search app__search'>
         <h1 className='search__title'> Find your movie </h1>
@@ -42,7 +42,7 @@ class Search extends Component<Props> {
             aria-label='Search'
             className='search__input form-control'
             name='search'
-            onChange={(ev) => {handleChange(ev.target);}}
+            onChange={(ev) => {this.props.handleChange(ev.target.value);}}
             onKeyPress={this.handleKeyPress}
             placeholder='Search phrase...'
             type='text'
@@ -64,8 +64,8 @@ class Search extends Component<Props> {
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeFilter: (elem) => dispatch(changeSearchFilter(elem)),
-    handleChange: (elem) => dispatch(changeSearchText(elem)),
+    changeFilter: (value) => dispatch(changeSearchFilter(value)),
+    handleChange: (value) => dispatch(changeSearchText(value)),
     clearText: () => dispatch(clearSearchText()),
   };
 };

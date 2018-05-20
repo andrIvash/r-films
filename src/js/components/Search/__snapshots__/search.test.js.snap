@@ -55,7 +55,7 @@ exports[`Search should render correctly 1`] = `
            Genre
         </label>
         <label
-          class="filter-search__label btn btn-secondary active"
+          class="filter-search__label btn btn-secondary"
           for="title"
         >
           <input

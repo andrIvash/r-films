@@ -9,12 +9,6 @@ import ErrorBoundary from './ErrorBoundary';
 import helpers from '../helpers';
 import type { Film, PosterData, View } from '../flow-types.js';
 
-type State = {
-  // view: View,
-  // selectedGenre: string,
-  // posterData: PosterData,
-};
-
 type Props = {
   fetchData: (url: string,
     query?: {search: string, searchBy: string}) => Array<Film> | null,
@@ -28,7 +22,7 @@ type Props = {
   onFilmSelect: () => {}
 };
 
-class App extends Component<Props, State> {
+export class App extends Component<Props, {}> {
 
   componentDidMount() {
     this.props.fetchData(`${helpers.routes.base}/movies`);

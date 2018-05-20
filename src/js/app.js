@@ -7,11 +7,6 @@ import thunk from 'redux-thunk';
 import reducer from './reducers';
 import App from './components/App';
 import '../styles/app.scss';
-import '../js/components/Header';
-
-// const initialState = {
-//   films:[]
-// };
 
 const store = createStore(
   // initialState,

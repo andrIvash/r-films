@@ -28,24 +28,24 @@ export const clearSearchText = () => {
   };
 };
 
-export const changeSearchText = (elem: HTMLElement) => {
+export const changeSearchText = (value: string) => {
   return {
     type: CHANGE_SEARCH_TEXT,
-    value: elem.value,
+    value,
   };
 };
 
-export const changeSearchFilter = (elem: HTMLElement) => {
+export const changeSearchFilter = (value: string) => {
   return {
     type: CHANGE_SEARCH_FILTER,
-    value: elem.value,
+    value,
   };
 };
 
-export const selectDataFilter = (elem: HTMLElement) => {
+export const selectDataFilter = (value: string) => {
   return {
     type: SELECT_DATA_FILTER,
-    value: elem.value,
+    value,
   };
 };
 
@@ -100,9 +100,8 @@ export const itemsHasErrored = bool => ({
 });
 
 export const getFilms = (request, query) => dispatch => {
-
   dispatch(itemsIsLoading(true));
-  helpers.getData(request, query)
+  return helpers.getData(request, query)
     .then(response => {
       dispatch(itemsIsLoading(false));
       return response;

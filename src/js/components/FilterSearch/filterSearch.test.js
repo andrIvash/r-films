@@ -6,8 +6,8 @@ let props = {};
 describe('FilterSearch', () => {
   beforeEach(() => {
     props = {
-      onChange: jest.fn(),
       selected: 'genres',
+      changeFilter: jest.fn(),
     };
   });
   it('should be defined', () => {
@@ -23,8 +23,8 @@ describe('FilterSearch', () => {
     when genres input is selected`, () => {
     const wrapper = shallow(
       <FilterSearch {...props} /> );
-    wrapper.find('#genre').simulate('change');
-    expect(props.onChange).toHaveBeenCalledTimes(1);
+    wrapper.find('#genre').simulate('change', { target: {value: 'genre' }});
+    expect(props.changeFilter).toHaveBeenCalledTimes(1);
     expect(wrapper.find('#genre').parent().hasClass('active')).toBe(true);
   });
 
@@ -34,8 +34,8 @@ describe('FilterSearch', () => {
 
     const wrapper = shallow(
       <FilterSearch {...props} /> );
-    wrapper.find('#title').simulate('change');
-    expect(props.onChange).toHaveBeenCalledTimes(1);
+    wrapper.find('#title').simulate('change', { target: {value: 'title' }});
+    expect(props.changeFilter).toHaveBeenCalledTimes(1);
     expect(wrapper.find('#title').parent().hasClass('active')).toBe(true);
   });
 });
