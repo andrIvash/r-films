@@ -22,6 +22,8 @@ const config = {
   },
   devtool: 'source-map',
   devServer: {
+    // publicPath: '/',
+    historyApiFallback: true,
     contentBase: path.join(__dirname, 'src'),
     compress: true,
     // stats: 'errors-only',

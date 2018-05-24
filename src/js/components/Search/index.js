@@ -1,9 +1,11 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import * as sign from './enterSign.svg';
 import FilterSearch from '../FilterSearch';
 import SearchButton from '../SearchButton';
+import helpers from '../../helpers';
 import { changeSearchFilter,
   changeSearchText, clearSearchText } from '../../actions';
 
@@ -25,10 +27,17 @@ export class Search extends Component<Props> {
   }
 
   handleSearch = () => {
-    const {searchText, searchFilter, clearText, submitSearch } = this.props;
+    const {
+      searchText,
+      searchFilter,
+      clearText,
+      submitSearch,
+      history } = this.props;
+
     if (searchText.length > 0) {
       submitSearch(searchText, searchFilter);
       clearText();
+      history.push(`/search?search=${searchText}&searchBy=${searchFilter}`);
     }
   }
 
@@ -77,4 +86,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));

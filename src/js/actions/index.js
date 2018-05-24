@@ -68,19 +68,37 @@ export const filterData = () => (dispatch, getState) => {
 };
 
 export const selectFilm = id => (dispatch, getState) => {
+  dispatch(itemsIsLoading(true));
   const state = getState();
-  const selectedFilm = state.items.find((film:Film) => film.id === id);
-  const selectedGenre: string = selectedFilm ? selectedFilm.genres[0] : '';
-  dispatch(changeView(CHANGE_VIEW_POSTER));
-  dispatch(getFilms(`${helpers.routes.base}/movies`, {
-    search: selectedGenre,
-    searchBy: 'genres',
-  }));
-  return dispatch({
-      type: SELECT_FILM,
-      film: selectedFilm,
-      genre: selectedGenre,
-  });
+  let selectedGenre: string;
+  let selectedFilm: Film;
+  let pr: Promise;
+  if (state.items.length) {
+    pr = new Promise((resolve, reject) => {
+      selectedFilm = state.items.find((film:Film) => film.id === id);
+      selectedGenre = selectedFilm ? selectedFilm.genres[0] : '';
+      resolve();
+    });
+  } else {
+     pr = helpers.getData(`${helpers.routes.base}/movies/${id}`).then((res) => {
+      selectedFilm = res;
+      selectedGenre = selectedFilm ? selectedFilm.genres[0] : '';
+      return res;
+    });
+  }
+  return pr.then(() => {
+    dispatch(itemsIsLoading(false));
+    dispatch(changeView(CHANGE_VIEW_POSTER));
+    dispatch(getFilms(`${helpers.routes.base}/movies`, {
+      search: selectedGenre,
+      searchBy: 'genres',
+    }));
+    return dispatch({
+        type: SELECT_FILM,
+        film: selectedFilm,
+        genre: selectedGenre,
+    });
+  }).catch(() => dispatch(itemsHasErrored(true)));
 };
 
 
@@ -107,7 +125,8 @@ export const getFilms = (request, query) => dispatch => {
       return response;
     })
     .then(response => {
-      dispatch(receiveFilms(response.data));
+      response = response.data.length ? response.data : [];
+      dispatch(receiveFilms(response));
     })
     .catch(() => dispatch(itemsHasErrored(true)));
 };
