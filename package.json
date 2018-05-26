@@ -11,7 +11,7 @@
     "test": "jest test --all --no-cache",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:one": "jest -t 'Main'",
+    "test:one": "jest -t 'main'",
     "cypress:open": "cypress open"
   },
   "jest": {
@@ -71,7 +71,7 @@
     "pug": "^2.0.0-beta10",
     "pug-loader": "^2.3.0",
     "react-addons-test-utils": "^15.6.2",
-    "react-test-renderer": "^16.3.2",
+    "react-test-renderer": "^16.4.0",
     "redux-mock-store": "^1.5.1",
     "regenerator-runtime": "^0.11.1",
     "sass-loader": "^6.0.7",

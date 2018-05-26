@@ -1,4 +1,6 @@
 import React from 'react';
+import { MemoryRouter as Router, Switch } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import Header from './index';
 import Logo from '../Logo';
 import Search from '../Search';
@@ -23,8 +25,14 @@ describe('Header', () => {
     expect(Header).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = render(
-      <Header  {...props}/> );
+    jest.mock('../Logo', () => 'Logo');
+    jest.mock('../SearchButton', () => 'SearchButton');
+    const wrapper = renderer.create(
+      <Router>
+        <Switch>
+          <Header {...props} /> );
+        </Switch>
+      </Router>).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
   it('should render right values in POSTER view', () => {

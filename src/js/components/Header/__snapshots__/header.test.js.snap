@@ -2,70 +2,78 @@
 
 exports[`Header should render correctly 1`] = `
 <div
-  class="header app__header bg-dark"
+  className="header app__header bg-dark"
 >
   <div
-    class="container"
+    className="container"
   >
     <div
-      class="header__top"
+      className="header__top"
     >
       <div
-        class="logo app__logo"
+        className="logo app__logo"
       >
         netflixroulette
       </div>
-      <button
-        class="search-button btn btn-lg btn-primary"
-        type="button"
+      <a
+        href="/"
+        onClick={[Function]}
       >
-         Search
-      </button>
+        <button
+          className="search-button btn btn-lg btn-primary"
+          onClick={undefined}
+          type="button"
+        >
+           Search
+        </button>
+      </a>
     </div>
     <div
-      class="poster"
+      className="poster"
     >
       <div
-        class="poster__img-wrap"
+        className="poster__img-wrap"
       >
         <img
           alt="file poster"
-          class="poster__img"
+          className="poster__img"
           src="http://test"
         />
       </div>
       <div
-        class="poster__info film"
+        className="poster__info film"
       >
         <div
-          class="film__header"
+          className="film__header"
         >
           <h1
-            class="film__title"
+            className="film__title"
           >
             title
           </h1>
           <div
-            class="film__score"
+            className="film__score"
           />
         </div>
         <h5
-          class="film__subtitle"
+          className="film__subtitle"
         />
         <div
-          class="film__info"
+          className="film__info"
         >
           <div
-            class="film__year"
+            className="film__year"
           >
             1924
           </div>
           <div
-            class="film__latency"
-          />
+            className="film__latency"
+          >
+            
+          </div>
         </div>
         <p
-          class="film__desq"
+          className="film__desq"
         />
       </div>
     </div>

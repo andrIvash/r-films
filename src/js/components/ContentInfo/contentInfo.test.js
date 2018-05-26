@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 import ContentInfo from './index';
 
 let props = {};
@@ -18,7 +19,9 @@ describe('ContentInfo', () => {
   });
   it('should render correctly', () => {
     const wrapper = render(
-      <ContentInfo {...props} /> );
+      <MemoryRouter>
+        <ContentInfo {...props} />
+      </MemoryRouter> );
     expect(wrapper).toMatchSnapshot();
   });
   it('should render child elements', () => {

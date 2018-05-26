@@ -1,11 +1,12 @@
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
+import renderer from 'react-test-renderer';
+import { MemoryRouter as Router, Switch } from 'react-router-dom';
 import CombinedMain, { Main } from './index';
 import FilterContent from '../FilterContent';
 import ExtraInfo from '../ExtraInfo';
 
 const mockStore = configureMockStore();
-
 let props = {};
 
 describe('Main', () => {
@@ -16,6 +17,7 @@ describe('Main', () => {
         {id: 2, title: 'title2', release_date: '1994', genres: ['Drama']},
       ],
       onFilterSelect: jest.fn(),
+      
       view: 'COMMON',
     };
   });
@@ -23,8 +25,14 @@ describe('Main', () => {
     expect(Main).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = render(
-      <Main {...props} /> );
+    jest.mock('../FilterContent', () => 'filtercontent');
+    jest.mock('../ExtraInfo', () => 'extrainfo');
+    const wrapper = renderer.create(
+      <Router>
+        <Switch>
+          <Main {...props} /> )
+        </Switch>
+      </Router>).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
   it('should show an extra info ', () => {
@@ -43,7 +51,11 @@ describe('Main', () => {
   });
   it('should change filter when onFilterSelect emit', () => {
     const wrapper = mount(
-      <Main {...props} /> );
+      <Router>
+        <Switch>
+          <Main {...props} /> )
+        </Switch>
+      </Router>);
     wrapper.find(FilterContent).find('#release').simulate('change');
     expect(props.onFilterSelect).toHaveBeenCalledTimes(1);
     expect(props.onFilterSelect.mock.calls[0][0])

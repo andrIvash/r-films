@@ -74,7 +74,7 @@ export const selectFilm = id => (dispatch, getState) => {
   let selectedFilm: Film;
   let pr: Promise;
   if (state.items.length) {
-    pr = new Promise((resolve, reject) => {
+    pr = new Promise( resolve => {
       selectedFilm = state.items.find((film:Film) => film.id === id);
       selectedGenre = selectedFilm ? selectedFilm.genres[0] : '';
       resolve();

@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 import FilmItem from './index';
 
 let props = {};
@@ -21,7 +22,9 @@ describe('FilmItem', () => {
   });
   it('should render correctly', () => {
     const wrapper = render(
-      <FilmItem {...props} /> );
+      <MemoryRouter>
+        <FilmItem {...props} />
+      </MemoryRouter>);
     expect(wrapper).toMatchSnapshot();
   });
   it('should render write values ', () => {

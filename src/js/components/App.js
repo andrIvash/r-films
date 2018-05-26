@@ -18,6 +18,8 @@ type Props = {
   selectedGenre: string,
   view: View,
   posterData: PosterData,
+  match?: { params: {id: number} },
+  location?: {search: URL },
   onChangeView: () => {},
   onFilmSelect: (id: number) => {}
 };
@@ -25,8 +27,9 @@ type Props = {
 export class App extends Component<Props, {}> {
 
   componentDidMount() {
-    const { params } = this.props.match ? this.props.match : false;
-    const query = this.props.location.search ?
+    const params: any | {id?: number} = this.props.match &&
+      this.props.match.params ? this.props.match : false;
+    const query = this.props.location && this.props.location.search ?
       new URLSearchParams(this.props.location.search) : false;
     if (params && params.id) {
       this.props.onFilmSelect(params.id);

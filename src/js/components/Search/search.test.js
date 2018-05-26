@@ -7,11 +7,13 @@ let props = {};
 
 describe('Search', () => {
   beforeEach(() => {
+    history.push = jest.fn();
     props = {
       submitSearch: jest.fn(),
       changeFilter: jest.fn().mockReturnValue({searchFilter: 'title'}),
       handleChange: jest.fn().mockReturnValue({searchText: 'text'}),
       clearText: () => jest.fn().mockReturnValue({searchText: ''}),
+      history: {push: jest.fn()},
       searchText: '',
     };
   });
@@ -31,6 +33,7 @@ describe('Search', () => {
       <Search {...props} /> );
     wrapper.find(SearchButton).simulate('click');
     expect(props.submitSearch).toHaveBeenCalledTimes(1);
+    expect(props.history.push).toHaveBeenCalledTimes(1);
   });
 
   it('should change searchText when input data', () => {

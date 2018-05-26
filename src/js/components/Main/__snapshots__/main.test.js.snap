@@ -2,60 +2,62 @@
 
 exports[`Main should render correctly 1`] = `
 <main
-  class="content app__main"
+  className="content app__main"
 >
   <div
-    class="content__top"
+    className="content__top"
   >
     <div
-      class="container"
+      className="container"
     >
       <div
-        class="container"
+        className="container"
       >
         <div
-          class="extra-info"
+          className="extra-info"
         >
           <div
-            class="extra-info__content"
+            className="extra-info__content"
           >
             2 movies found
           </div>
         </div>
         <div
-          class="filter-content"
+          className="filter-content"
         >
           <div
-            class="filter-content__title"
+            className="filter-content__title"
           >
             Sort By
           </div>
           <div
-            class="filter-content__group"
+            className="filter-content__group"
           >
             <label
-              class="filter-content__label"
-              for="release"
+              className="filter-content__label"
+              htmlFor="release"
             >
               <input
-                autocomplete="off"
-                class="filter-content__input"
+                autoComplete="off"
+                className="filter-content__input"
                 id="release"
                 name="filter"
+                onChange={[Function]}
                 type="radio"
                 value="release"
               />
                release date
             </label>
             <label
-              class="filter-content__label"
-              for="rating"
+              className="filter-content__label"
+              htmlFor="rating"
             >
               <input
-                autocomplete="off"
-                class="filter-content__input"
+                autoComplete="off"
+                className="filter-content__input"
                 id="rating"
                 name="filter"
+                onChange={[Function]}
                 type="radio"
                 value="rating"
               />
@@ -67,83 +69,99 @@ exports[`Main should render correctly 1`] = `
     </div>
   </div>
   <div
-    class="container"
+    className="container"
   >
     <div
-      class="content-info"
+      className="content-info"
     >
       <ul
-        class="film-list"
+        className="film-list"
       >
         <li
-          class="film-list__item"
+          className="film-list__item"
+          onClick={[Function]}
         >
-          <div
-            class="film-item"
+          <a
+            className="film-list__link"
+            href="/film/1"
+            onClick={[Function]}
           >
             <div
-              class="film-item__img-wrap"
-            >
-              <img
-                alt="film"
-                class="film-item__img"
-              />
-            </div>
-            <div
-              class="film-item__info"
+              className="film-item"
             >
               <div
-                class="film-item__title"
+                className="film-item__img-wrap"
               >
-                title
+                <img
+                  alt="film"
+                  className="film-item__img"
+                  src={undefined}
+                />
               </div>
               <div
-                class="film-item__year"
+                className="film-item__info"
               >
-                1992
+                <div
+                  className="film-item__title"
+                >
+                  title
+                </div>
+                <div
+                  className="film-item__year"
+                >
+                  1992
+                </div>
+              </div>
+              <div
+                className="film-item__genre"
+              >
+                Drama
               </div>
             </div>
-            <div
-              class="film-item__genre"
-            >
-              Drama
-            </div>
-          </div>
+          </a>
         </li>
         <li
-          class="film-list__item"
+          className="film-list__item"
+          onClick={[Function]}
         >
-          <div
-            class="film-item"
+          <a
+            className="film-list__link"
+            href="/film/2"
+            onClick={[Function]}
           >
             <div
-              class="film-item__img-wrap"
-            >
-              <img
-                alt="film"
-                class="film-item__img"
-              />
-            </div>
-            <div
-              class="film-item__info"
+              className="film-item"
             >
               <div
-                class="film-item__title"
+                className="film-item__img-wrap"
               >
-                title2
+                <img
+                  alt="film"
+                  className="film-item__img"
+                  src={undefined}
+                />
               </div>
               <div
-                class="film-item__year"
+                className="film-item__info"
               >
-                1994
+                <div
+                  className="film-item__title"
+                >
+                  title2
+                </div>
+                <div
+                  className="film-item__year"
+                >
+                  1994
+                </div>
+              </div>
+              <div
+                className="film-item__genre"
+              >
+                Drama
               </div>
             </div>
-            <div
-              class="film-item__genre"
-            >
-              Drama
-            </div>
-          </div>
+          </a>
         </li>
       </ul>
     </div>
