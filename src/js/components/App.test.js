@@ -86,5 +86,4 @@ describe('CombinedApp', () => {
       const actions = store.getActions();
       expect(actions).toEqual([ { type: 'CHANGE_VIEW' } ]);
     });
-
 });

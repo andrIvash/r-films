@@ -11,7 +11,7 @@
     "test": "jest test --all --no-cache",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:one": "jest -t 'main'",
+    "test:one": "jest -t 'App'",
     "cypress:open": "cypress open"
   },
   "jest": {
