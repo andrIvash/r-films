@@ -46,9 +46,6 @@ describe('App', () => {
   it('should component have proper props', () => {
     expect(wrapper.find('Header').props()).toHaveProperty('posterData');
     expect(wrapper.find('Header').props()).toHaveProperty('view');
-    expect(wrapper.find('Connect').props()).toHaveProperty('films');
-    expect(wrapper.find('Connect').props()).toHaveProperty('genre');
-    expect(wrapper.find('Connect').props()).toHaveProperty('view');
   });
 });
 
@@ -75,10 +72,6 @@ describe('CombinedApp', () => {
       wrapper = shallow(
         <CombinedApp store={store} />,
       );
-    });
-
-    it('should show previously state value', () => {
-      expect(wrapper.props().view).toBe(helpers.views.COMMON);
     });
 
     it('should change the view with proper action', () => {
