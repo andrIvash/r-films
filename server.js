@@ -13,9 +13,9 @@ app.use(express.static('./dist/'));
 app.use('/', routes);
 
 app.get('*', (req, res) => {
-  res.render('error', { title: '404, not found'})
-})
+  res.render('error', { title: '404, not found'});
+});
 
 app.listen(3002, () => {
-  console.log('Example app listening on port 3002!')
-})
+  console.log('Example app listening on port 3002!');
+});
