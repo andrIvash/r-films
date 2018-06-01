@@ -1,60 +1,83 @@
 import React from 'react';
-import App from './App';
-import SearchButton from './SearchButton';
+import configureMockStore from 'redux-mock-store';
 import helpers from '../helpers';
+import CombinedApp, { App } from './App';
 
-let wrapper;
+const mockStore = configureMockStore();
+
+let wrapper,
+  props = {};
 
 describe('App', () => {
   beforeEach(() => {
-    wrapper = shallow(<App />);
-    helpers.getData = jest.fn()
-      .mockReturnValue(Promise.resolve({
-        data: [
-          {id: 1, title: 'title', release_date: '1992', genres: ['Drama']},
-          {id: 2, title: 'title2', release_date: '1994', genres: ['Drama']},
-        ]},
-      ));
+    props.fetchData = jest.fn();
+    props.onFilmSelect = jest.fn();
+    props.onChangeView = jest.fn();
+    wrapper = shallow(<App {...props} />);
   });
+
   it('should be defined', () => {
     expect(App).toBeDefined();
   });
 
   it('should render correctly', () => {
-    const wrapper = render(<App />);
+    const wrapper = shallow(<App {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should emit search when doSearch emmit', () => {
-    wrapper.instance().doSearch('data', 'filter');
-    expect(helpers.getData).toHaveBeenCalledTimes(1);
-    expect(helpers.getData.mock.calls[0][1])
+    expect(props.fetchData).toHaveBeenCalledTimes(1);
+    wrapper.find('Header').props().onSearch('data', 'filter');
+    expect(props.fetchData).toHaveBeenCalledTimes(2);
+    expect(props.fetchData.mock.calls[1][1])
       .toEqual({search: 'data', searchBy: 'filter'});
   });
 
-  it('should change state and send query when onFilmSelect emit', () => {
-    wrapper.instance().setState({
-      films: [{ id: 1, genres: ['Drama'] }],
-    });
-    wrapper.instance().onFilmSelect(1);
-    expect(helpers.getData).toHaveBeenCalledTimes(1);
-    expect(helpers.getData.mock.calls[0][1])
-      .toEqual({search: 'Drama', searchBy: 'genres'});
+  it('should emit onChangeView when toSearch emmit', () => {
+    wrapper.find('Header').props().toSearch();
+    expect(props.onChangeView).toHaveBeenCalledTimes(1);
   });
 
-  it('should change view when toSearch emit', () => {
-    let wrapper = mount( <App /> );
-    wrapper.instance().setState({
-      view: helpers.views.POSTER,
-    });
-    wrapper.update();
-    wrapper.find(SearchButton).find('.search-button').simulate('click');
-    expect(wrapper.state().view).toBe(helpers.views.COMMON);
+  it('should emit onFilmSelect when onFilmSelect emmit', () => {
+    wrapper.find('Connect').props().onFilmSelect();
+    expect(props.onFilmSelect).toHaveBeenCalledTimes(1);
   });
 
-  it('should get data when send query emit', async () => {
-    await wrapper.instance().sendQuery();
-    expect(helpers.getData).toHaveBeenCalledTimes(1);
-    expect(wrapper.state().films).toHaveLength(2);
+  it('should component have proper props', () => {
+    expect(wrapper.find('Header').props()).toHaveProperty('posterData');
+    expect(wrapper.find('Header').props()).toHaveProperty('view');
   });
+});
+
+describe('CombinedApp', () => {
+    let wrapper, store;
+
+    beforeEach(() => {
+      const initialState = {
+        films: [
+          {id: 1, title: 'title', release_date: '1992', genres: ['Drama']},
+          {id: 2, title: 'title2', release_date: '1994', genres: ['Drama']},
+        ],
+        hasErrored: false,
+        isLoading: false,
+        selectFilm: {
+          posterData: {},
+          selectedGenre: 'Drama',
+        },
+        changeView: {
+          view: helpers.views.COMMON,
+        },
+      };
+      store = mockStore(initialState);
+      wrapper = shallow(
+        <CombinedApp store={store} />,
+      );
+    });
+
+    it('should change the view with proper action', () => {
+      wrapper.simulate('changeView');
+      const actions = store.getActions();
+      expect(actions).toEqual([ { type: 'CHANGE_VIEW' } ]);
+    });
+
 });

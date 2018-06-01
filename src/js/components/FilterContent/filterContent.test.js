@@ -20,10 +20,10 @@ describe('FilterContent', () => {
   });
 
   it(`should calls onFilterSelect 
-    when input is selected`, () => {
+    when release input is selected`, () => {
     const wrapper = shallow(
       <FilterContent {...props} /> );
-    wrapper.find('#release').simulate('change');
+    wrapper.find('#release').simulate('change', { target: {value: 'release'} });
     expect(props.onFilterSelect).toHaveBeenCalledTimes(1);
     expect(wrapper.find('#release').parent().hasClass('active')).toBe(true);
   });
@@ -33,7 +33,7 @@ describe('FilterContent', () => {
     props.selected = 'rating';
     const wrapper = shallow(
       <FilterContent {...props} /> );
-    wrapper.find('#rating').simulate('change');
+    wrapper.find('#rating').simulate('change', { target: {value: 'rating'} });
     expect(props.onFilterSelect).toHaveBeenCalledTimes(1);
     expect(wrapper.find('#rating').parent().hasClass('active')).toBe(true);
   });

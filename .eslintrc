@@ -209,6 +209,7 @@
     "import/no-unresolved": 2,
     "import/unambiguous": 0,
     "import/prefer-default-export": 0,
+    "import/no-named-as-default": 0,
 
     "prefer-object-spread/prefer-object-spread": 2,
 

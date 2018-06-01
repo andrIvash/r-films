@@ -25,7 +25,9 @@ export default {
       req.open('GET', combinedUrl);
       req.onload = () => {
         if (req.status === 200) {
-          resolve(JSON.parse(req.response));
+          setTimeout(() => {
+            resolve(JSON.parse(req.response));
+          }, 2000);
         } else {
           reject(Error(req.statusText));
         }
