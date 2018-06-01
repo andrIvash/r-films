@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as sign from './enterSign.svg';
+import * as sign from './enterSign.js';
 import FilterSearch from '../FilterSearch';
 import SearchButton from '../SearchButton';
 import helpers from '../../helpers';

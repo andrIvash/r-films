@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 const formatQueryParams = params => (
   `?${Object.keys(params).map(key => (
     `${key}=${encodeURIComponent(params[key])}`
@@ -37,5 +39,15 @@ export default {
       };
       req.send();
     })),
+  fetchPopularRepos: (url) => {
+    const encodedURI = encodeURI(url);
+    return fetch(encodedURI)
+      .then((data) => data.json())
+      //.then((repos) => repos.items)
+      .catch((error) => {
+        console.warn(error);
+        return null;
+      });
+  },
 };
 

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { render } from 'react-dom';
+import { render, hydrate } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
@@ -9,9 +9,8 @@ import { ConnectedRouter, routerReducer,
   routerMiddleware, push } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
-import App from './components/App';
-import NotFound from './components/NotFound';
 import '../styles/app.scss';
+import routes from './routes';
 
 const history = createHistory();
 const store = createStore(
@@ -25,14 +24,18 @@ const app = document.getElementById('app');
 if (app === null) {
   throw new Error('no app element');
 }
-render(
+hydrate(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route component={App} exact path='/' />
-        <Route component={App} exact path='/film/:id' />
-        <Route component={App} exact path='/search' />
-        <Route path='*' render={() => ( <NotFound /> )} />
+        { routes.map(({ path, exact, component: Component, ...rest }) => (
+          <Route
+            exact={exact}
+            key={path}
+            path={path}
+            render={props => <Component {...props} {...rest} />}
+          />
+        ))}
       </Switch>
     </ConnectedRouter>
   </Provider>,
