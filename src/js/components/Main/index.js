@@ -73,14 +73,12 @@ export class Main extends Component<Props, State> {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
+const mapDispatchToProps = dispatch => ({
     onFilterSelect: (value: string) => {
       dispatch(selectDataFilter(value));
       dispatch(filterData());
     },
-  };
-};
+  });
 
 const mapStateToProps = state => {
   return {

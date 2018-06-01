@@ -23,9 +23,6 @@ describe('selectFilm reducer', () => {
     expect(selectFilm({}, {
       type: actions.SELECT_FILM,
       genre: 'Drama',
-      film: { title: 'film' }})).toEqual({
-      posterData: { title: 'film' },
-      selectedGenre: 'Drama',
-    });
+      film: { title: 'film' }})).toMatchSnapshot();
   });
 });

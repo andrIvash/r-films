@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`changeSearchFilter reducer should return the initial state 1`] = `
+Object {
+  "changeSearchFilter": Object {
+    "searchFilter": "title",
+  },
+  "changeSearchText": Object {
+    "searchText": "",
+  },
+  "changeView": Object {
+    "view": "COMMON",
+  },
+  "filterData": Array [],
+  "items": Array [],
+  "itemsHasErrored": false,
+  "itemsIsLoading": false,
+  "selectDataFilter": Object {
+    "selected": "release",
+  },
+  "selectFilm": Object {
+    "posterData": Object {
+      "overview": "",
+      "poster_path": "",
+      "release_date": "",
+      "tagline": "",
+      "title": "",
+      "vote_average": 0,
+    },
+    "selectedGenre": "Drama",
+  },
+}
+`;
