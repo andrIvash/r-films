@@ -9,7 +9,7 @@ import reducer from '../../src/js/reducers';
 import routes from '../../src/js/routes';
 import App from '../../src/js/components/App';
 
-export const renderPage = (req, res, next) => {
+export const renderPage = async (req, res, next) => {
   console.log('middleware', req.originalUrl);
   const initialState = {};
   const activeRoute = routes.find((route) => matchPath(req.originalUrl, route)) || {};
@@ -25,6 +25,8 @@ export const renderPage = (req, res, next) => {
       reducer,
       applyMiddleware(thunk),
     );
+    const store = await configureStore(req, res);
+    
     const markup = renderToString(
       <Provider store={store} >
         <StaticRouter context={context} location={req.originalUrl}>
