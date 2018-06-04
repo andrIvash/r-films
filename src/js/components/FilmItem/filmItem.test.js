@@ -21,6 +21,7 @@ describe('FilmItem', () => {
     expect(FilmItem).toBeDefined();
   });
   it('should render correctly', () => {
+    jest.mock('react-router/memoryRouter', () => 'memory-router');
     const wrapper = render(
       <MemoryRouter>
         <FilmItem {...props} />

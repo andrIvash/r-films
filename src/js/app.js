@@ -5,8 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 import { Route, Switch } from 'react-router';
-import { ConnectedRouter, routerReducer,
-  routerMiddleware, push } from 'react-router-redux';
+import { ConnectedRouter } from 'react-router-redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import App from './components/App';
@@ -29,9 +28,9 @@ render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route component={App} exact path='/' />
-        <Route component={App} exact path='/film/:id' />
-        <Route component={App} exact path='/search' />
+        <Route component={App} exact={true} path='/' />
+        <Route component={App} exact={true} path='/film/:id' />
+        <Route component={App} exact={true} path='/search' />
         <Route path='*' render={() => ( <NotFound /> )} />
       </Switch>
     </ConnectedRouter>

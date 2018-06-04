@@ -18,10 +18,12 @@ describe('ContentInfo', () => {
     expect(ContentInfo).toBeDefined();
   });
   it('should render correctly', () => {
+    jest.mock('react-router/memoryRouter', () => 'memory-router');
     const wrapper = render(
       <MemoryRouter>
         <ContentInfo {...props} />
-      </MemoryRouter> );
+      </MemoryRouter>,
+    );
     expect(wrapper).toMatchSnapshot();
   });
   it('should render child elements', () => {

@@ -8,10 +8,10 @@
     "build": "webpack -p --env=production",
     "serv": "babel-node server.js --presets es2015,stage-2",
     "lint": "eslint ./src/js/**/*.js",
-    "test": "jest test --all --no-cache",
+    "test": "jest test --all --no-cache ",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:one": "jest -t 'main'",
+    "test:one": "jest -t 'content'",
     "cypress:open": "cypress open"
   },
   "jest": {
