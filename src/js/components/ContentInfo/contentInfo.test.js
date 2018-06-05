@@ -1,6 +1,7 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router';
 import ContentInfo from './index';
+
+jest.mock('./../FilmItem', () => 'FilmItem');
 
 let props = {};
 
@@ -14,24 +15,25 @@ describe('ContentInfo', () => {
       onFilmSelect: () => {},
     };
   });
+
   it('should be defined', () => {
     expect(ContentInfo).toBeDefined();
   });
+
   it('should render correctly', () => {
-    jest.mock('react-router', () => 'react-router');
     const wrapper = render(
-      <MemoryRouter>
-        <ContentInfo {...props} />
-      </MemoryRouter>,
+      <ContentInfo {...props} />,
     );
     expect(wrapper).toMatchSnapshot();
   });
+
   it('should render child elements', () => {
     const wrapper = shallow( <ContentInfo {...props} /> );
     expect(wrapper.find('.film-list')
       .children())
       .toHaveLength(props.films.length);
   });
+
   it('should render warning title if no data passed', () => {
     props.films = [];
     const wrapper = shallow( <ContentInfo {...props} /> );
