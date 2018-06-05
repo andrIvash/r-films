@@ -25,7 +25,7 @@ export const renderPage = async (req, res, next) => {
       reducer,
       applyMiddleware(thunk),
     );
-    const store = await configureStore(req, res);
+    //const store = await configureStore(req, res);
     
     const markup = renderToString(
       <Provider store={store} >
