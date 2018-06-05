@@ -122,6 +122,10 @@ export const getFilms = (request, query) => dispatch => {
   return helpers.getData(request, query)
     .then(response => {
       dispatch(itemsIsLoading(false));
+      if (query) {
+        dispatch(changeSearchText(query.search));
+        dispatch(changeSearchFilter(query.searchBy));
+      }
       return response;
     })
     .then(response => {
