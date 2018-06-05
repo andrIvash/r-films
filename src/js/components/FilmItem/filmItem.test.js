@@ -1,6 +1,7 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router';
 import FilmItem from './index';
+
+jest.mock('react-router-dom');
 
 let props = {};
 
@@ -17,20 +18,18 @@ describe('FilmItem', () => {
       onFilmSelect: jest.fn(),
     };
   });
+
   it('should be defined', () => {
     expect(FilmItem).toBeDefined();
   });
+
   it('should render correctly', () => {
-    jest.mock('react-router', () => 'react-router');
-    const wrapper = render(
-      <MemoryRouter>
-        <FilmItem {...props} />
-      </MemoryRouter>);
+    const wrapper = render(<FilmItem {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
+
   it('should render write values ', () => {
-    const wrapper = shallow(
-      <FilmItem {...props} /> );
+    const wrapper = shallow(<FilmItem {...props} />);
     expect(wrapper.find('.film-item__img')
       .getElement().props.src).toBe('http://test');
     expect(wrapper.find('.film-item__title').text()).toBe('title');
@@ -39,8 +38,7 @@ describe('FilmItem', () => {
 
   it(`should calls onFilmSelect with an argument 
     when FilmItem is clicked`, () => {
-    const wrapper = shallow(
-      <FilmItem {...props} /> );
+    const wrapper = shallow(<FilmItem {...props} /> );
     wrapper.simulate('click');
     expect(props.onFilmSelect).toHaveBeenCalledTimes(1);
     expect(props.onFilmSelect).toHaveBeenCalledWith(22);

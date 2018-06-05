@@ -4,9 +4,8 @@ exports[`FilmItem should render correctly 1`] = `
 <li
   class="film-list__item"
 >
-  <a
-    class="film-list__link"
-    href="/film/22"
+  <div
+    mock="Link_component_mock"
   >
     <div
       class="film-item"
@@ -40,6 +39,6 @@ exports[`FilmItem should render correctly 1`] = `
         drama
       </div>
     </div>
-  </a>
+  </div>
 </li>
 `;
