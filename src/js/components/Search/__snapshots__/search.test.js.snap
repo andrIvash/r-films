@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search should render correctly 1`] = `
+<div
+  className="search app__search"
+>
+  <h1
+    className="search__title"
+  >
+     Find your movie 
+  </h1>
+  <div
+    className="search__input-wrapper input-group mb-3"
+  >
+    <input
+      aria-label="Search"
+      className="search__input form-control"
+      name="search"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Search phrase..."
+      type="text"
+      value=""
+    />
+    <span
+      className="search__sign"
+    >
+      <enter-sign />
+    </span>
+  </div>
+  <div
+    className="search__controls"
+  >
+    <div
+      className="filter-search"
+    >
+      <div
+        className="filter-search__title"
+      >
+        Search By
+      </div>
+      <div
+        className="btn-group-toggle"
+      >
+        <label
+          className="filter-search__label btn btn-secondary"
+          htmlFor="genre"
+        >
+          <input
+            autoComplete="off"
+            className="filter-search__btn"
+            id="genre"
+            name="options"
+            onChange={[Function]}
+            type="radio"
+            value="genres"
+          />
+           Genre
+        </label>
+        <label
+          className="filter-search__label btn btn-secondary"
+          htmlFor="title"
+        >
+          <input
+            autoComplete="off"
+            className="filter-search__btn"
+            id="title"
+            name="options"
+            onChange={[Function]}
+            type="radio"
+            value="title"
+          />
+           Title
+        </label>
+      </div>
+    </div>
+    <button
+      className="search-button btn btn-lg btn-primary"
+      onClick={[Function]}
+      type="button"
+    >
+       Search
+    </button>
+  </div>
+</div>
+`;

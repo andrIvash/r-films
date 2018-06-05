@@ -2,8 +2,10 @@ import React from 'react';
 import { Search } from './index';
 import FilterSearch from '../FilterSearch';
 import SearchButton from '../SearchButton';
+import renderer from 'react-test-renderer';
 
 let props = {};
+jest.mock('./enterSign', () => 'enter-sign');
 
 describe('Search', () => {
   beforeEach(() => {
@@ -22,8 +24,8 @@ describe('Search', () => {
   });
 
   it('should render correctly', () => {
-    const wrapper = render(
-      <Search {...props} /> );
+    const wrapper = renderer.create(
+      <Search {...props} /> ).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
 
