@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as sign from './enterSign.js';
+import EnterSign from './enterSign.js';
 import FilterSearch from '../FilterSearch';
 import SearchButton from '../SearchButton';
 import helpers from '../../helpers';
@@ -57,7 +57,7 @@ export class Search extends Component<Props> {
             type='text'
             value={searchText}
           />
-          <img alt='search sign' className='search__sign' src={sign} />
+          <span className='search__sign'><EnterSign /></span>
         </div>
         <div className='search__controls'>
           <FilterSearch

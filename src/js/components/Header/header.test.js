@@ -27,7 +27,7 @@ describe('Header', () => {
   it('should render correctly', () => {
     jest.mock('../Logo', () => 'logo');
     jest.mock('../SearchButton', () => 'search-button');
-    jest.mock('react-router/memoryRouter', () => 'memory-router');
+    jest.mock('react-router', () => 'react-router');
     const wrapper = renderer.create(
       <MemoryRouter>
         <Header {...props} />

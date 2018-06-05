@@ -27,7 +27,7 @@ describe('Main', () => {
   it('should render correctly', () => {
     jest.mock('../FilterContent', () => 'filtercontent');
     jest.mock('../ExtraInfo', () => 'extrainfo');
-    jest.mock('react-router/MemoryRouter', () => 'memory-router');
+    jest.mock('react-router', () => 'react-router');
     const wrapper = renderer.create(
       <MemoryRouter>
         <Main {...props} />

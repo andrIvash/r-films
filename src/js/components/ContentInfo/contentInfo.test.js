@@ -18,7 +18,7 @@ describe('ContentInfo', () => {
     expect(ContentInfo).toBeDefined();
   });
   it('should render correctly', () => {
-    jest.mock('react-router/memoryRouter', () => 'memory-router');
+    jest.mock('react-router', () => 'react-router');
     const wrapper = render(
       <MemoryRouter>
         <ContentInfo {...props} />
