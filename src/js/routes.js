@@ -5,23 +5,28 @@ import helpers from './helpers';
 
 const routes = [
   {
-    path: '/index',
+    name: 'main',
+    path: '/',
     exact: true,
     component: App,
-    // fetchInitialData: (path = '') => fetchPopularRepos(path.split('/').pop())
-    fetchInitialData: () => helpers.fetchPopularRepos(`${helpers.routes.base}/movies`),
+    fetchInitialData: (url) => helpers.fetchAllData(`${helpers.routes.base}${url}`),
   },
   {
+    name: 'film',
     path: '/film/:id',
     exact: true,
     component: App,
+    fetchInitialData: (url) => helpers.fetchSingle(`${helpers.routes.base}${url}`),
   },
   {
+    name: 'search',
     path: '/search',
     exact: true,
     component: App,
+    fetchInitialData: (url) => helpers.fetchAllData(`${helpers.routes.base}${url}`),
   },
   {
+    name: 'notfound',
     path: '*',
     component: NotFound,
   },

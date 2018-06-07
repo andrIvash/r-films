@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
 
 const formatQueryParams = params => (
   `?${Object.keys(params).map(key => (
@@ -6,7 +6,7 @@ const formatQueryParams = params => (
   )).join('&')}`
 );
 
-export default {
+const helpers = {
   views: {
     COMMON: 'COMMON',
     POSTER: 'POSTER',
@@ -39,11 +39,34 @@ export default {
       };
       req.send();
     })),
-  fetchPopularRepos: (url) => {
+
+  fetchAllData: (url) => {
     const encodedURI = encodeURI(url);
-    return fetch(encodedURI)
-      .then((data) => data.json())
-      //.then((repos) => repos.items)
+    return axios.get(encodedURI)
+      .then((result) => {
+        return result.data;
+      })
+      .catch((error) => {
+        console.warn(error);
+        return null;
+      });
+  },
+  fetchSingle: (url) => {
+    const encodedURI = encodeURI(url);
+    const result = {};
+    const baseURL = helpers.routes.base;
+    console.log('url', url);
+    return axios.get(encodedURI)
+      .then(res => {
+        result.single = res.data;
+      })
+      .then(() => {
+        return axios.get(`${baseURL}/movies?search=${result.single.genres[0]}&searchBy=genres`)
+        .then(res => {
+          result.items = res.data.data;
+          return result;
+        });
+      })
       .catch((error) => {
         console.warn(error);
         return null;
@@ -51,3 +74,4 @@ export default {
   },
 };
 
+export default helpers;

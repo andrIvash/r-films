@@ -13,12 +13,11 @@ html
         <!--[if lt IE 9]>
             script(src='http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js')
         <![endif]-->
-        script
-            window.__INITIAL_DATA__ != preloadedState
+        script.
+            window.preloadedState = !{preloadedState};
+            console.log(window.preloadedState);
         title
             block title
-    body
-        block main
+    body    
+        block main  
         block script
-
-        

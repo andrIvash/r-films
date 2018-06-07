@@ -26,25 +26,6 @@ type Props = {
 
 export class App extends Component<Props, {}> {
 
-  componentDidMount() {
-    const params: any | {id?: number} = this.props.match &&
-      this.props.match.params ? this.props.match : false;
-    const query = this.props.location && this.props.location.search ?
-      new URLSearchParams(this.props.location.search) : false;
-    if (params && params.id) {
-      this.props.onFilmSelect(params.id);
-    } else if (query && query.has('search')) {
-      const search = query.get('search');
-      let filter = null;
-      if (query.has('searchBy')) {
-        filter = query.get('searchBy');
-      }
-      this.doSearch(search, filter ? filter : 'title');
-    } else {
-      this.props.fetchData(`${helpers.routes.base}/movies`);
-    }
-  }
-
   doSearch = (data: string, filter: string) => {
     console.log('do search', data, filter);
     this.props.fetchData(`${helpers.routes.base}/movies`, {

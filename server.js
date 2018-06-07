@@ -8,10 +8,9 @@ app.use(express.json());
 
 app.set('views', './src/templates/');
 app.set('view engine', 'pug');
-app.use(express.static('./dist/'));
 
 app.use('/', routes);
-
+app.use(express.static('./dist/'));
 
 app.get('*', (req, res) => {
   res.render('error', { title: '404, not found'});

@@ -8,4 +8,8 @@ block main
         #app(class="app")!= content
 
 block script
+    if preloadedState
+        script(src="assets/scripts/common.js")
+        script(src="assets/scripts/app.bundle.js")
+
     
