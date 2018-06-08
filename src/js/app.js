@@ -5,13 +5,9 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 // import createHistory from 'history/createBrowserHistory';
 import { Route, Switch } from 'react-router';
-<<<<<<< HEAD
 import { BrowserRouter } from 'react-router-dom';
 // import { ConnectedRouter, routerReducer,
 //  routerMiddleware, push } from 'react-router-redux';
-=======
-import { ConnectedRouter } from 'react-router-redux';
->>>>>>> task6
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import '../styles/app.scss';
