@@ -1,8 +1,10 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router';
+import renderer from 'react-test-renderer';
 import ContentInfo from './index';
 
 let props = {};
+
+jest.mock('../FilmItem', () => 'film-item');
 
 describe('ContentInfo', () => {
   beforeEach(()=> {
@@ -19,11 +21,7 @@ describe('ContentInfo', () => {
   });
   it('should render correctly', () => {
     jest.mock('react-router', () => 'react-router');
-    const wrapper = render(
-      <MemoryRouter>
-        <ContentInfo {...props} />
-      </MemoryRouter>,
-    );
+    const wrapper = renderer.create(<ContentInfo {...props} />).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
   it('should render child elements', () => {

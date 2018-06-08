@@ -1,14 +1,16 @@
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
-import { MemoryRouter as Router, Switch } from 'react-router-dom';
-import { MemoryRouter } from 'react-router';
 import CombinedMain, { Main } from './index';
 import FilterContent from '../FilterContent';
 import ExtraInfo from '../ExtraInfo';
 
 const mockStore = configureMockStore();
 let props = {};
+
+jest.mock('../FilterContent', () => 'filter-content');
+jest.mock('../ExtraInfo', () => 'extra-info');
+jest.mock('../ContentInfo', () => 'content-info');
 
 describe('Main', () => {
   beforeEach(() => {
@@ -25,13 +27,7 @@ describe('Main', () => {
     expect(Main).toBeDefined();
   });
   it('should render correctly', () => {
-    jest.mock('../FilterContent', () => 'filtercontent');
-    jest.mock('../ExtraInfo', () => 'extrainfo');
-    jest.mock('react-router', () => 'react-router');
-    const wrapper = renderer.create(
-      <MemoryRouter>
-        <Main {...props} />
-      </MemoryRouter>).toJSON();
+    const wrapper = renderer.create(<Main {...props} />).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
   it('should show an extra info ', () => {
@@ -47,18 +43,6 @@ describe('Main', () => {
       <Main {...props} /> );
     expect(wrapper.find(ExtraInfo)).not.toHaveLength(1);
   });
-  // it('should change filter when onFilterSelect emit', () => {
-  //   const wrapper = mount(
-  //     <Router>
-  //       <Switch>
-  //         <Main {...props} /> )
-  //       </Switch>
-  //     </Router>);
-  //   wrapper.find(FilterContent).find('#release').simulate('change');
-  //   expect(props.onFilterSelect).toHaveBeenCalledTimes(1);
-  //   expect(props.onFilterSelect.mock.calls[0][0])
-  //     .toEqual('release');
-  // });
 });
 
 describe('CombinedMain', () => {

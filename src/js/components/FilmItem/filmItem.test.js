@@ -1,8 +1,11 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router';
 import FilmItem from './index';
+import renderer from 'react-test-renderer';
 
 let props = {};
+
+jest.mock('react-router-dom/Link', () => 'router-link');
+jest.mock('react-router-dom/NavLink', () => 'nav-link');
 
 describe('FilmItem', () => {
   beforeEach(()=> {
@@ -21,11 +24,8 @@ describe('FilmItem', () => {
     expect(FilmItem).toBeDefined();
   });
   it('should render correctly', () => {
-    jest.mock('react-router', () => 'react-router');
-    const wrapper = render(
-      <MemoryRouter>
-        <FilmItem {...props} />
-      </MemoryRouter>);
+    const wrapper = renderer.create(
+      <FilmItem {...props} />).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
   it('should render write values ', () => {
