@@ -2,16 +2,12 @@
 
 exports[`Footer should render correctly 1`] = `
 <footer
-  class="footer app__footer bg-dark"
+  className="footer app__footer bg-dark"
 >
   <div
-    class="container"
+    className="container"
   >
-    <div
-      class="logo app__logo"
-    >
-      netflixroulette
-    </div>
+    <logo />
   </div>
 </footer>
 `;

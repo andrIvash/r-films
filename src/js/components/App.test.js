@@ -1,9 +1,15 @@
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
+import renderer from 'react-test-renderer';
 import helpers from '../helpers';
 import CombinedApp, { App } from './App';
 
 const mockStore = configureMockStore();
+
+jest.mock('./Header', () => 'header');
+jest.mock('./Footer', () => 'footer');
+jest.mock('./Main', () => 'main');
+jest.mock('./ErrorBoundary', () => 'error-boundary');
 
 let wrapper,
   props = {};
@@ -21,34 +27,26 @@ describe('App', () => {
   });
 
   it('should render correctly', () => {
-    const wrapper = shallow(<App {...props} />);
+    const wrapper = renderer.create(<App {...props} />).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should emit search when doSearch emmit', () => {
     expect(props.fetchData).toHaveBeenCalledTimes(1);
-    wrapper.find('Header').props().onSearch('data', 'filter');
+    wrapper.find('header').props().onSearch('data', 'filter');
     expect(props.fetchData).toHaveBeenCalledTimes(2);
     expect(props.fetchData.mock.calls[1][1])
       .toEqual({search: 'data', searchBy: 'filter'});
   });
 
   it('should emit onChangeView when toSearch emmit', () => {
-    wrapper.find('Header').props().toSearch();
+    wrapper.find('header').props().toSearch();
     expect(props.onChangeView).toHaveBeenCalledTimes(1);
   });
 
-  it('should emit onFilmSelect when onFilmSelect emmit', () => {
-    wrapper.find('Connect').props().onFilmSelect();
-    expect(props.onFilmSelect).toHaveBeenCalledTimes(1);
-  });
-
   it('should component have proper props', () => {
-    expect(wrapper.find('Header').props()).toHaveProperty('posterData');
-    expect(wrapper.find('Header').props()).toHaveProperty('view');
-    expect(wrapper.find('Connect').props()).toHaveProperty('films');
-    expect(wrapper.find('Connect').props()).toHaveProperty('genre');
-    expect(wrapper.find('Connect').props()).toHaveProperty('view');
+    expect(wrapper.find('header').props()).toHaveProperty('posterData');
+    expect(wrapper.find('header').props()).toHaveProperty('view');
   });
 });
 
@@ -75,10 +73,6 @@ describe('CombinedApp', () => {
       wrapper = shallow(
         <CombinedApp store={store} />,
       );
-    });
-
-    it('should show previously state value', () => {
-      expect(wrapper.props().view).toBe(helpers.views.COMMON);
     });
 
     it('should change the view with proper action', () => {

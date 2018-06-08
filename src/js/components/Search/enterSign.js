@@ -12,5 +12,4 @@ const EnterSign = () => (
 	</svg>
 
 );
-				
 export default EnterSign;
