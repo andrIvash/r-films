@@ -1,27 +1,38 @@
 // @flow
 import React from 'react';
-import { render } from 'react-dom';
+import thunk from 'redux-thunk';
+import { hydrate } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import { BrowserRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import { RouteDataLoader } from './route-data-loader';
 import reducer from './reducers';
-import App from './components/App';
 import '../styles/app.scss';
+import routes from './routes';
+
+const state = window.preloadedState ? window.preloadedState : {};
+delete window.preloadedState;
 
 const store = createStore(
-  // initialState,
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  state,
   applyMiddleware(thunk),
 );
+
+console.log('store', store.getState());
 
 const app = document.getElementById('app');
 if (app === null) {
   throw new Error('no app element');
 }
-render(
+hydrate(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <RouteDataLoader dispatch={store.dispatch} routes={routes} >
+        { renderRoutes(routes) }
+      </RouteDataLoader>
+    </BrowserRouter>
   </Provider>,
   app,
 );

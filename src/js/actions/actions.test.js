@@ -87,9 +87,9 @@ describe('actions selectFilm', () => {
       film: {id: 1, release_date: '1924', vote_average: 8, genres: ['Drama']},
       genre: 'Drama',
     };
-    expect(store.dispatch(actions.selectFilm(1)))
-      .toEqual(expectedActions);
-
+    store.dispatch(actions.selectFilm(1)).then(res => {
+      return expect(res.toEqual(expectedActions));
+    });
   });
 });
 
@@ -125,7 +125,7 @@ describe('actions itemsHasErrored', () => {
 
 describe('actions getFilms', () => {
   it('should create an action while getting film ', () => {
-    helpers.getData = jest.fn()
+    helpers.fetchAllData = jest.fn()
       .mockReturnValue(Promise.resolve({
           data: [],
       }));

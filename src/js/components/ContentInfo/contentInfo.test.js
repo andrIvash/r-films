@@ -1,7 +1,10 @@
 import React from 'react';
+import renderer from 'react-test-renderer';
 import ContentInfo from './index';
 
 let props = {};
+
+jest.mock('../FilmItem', () => 'film-item');
 
 describe('ContentInfo', () => {
   beforeEach(()=> {
@@ -17,8 +20,8 @@ describe('ContentInfo', () => {
     expect(ContentInfo).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = render(
-      <ContentInfo {...props} /> );
+    jest.mock('react-router', () => 'react-router');
+    const wrapper = renderer.create(<ContentInfo {...props} />).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
   it('should render child elements', () => {

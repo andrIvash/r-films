@@ -67,20 +67,40 @@ export const filterData = () => (dispatch, getState) => {
   });
 };
 
-export const selectFilm = id => (dispatch, getState) => {
+export const selectFilm = (id, url) => (dispatch, getState) => {
+  dispatch(itemsIsLoading(true));
   const state = getState();
-  const selectedFilm = state.items.find((film:Film) => film.id === id);
-  const selectedGenre: string = selectedFilm ? selectedFilm.genres[0] : '';
-  dispatch(changeView(CHANGE_VIEW_POSTER));
-  dispatch(getFilms(`${helpers.routes.base}/movies`, {
-    search: selectedGenre,
-    searchBy: 'genres',
-  }));
-  return dispatch({
-      type: SELECT_FILM,
-      film: selectedFilm,
-      genre: selectedGenre,
-  });
+  let selectedGenre: string;
+  let selectedFilm: Film;
+  let pr: Promise;
+  if (state.items.length && id) {
+    pr = new Promise( resolve => {
+      selectedFilm = state.items.find((film:Film) => film.id === id);
+      selectedGenre = selectedFilm ? selectedFilm.genres[0] : '';
+      resolve();
+    });
+  } else {
+      pr = helpers.fetchSingle(url).then((res) => {
+      selectedFilm = res;
+      selectedGenre = selectedFilm ? selectedFilm.genres[0] : '';
+      return res;
+    });
+  }
+  return pr.then(() => {
+      return dispatch(getFilms(null, {
+        search: selectedGenre,
+        searchBy: 'genres',
+      }));
+    })
+    .then(() => {
+      dispatch(itemsIsLoading(false));
+      dispatch(changeView(CHANGE_VIEW_POSTER));
+      return dispatch({
+        type: SELECT_FILM,
+        film: selectedFilm,
+        genre: selectedGenre,
+      });
+  }).catch(() => dispatch(itemsHasErrored(true)));
 };
 
 
@@ -99,15 +119,20 @@ export const itemsHasErrored = bool => ({
   hasErrored: bool,
 });
 
-export const getFilms = (request, query) => dispatch => {
+export const getFilms = (url, query) => dispatch => {
   dispatch(itemsIsLoading(true));
-  return helpers.getData(request, query)
+  return helpers.fetchAllData(url, query)
     .then(response => {
       dispatch(itemsIsLoading(false));
+      if (query) {
+        dispatch(changeSearchText(query.search));
+        dispatch(changeSearchFilter(query.searchBy));
+      }
       return response;
     })
     .then(response => {
-      dispatch(receiveFilms(response.data));
+      response = response.data.length ? response.data : [];
+      dispatch(receiveFilms(response));
     })
     .catch(() => dispatch(itemsHasErrored(true)));
 };

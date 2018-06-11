@@ -1,14 +1,20 @@
 import express from 'express';
-import React from 'react';
-import {renderToString} from 'react-dom/server';
-import App from '../../src/js/components/App';
-import pug from 'pug';
+import renderPage from '../middleware/renderPage';
 
-const router  = express.Router();
+const router = express.Router();
 
-router.get('/', (req, res) => {
-  const body = renderToString(<App/>);
-  res.render('index', { body })
+router.get('/', renderPage, (req, res) => {
+  const { content, preloadedState } = res.locals;
+  res.render('index.pug', { content, preloadedState });
 });
+router.get('/film/:id', renderPage, (req, res) => {
+  const { content, preloadedState } = res.locals;
+  res.render('index.pug', { content, preloadedState });
+});
+router.get('/search', renderPage, (req, res) => {
+  const { content, preloadedState } = res.locals;
+  res.render('index.pug', { content, preloadedState });
+});
+
 
 export default router;

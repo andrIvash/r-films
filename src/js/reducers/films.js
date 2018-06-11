@@ -21,11 +21,14 @@ export const itemsIsLoading = (state = false, action) => {
 };
 
 export const items = (state = [], action) => {
-    switch (action.type) {
-        case RECEIVE_FILMS:
-            return action.items;
-
-        default:
-            return state;
+    if (action && action.type) {
+        switch (action.type) {
+            case RECEIVE_FILMS:
+                return action.items;
+            default:
+                return state;
+        }
+    } else {
+        return state;
     }
 };

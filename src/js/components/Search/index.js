@@ -1,9 +1,11 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as sign from './enterSign.svg';
+import { withRouter } from 'react-router-dom';
+import EnterSign from './enterSign.js';
 import FilterSearch from '../FilterSearch';
 import SearchButton from '../SearchButton';
+import helpers from '../../helpers';
 import { changeSearchFilter,
   changeSearchText, clearSearchText } from '../../actions';
 
@@ -25,10 +27,17 @@ export class Search extends Component<Props> {
   }
 
   handleSearch = () => {
-    const {searchText, searchFilter, clearText, submitSearch } = this.props;
+    const {
+      searchText,
+      searchFilter,
+      clearText,
+      submitSearch,
+      history } = this.props;
+
     if (searchText.length > 0) {
       submitSearch(searchText, searchFilter);
       clearText();
+      history.push(`/search?search=${searchText}&searchBy=${searchFilter}`);
     }
   }
 
@@ -48,7 +57,7 @@ export class Search extends Component<Props> {
             type='text'
             value={searchText}
           />
-          <img alt='search sign' className='search__sign' src={sign} />
+          <span className='search__sign'><EnterSign /></span>
         </div>
         <div className='search__controls'>
           <FilterSearch
@@ -77,4 +86,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Search));

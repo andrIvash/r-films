@@ -58,3 +58,11 @@
   font-weight: 700;
   font-size: rem(12px);
 }
+
+.film-list__link {
+  color: $color-dark;
+  &:visited, &:hover, &:active,  {
+    color: $color-dark;
+    text-decoration: none;
+  }
+}

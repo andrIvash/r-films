@@ -1,17 +1,21 @@
 import React from 'react';
 import { Search } from './index';
-import FilterSearch from '../FilterSearch';
-import SearchButton from '../SearchButton';
+import renderer from 'react-test-renderer';
 
 let props = {};
+jest.mock('./enterSign', () => 'enter-sign');
+jest.mock('../FilterSearch', () => 'filter-search');
+jest.mock('../SearchButton', () => 'search-button');
 
 describe('Search', () => {
   beforeEach(() => {
+    history.push = jest.fn();
     props = {
       submitSearch: jest.fn(),
       changeFilter: jest.fn().mockReturnValue({searchFilter: 'title'}),
       handleChange: jest.fn().mockReturnValue({searchText: 'text'}),
       clearText: () => jest.fn().mockReturnValue({searchText: ''}),
+      history: {push: jest.fn()},
       searchText: '',
     };
   });
@@ -20,17 +24,18 @@ describe('Search', () => {
   });
 
   it('should render correctly', () => {
-    const wrapper = render(
-      <Search {...props} /> );
+    const wrapper = renderer.create(
+      <Search {...props} /> ).toJSON();
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should emit search when click button', () => {
     props.searchText = 'text';
-    const wrapper = mount(
+    const wrapper = shallow(
       <Search {...props} /> );
-    wrapper.find(SearchButton).simulate('click');
+    wrapper.find('search-button').prop('handleSearch')();
     expect(props.submitSearch).toHaveBeenCalledTimes(1);
+    expect(props.history.push).toHaveBeenCalledTimes(1);
   });
 
   it('should change searchText when input data', () => {
@@ -45,7 +50,7 @@ describe('Search', () => {
   it('should emit changeFilter when FilterSearch emit', () => {
     const wrapper = mount(
       <Search {...props} /> );
-    wrapper.find(FilterSearch).find('#genre').simulate('change');
+    wrapper.find('filter-search').prop('changeFilter')();
     expect(props.changeFilter).toHaveBeenCalledTimes(1);
   });
 

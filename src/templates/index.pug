@@ -1,8 +1,15 @@
 extends common/base
 
 block title
-    | Index page
+    | Netflix
 
 block main
     .wrapper
-        #app(class="app")!= body
+        #app(class="app")!= content
+
+block script
+    if preloadedState
+        script(src="assets/scripts/common.js")
+        script(src="assets/scripts/app.bundle.js")
+
+    
