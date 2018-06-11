@@ -1,28 +1,26 @@
 // @flow
 import React from 'react';
+import thunk from 'redux-thunk';
 import { hydrate } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-// import createHistory from 'history/createBrowserHistory';
-import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-// import { ConnectedRouter, routerReducer,
-//  routerMiddleware, push } from 'react-router-redux';
-import thunk from 'redux-thunk';
+import { renderRoutes } from 'react-router-config';
+import { RouteDataLoader } from './route-data-loader';
 import reducer from './reducers';
 import '../styles/app.scss';
 import routes from './routes';
 
-const state = window.preloadedState;
+const state = window.preloadedState ? window.preloadedState : {};
 delete window.preloadedState;
 
 const store = createStore(
   reducer,
   state,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk),
 );
 
+console.log('store', store.getState());
 
 const app = document.getElementById('app');
 if (app === null) {
@@ -30,17 +28,10 @@ if (app === null) {
 }
 hydrate(
   <Provider store={store}>
-    <BrowserRouter >
-      <Switch>
-        { routes.map(({ path, exact, component: Component, ...rest }) => (
-          <Route
-            exact={exact}
-            key={path}
-            path={path}
-            render={props => <Component {...props} {...rest} />}
-          />
-        ))}
-      </Switch>
+    <BrowserRouter>
+      <RouteDataLoader dispatch={store.dispatch} routes={routes} >
+        { renderRoutes(routes) }
+      </RouteDataLoader>
     </BrowserRouter>
   </Provider>,
   app,

@@ -32,10 +32,9 @@ describe('App', () => {
   });
 
   it('should emit search when doSearch emmit', () => {
-    expect(props.fetchData).toHaveBeenCalledTimes(1);
     wrapper.find('header').props().onSearch('data', 'filter');
-    expect(props.fetchData).toHaveBeenCalledTimes(2);
-    expect(props.fetchData.mock.calls[1][1])
+    expect(props.fetchData).toHaveBeenCalledTimes(1);
+    expect(props.fetchData.mock.calls[0][1])
       .toEqual({search: 'data', searchBy: 'filter'});
   });
 

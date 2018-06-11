@@ -27,7 +27,6 @@ type Props = {
 export class App extends Component<Props, {}> {
 
   doSearch = (data: string, filter: string) => {
-    console.log('do search', data, filter);
     this.props.fetchData(`${helpers.routes.base}/movies`, {
       search: data,
       searchBy: filter,

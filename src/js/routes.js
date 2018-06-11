@@ -1,6 +1,7 @@
 import App from './components/App';
 import NotFound from './components/NotFound';
 import helpers from './helpers';
+import { getFilms, selectFilm } from './actions';
 // import { fetchPopularRepos } from './api'
 
 const routes = [
@@ -9,21 +10,21 @@ const routes = [
     path: '/',
     exact: true,
     component: App,
-    fetchInitialData: (url) => helpers.fetchAllData(`${helpers.routes.base}${url}`),
+    fetchInitialData: () => getFilms(),
   },
   {
     name: 'film',
     path: '/film/:id',
     exact: true,
     component: App,
-    fetchInitialData: (url) => helpers.fetchSingle(`${helpers.routes.base}${url}`),
+    fetchInitialData: url => selectFilm(null, url),
   },
   {
     name: 'search',
     path: '/search',
     exact: true,
     component: App,
-    fetchInitialData: (url) => helpers.fetchAllData(`${helpers.routes.base}${url}`),
+    fetchInitialData: (url, query) => getFilms(null, query),
   },
   {
     name: 'notfound',

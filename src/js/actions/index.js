@@ -1,4 +1,4 @@
-import helpers from '../helpers';
+import helpers, { formatQueryParams } from '../helpers';
 import type { Film } from '../flow-types.js';
 /*
  * action types
@@ -67,37 +67,39 @@ export const filterData = () => (dispatch, getState) => {
   });
 };
 
-export const selectFilm = id => (dispatch, getState) => {
+export const selectFilm = (id, url) => (dispatch, getState) => {
   dispatch(itemsIsLoading(true));
   const state = getState();
   let selectedGenre: string;
   let selectedFilm: Film;
   let pr: Promise;
-  if (state.items.length) {
+  if (state.items.length && id) {
     pr = new Promise( resolve => {
       selectedFilm = state.items.find((film:Film) => film.id === id);
       selectedGenre = selectedFilm ? selectedFilm.genres[0] : '';
       resolve();
     });
   } else {
-     pr = helpers.getData(`${helpers.routes.base}/movies/${id}`).then((res) => {
+      pr = helpers.fetchSingle(url).then((res) => {
       selectedFilm = res;
       selectedGenre = selectedFilm ? selectedFilm.genres[0] : '';
       return res;
     });
   }
   return pr.then(() => {
-    dispatch(itemsIsLoading(false));
-    dispatch(changeView(CHANGE_VIEW_POSTER));
-    dispatch(getFilms(`${helpers.routes.base}/movies`, {
-      search: selectedGenre,
-      searchBy: 'genres',
-    }));
-    return dispatch({
+      return dispatch(getFilms(null, {
+        search: selectedGenre,
+        searchBy: 'genres',
+      }));
+    })
+    .then(() => {
+      dispatch(itemsIsLoading(false));
+      dispatch(changeView(CHANGE_VIEW_POSTER));
+      return dispatch({
         type: SELECT_FILM,
         film: selectedFilm,
         genre: selectedGenre,
-    });
+      });
   }).catch(() => dispatch(itemsHasErrored(true)));
 };
 
@@ -117,9 +119,9 @@ export const itemsHasErrored = bool => ({
   hasErrored: bool,
 });
 
-export const getFilms = (request, query) => dispatch => {
+export const getFilms = (url, query) => dispatch => {
   dispatch(itemsIsLoading(true));
-  return helpers.getData(request, query)
+  return helpers.fetchAllData(url, query)
     .then(response => {
       dispatch(itemsIsLoading(false));
       if (query) {

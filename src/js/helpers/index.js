@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const formatQueryParams = params => (
+export const formatQueryParams = params => (
   `?${Object.keys(params).map(key => (
     `${key}=${encodeURIComponent(params[key])}`
   )).join('&')}`
@@ -16,33 +16,39 @@ const helpers = {
     base: 'http://react-cdp-api.herokuapp.com',
   },
 
-  getData: (url, query) => (
-    new Promise( (resolve, reject) => {
-      const req = new XMLHttpRequest();
-      let combinedUrl = url;
-      if (query) {
-        combinedUrl = `${url}${formatQueryParams(query)}`;
-        console.log(combinedUrl);
-      }
-      req.open('GET', combinedUrl);
-      req.onload = () => {
-        if (req.status === 200) {
-          setTimeout(() => {
-            resolve(JSON.parse(req.response));
-          }, 2000);
-        } else {
-          reject(Error(req.statusText));
-        }
-      };
-      req.onerror = () => {
-        reject(Error('Network Error'));
-      };
-      req.send();
-    })),
+  // getData: (url, query) => (
+  //   new Promise( (resolve, reject) => {
+  //     const req = new XMLHttpRequest();
+  //     let combinedUrl = url;
+  //     if (query) {
+  //       combinedUrl = `${url}${formatQueryParams(query)}`;
+  //       console.log(combinedUrl);
+  //     }
+  //     req.open('GET', combinedUrl);
+  //     req.onload = () => {
+  //       if (req.status === 200) {
+  //         setTimeout(() => {
+  //           resolve(JSON.parse(req.response));
+  //         }, 2000);
+  //       } else {
+  //         reject(Error(req.statusText));
+  //       }
+  //     };
+  //     req.onerror = () => {
+  //       reject(Error('Network Error'));
+  //     };
+  //     req.send();
+  //   })),
 
-  fetchAllData: (url) => {
-    const encodedURI = encodeURI(url);
-    return axios.get(encodedURI)
+  fetchAllData: (url, query) => {
+    let combinedUrl = url ? url : `${helpers.routes.base}/movies`;
+    if (query && query.search) {
+      const search = query.search;
+      const searchBy = query.searchBy ? query.searchBy : 'title';
+      combinedUrl = `${combinedUrl}?search=${search}&searchBy=${searchBy}`;
+    }
+    console.log('fetch', combinedUrl);
+    return axios.get(encodeURI(combinedUrl))
       .then((result) => {
         return result.data;
       })
@@ -51,21 +57,12 @@ const helpers = {
         return null;
       });
   },
-  fetchSingle: (url) => {
-    const encodedURI = encodeURI(url);
-    const result = {};
-    const baseURL = helpers.routes.base;
-    console.log('url', url);
-    return axios.get(encodedURI)
+  fetchSingle: url => {
+    const id = url.split('/').pop();
+    console.log(url.split('/'));
+    return axios.get(encodeURI(`${helpers.routes.base}/movies/${id}`))
       .then(res => {
-        result.single = res.data;
-      })
-      .then(() => {
-        return axios.get(`${baseURL}/movies?search=${result.single.genres[0]}&searchBy=genres`)
-        .then(res => {
-          result.items = res.data.data;
-          return result;
-        });
+       return res.data;
       })
       .catch((error) => {
         console.warn(error);

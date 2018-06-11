@@ -125,7 +125,7 @@ describe('actions itemsHasErrored', () => {
 
 describe('actions getFilms', () => {
   it('should create an action while getting film ', () => {
-    helpers.getData = jest.fn()
+    helpers.fetchAllData = jest.fn()
       .mockReturnValue(Promise.resolve({
           data: [],
       }));

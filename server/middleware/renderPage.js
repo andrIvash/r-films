@@ -1,38 +1,38 @@
 import React from 'react';
+import url from 'url';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter, matchPath } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom';
+import { renderRoutes, matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
-import createState from '../middleware/createState';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import reducer from '../../src/js/reducers';
 import routes from '../../src/js/routes';
-import App from '../../src/js/components/App';
 
 const renderPage = (req, res, next) => {
-  let url,
-    context;
+  let resultQuery = {};
 
-  const activeRoute = routes.find((route) => matchPath(req.path, route)) || {};
+  const pathname = url.parse(req.url, true).pathname;
 
-  if (req.params && req.params.id) {
-    url = `/movies/${req.params.id}`;
-  } else if (req.query && req.query.search) {
-    url = `/movies?search=${req.query.search}&searchBy=${req.query.searchBy ?
-      req.query.searchBy : 'title'}`;
-  } else {
-    url = '/movies';
+  if (req.query && req.query.search) {
+    resultQuery.search = req.query.search;
+    req.query.searchBy = req.query.searchBy ? req.query.searchBy : 'title';
   }
 
-  const promise = activeRoute && activeRoute.fetchInitialData
-    ? activeRoute.fetchInitialData(url)
-    : Promise.resolve();
+  const store = createStore(
+    reducer,
+    applyMiddleware(thunk),
+  );
 
-  promise.then(data => {
-    context = { data };
-    return createState(activeRoute.name, data, req.query);
-  }).then(store => {
+  const promises = matchRoutes(routes, pathname).map(({route, match}) => {
+    return store.dispatch(route.fetchInitialData(match.url, resultQuery));
+  });
+
+  Promise.all(promises).then(() => {
       const markup = renderToString(
         <Provider store={store} >
-          <StaticRouter context={context} location={req.originalUrl}>
-            <App />
+          <StaticRouter context={store.getState()} location={req.originalUrl}>
+            { renderRoutes(routes) }
           </StaticRouter>
         </Provider>,
       );
