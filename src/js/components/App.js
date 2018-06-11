@@ -18,8 +18,6 @@ type Props = {
   selectedGenre: string,
   view: View,
   posterData: PosterData,
-  match?: { params: {id: number} },
-  location?: {search: URL },
   onChangeView: () => {},
   onFilmSelect: (id: number) => {}
 };

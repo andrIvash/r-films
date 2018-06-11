@@ -1,4 +1,4 @@
-import helpers, { formatQueryParams } from '../helpers';
+import helpers from '../helpers';
 import type { Film } from '../flow-types.js';
 /*
  * action types

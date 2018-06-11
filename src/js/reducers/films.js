@@ -24,7 +24,7 @@ export const items = (state = [], action) => {
     if (action && action.type) {
         switch (action.type) {
             case RECEIVE_FILMS:
-                return action.items;    
+                return action.items;
             default:
                 return state;
         }
