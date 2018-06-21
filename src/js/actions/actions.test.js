@@ -87,9 +87,9 @@ describe('actions selectFilm', () => {
       film: {id: 1, release_date: '1924', vote_average: 8, genres: ['Drama']},
       genre: 'Drama',
     };
-    expect(store.dispatch(actions.selectFilm(1)))
-      .toEqual(expectedActions);
-
+    store.dispatch(actions.selectFilm(1)).then(res => {
+      return expect(res.toEqual(expectedActions));
+    });
   });
 });
 

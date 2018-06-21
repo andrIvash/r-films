@@ -2,39 +2,49 @@
 
 exports[`FilmItem should render correctly 1`] = `
 <li
-  class="film-list__item"
+  className="film-list__item"
+  onClick={[Function]}
 >
-  <div
-    class="film-item"
+  <router-link
+    className="film-list__link"
+    to={
+      Object {
+        "pathname": "/film/22",
+      }
+    }
   >
     <div
-      class="film-item__img-wrap"
-    >
-      <img
-        alt="film"
-        class="film-item__img"
-        src="http://test"
-      />
-    </div>
-    <div
-      class="film-item__info"
+      className="film-item"
     >
       <div
-        class="film-item__title"
+        className="film-item__img-wrap"
       >
-        title
+        <img
+          alt="film"
+          className="film-item__img"
+          src="http://test"
+        />
       </div>
       <div
-        class="film-item__year"
+        className="film-item__info"
       >
-        1924
+        <div
+          className="film-item__title"
+        >
+          title
+        </div>
+        <div
+          className="film-item__year"
+        >
+          1924
+        </div>
+      </div>
+      <div
+        className="film-item__genre"
+      >
+        drama
       </div>
     </div>
-    <div
-      class="film-item__genre"
-    >
-      drama
-    </div>
-  </div>
+  </router-link>
 </li>
 `;
