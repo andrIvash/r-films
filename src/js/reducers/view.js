@@ -1,6 +1,6 @@
 // @flow
 
-import { CHANGE_VIEW, CHANGE_VIEW_POSTER } from '../actions';
+import { CHANGE_VIEW, CHANGE_VIEW_POSTER, CHANGE_VIEW_COMMON } from '../actions';
 import helpers from '../helpers';
 import type { View } from '../flow-types.js';
 
@@ -24,6 +24,12 @@ export const changeView = (state: {view: View} = defaultState,
       case CHANGE_VIEW_POSTER: {
         return {
           view: helpers.views.POSTER,
+        };
+      }
+
+      case CHANGE_VIEW_COMMON: {
+        return {
+          view: helpers.views.COMMON,
         };
       }
       default:

@@ -1,6 +1,9 @@
 import React from 'react';
 import Logo from './index';
 
+jest.mock('react-router-dom/NavLink', () => 'nav-link');
+jest.mock('react-router-dom/Link', () => 'router-link');
+
 describe('Logo', () => {
   it('should be defined', () => {
     expect(Logo).toBeDefined();

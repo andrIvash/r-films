@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import { RouteDataLoader } from './route-data-loader';
+import RouteDataLoader from './route-data-loader';
 import reducer from './reducers';
 import '../styles/app.scss';
 import routes from './routes';

@@ -1,6 +1,12 @@
 .logo {
-  font-size: rem(16px);
-  font-family: $sign-font;
-  font-weight: 700;
-  color: $color-logo; 
+  a {
+    font-size: rem(16px);
+    font-family: $sign-font;
+    font-weight: 700;
+    text-decoration: none;
+    color: $color-logo; 
+    &:hover, &:active {
+      color: $color-logo-dark;
+    }
+  }
 }

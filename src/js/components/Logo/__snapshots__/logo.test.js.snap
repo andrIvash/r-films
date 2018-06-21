@@ -4,6 +4,10 @@ exports[`Logo should render correctly 1`] = `
 <div
   class="logo app__logo"
 >
-  netflixroulette
+  <router-link
+    to="[object Object]"
+  >
+    netflixroulette
+  </router-link>
 </div>
 `;

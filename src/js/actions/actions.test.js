@@ -133,7 +133,8 @@ describe('actions getFilms', () => {
     const expectedActions = [
       { type: actions.ITEMS_IS_LOADING, isLoading: true },
       { type: actions.ITEMS_IS_LOADING, isLoading: false },
-       { type: actions.RECEIVE_FILMS, items: [] },
+      { type: actions.RECEIVE_FILMS, items: [] },
+      { type: actions.CHANGE_VIEW_COMMON },
     ];
     return store.dispatch(actions.getFilms()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);

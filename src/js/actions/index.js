@@ -12,6 +12,7 @@ export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const SELECT_FILM = 'SELECT_FILM';
 export const CHANGE_VIEW = 'CHANGE_VIEW';
 export const CHANGE_VIEW_POSTER = 'CHANGE_VIEW_POSTER';
+export const CHANGE_VIEW_COMMON = 'CHANGE_VIEW_COMMON';
 export const SELECT_SEARCH_FILTER = 'SELECT_SEARCH_FILTER';
 export const SELECT_DATA_FILTER = 'SELECT_DATA_FILTER';
 export const FILTER_DATA = 'FILTER_DATA';
@@ -133,6 +134,7 @@ export const getFilms = (url, query) => dispatch => {
     .then(response => {
       response = response.data.length ? response.data : [];
       dispatch(receiveFilms(response));
+      dispatch(changeView(CHANGE_VIEW_COMMON));
     })
     .catch(() => dispatch(itemsHasErrored(true)));
 };
