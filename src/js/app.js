@@ -24,13 +24,14 @@ const app = document.getElementById('app');
 if (app === null) {
   throw new Error('no app element');
 }
+console.log(process.env.PUBLIC_URL)
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route component={App} exact={true} path='/' />
-        <Route component={App} exact={true} path='/film/:id' />
-        <Route component={App} exact={true} path='/search' />
+        <Route component={App} exact={true} path={process.env.PUBLIC_URL + '/'} />
+        <Route component={App} exact={true} path={process.env.PUBLIC_URL + '/film/:id'} />
+        <Route component={App} exact={true} path={process.env.PUBLIC_URL + '/search'} />
         <Route path='*' render={() => ( <NotFound /> )} />
       </Switch>
     </ConnectedRouter>

@@ -150,7 +150,7 @@ const config = {
 };
 
 module.exports = function(env) {
-  if (env === 'production') {
+  if (env.NODE_ENV === 'production') {
     config.plugins = config.plugins.concat([
       new webpack.optimize.UglifyJsPlugin({
         compress: {
@@ -161,8 +161,22 @@ module.exports = function(env) {
       new OptimizeCssAssetsPlugin({
         cssProcessorOptions: { discardComments: { removeAll: true } },
       }),
+      new webpack.DefinePlugin({
+      'process.env': {
+        PUBLIC_URL: '',
+      },
+    }),
       // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       // new FaviconsWebpackPlugin('./favicon.png')
+    ]);
+  }
+  if (env.NODE_ENV === 'development') {
+    config.plugins = config.plugins.concat([
+      new webpack.DefinePlugin({
+        'process.env': {
+          PUBLIC_URL: 'https://andrivash.github.io/r-films',
+        },
+      }),
     ]);
   }
   return config;
