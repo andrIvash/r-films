@@ -1,6 +1,6 @@
 // @flow
-
-import { CHANGE_VIEW, CHANGE_VIEW_POSTER, CHANGE_VIEW_COMMON } from '../actions';
+import { CHANGE_VIEW,
+  CHANGE_VIEW_POSTER, CHANGE_VIEW_COMMON } from '../actions';
 import helpers from '../helpers';
 import type { View } from '../flow-types.js';
 
