@@ -20,8 +20,6 @@ const store = createStore(
   applyMiddleware(thunk),
 );
 
-console.log('store', store.getState());
-
 const app = document.getElementById('app');
 if (app === null) {
   throw new Error('no app element');
