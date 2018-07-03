@@ -13,11 +13,9 @@ exports[`Main should render correctly 1`] = `
       <div
         class="container"
       >
-        <div
-          class="extra-info"
-        >
+        <div>
           <div
-            class="extra-info__content"
+            class="sc-bdVaJa eYLWWC"
           >
             2 movies found
           </div>

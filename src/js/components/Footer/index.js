@@ -1,13 +1,22 @@
 // @flow
 import React from 'react';
+import styled from 'styled-components';
 import Logo from '../Logo';
 
+const FooterWrapper = styled.footer`
+  display: flex;
+  align-items: center;
+  text-align: left;
+  min-height: 2.5rem;
+  background-color: ${props => props.theme.bgDark};
+`;
+
 const Footer = () => (
-  <footer className='footer app__footer bg-dark'>
+  <FooterWrapper>
     <div className='container'>
       <Logo />
     </div>
-  </footer>
+  </FooterWrapper>
 );
 
 export default Footer;

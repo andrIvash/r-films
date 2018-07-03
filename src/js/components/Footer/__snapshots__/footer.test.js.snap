@@ -1,14 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Footer should render correctly 1`] = `
+.c1 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: left;
+  min-height: 2.5rem;
+}
+
 <footer
-  class="footer app__footer bg-dark"
+  class="c0"
 >
   <div
     class="container"
   >
     <div
-      class="logo app__logo"
+      class="c1"
     >
       netflixroulette
     </div>

@@ -1,11 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExtraInfo should render correctly 1`] = `
-<div
-  class="extra-info"
->
+.c0 {
+  font-size: 0.81rem;
+  font-weight: 700;
+}
+
+<div>
   <div
-    class="extra-info__content"
+    class="c0"
   >
      movies found
   </div>

@@ -1,8 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Logo should render correctly 1`] = `
+.c0 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
 <div
-  class="logo app__logo"
+  class="c0"
 >
   netflixroulette
 </div>

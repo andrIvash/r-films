@@ -1,4 +1,5 @@
 import React from 'react';
+import 'jest-styled-components';
 import ExtraInfo from './index';
 
 let props = {};
@@ -25,7 +26,7 @@ describe('ExtraInfo', () => {
     const wrapper = shallow(
       <ExtraInfo {...props} /> );
 
-    expect(wrapper.find('.extra-info__content').text())
+    expect(wrapper.find('ExtraContent').children().text())
       .toBe('Films by Drama genre');
   });
   it('should render right values in COMMON view', () => {
@@ -35,7 +36,7 @@ describe('ExtraInfo', () => {
     const wrapper = shallow(
       <ExtraInfo {...props} /> );
 
-    expect(wrapper.find('.extra-info__content').text())
+    expect(wrapper.find('ExtraContent').children().text())
       .toBe('9 movies found');
   });
 });

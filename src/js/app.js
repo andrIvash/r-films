@@ -3,9 +3,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import App from './components/App';
+import { theme } from '../theme/globalStyle';
 import '../styles/app.scss';
 
 const store = createStore(
@@ -21,7 +23,9 @@ if (app === null) {
 }
 render(
   <Provider store={store}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </Provider>,
   app,
 );
