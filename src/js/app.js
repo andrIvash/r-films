@@ -21,6 +21,7 @@ const app = document.getElementById('app');
 if (app === null) {
   throw new Error('no app element');
 }
+
 render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>

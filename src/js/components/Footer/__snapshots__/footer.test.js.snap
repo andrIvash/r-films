@@ -1,12 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Footer should render correctly 1`] = `
-.c1 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -21,16 +15,12 @@ exports[`Footer should render correctly 1`] = `
 }
 
 <footer
-  class="c0"
+  className="c0"
 >
   <div
-    class="container"
+    className="container"
   >
-    <div
-      class="c1"
-    >
-      netflixroulette
-    </div>
+    <logo />
   </div>
 </footer>
 `;

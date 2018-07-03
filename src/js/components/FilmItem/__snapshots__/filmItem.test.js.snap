@@ -30,11 +30,6 @@ exports[`FilmItem should render correctly 1`] = `
         1924
       </div>
     </div>
-    <div
-      class="film-item__genre"
-    >
-      drama
-    </div>
   </div>
 </li>
 `;

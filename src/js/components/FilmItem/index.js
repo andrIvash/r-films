@@ -22,7 +22,6 @@ const FilmItem = (props:Props) => {
           <div className='film-item__title'>{film.title}</div>
           <div className='film-item__year'>{film.release_date.substr(0,4)}</div>
         </div>
-        <div className='film-item__genre'>{film.genres[0]}</div>
       </div>
     </li>
   );

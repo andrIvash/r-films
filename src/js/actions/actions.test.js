@@ -89,7 +89,6 @@ describe('actions selectFilm', () => {
     };
     expect(store.dispatch(actions.selectFilm(1)))
       .toEqual(expectedActions);
-
   });
 });
 

@@ -42,11 +42,6 @@ describe('App', () => {
     wrapper.find('Connect').props().onFilmSelect();
     expect(props.onFilmSelect).toHaveBeenCalledTimes(1);
   });
-
-  it('should component have proper props', () => {
-    expect(wrapper.find('Header').props()).toHaveProperty('posterData');
-    expect(wrapper.find('Header').props()).toHaveProperty('view');
-  });
 });
 
 describe('CombinedApp', () => {

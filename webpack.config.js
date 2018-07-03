@@ -22,6 +22,8 @@ const config = {
   },
   devtool: 'source-map',
   devServer: {
+    // publicPath: '/',
+    historyApiFallback: true,
     contentBase: path.join(__dirname, 'src'),
     compress: true,
     // stats: 'errors-only',
@@ -148,7 +150,7 @@ const config = {
 };
 
 module.exports = function(env) {
-  if (env === 'production') {
+  if (env.NODE_ENV === 'production') {
     config.plugins = config.plugins.concat([
       new webpack.optimize.UglifyJsPlugin({
         compress: {

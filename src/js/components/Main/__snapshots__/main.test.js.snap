@@ -101,11 +101,6 @@ exports[`Main should render correctly 1`] = `
                 1992
               </div>
             </div>
-            <div
-              class="film-item__genre"
-            >
-              Drama
-            </div>
           </div>
         </li>
         <li
@@ -135,11 +130,6 @@ exports[`Main should render correctly 1`] = `
               >
                 1994
               </div>
-            </div>
-            <div
-              class="film-item__genre"
-            >
-              Drama
             </div>
           </div>
         </li>
