@@ -2,39 +2,73 @@
 
 exports[`Header should render correctly 1`] = `
 <div
-  className="header app__header bg-dark"
+  class="header app__header bg-dark"
 >
   <div
-    className="container"
+    class="container"
   >
     <div
-      className="header__top"
+      class="header__top"
     >
-      <logo />
-      <router-link
-        to={
-          Object {
-            "pathname": "/",
-          }
-        }
+      <div
+        class="sc-bdVaJa OQZEJ"
       >
-        <search-button
-          handleSearch={undefined}
-        />
-      </router-link>
+        netflixroulette
+      </div>
+      <button
+        class="search-button btn btn-lg btn-primary"
+        type="button"
+      >
+         Search
+      </button>
     </div>
-    <poster
-      data={
-        Object {
-          "genres": Array [
-            "drama",
-          ],
-          "poster_path": "http://test",
-          "release_date": "1924",
-          "title": "title",
-        }
-      }
-    />
+    <div
+      class="poster"
+    >
+      <div
+        class="poster__img-wrap"
+      >
+        <img
+          alt="file poster"
+          class="poster__img"
+          src="http://test"
+        />
+      </div>
+      <div
+        class="poster__info film"
+      >
+        <div
+          class="film__header"
+        >
+          <h1
+            class="film__title"
+          >
+            title
+          </h1>
+          <div
+            class="film__score"
+          />
+        </div>
+        <h5
+          class="film__subtitle"
+        />
+        <div
+          class="film__info"
+        >
+          <div
+            class="film__year"
+          >
+            1924
+          </div>
+          <div
+            class="film__latency"
+          />
+        </div>
+        <p
+          class="film__desq"
+        />
+      </div>
+    </div>
   </div>
 </div>
 `;

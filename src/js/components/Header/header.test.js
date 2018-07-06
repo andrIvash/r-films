@@ -1,5 +1,4 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import Header from './index';
 import Logo from '../Logo';
 import Search from '../Search';
@@ -7,16 +6,6 @@ import Poster from '../Poster';
 import SearchButton from '../SearchButton';
 
 let props = {};
-
-jest.mock('react-router-dom/NavLink', () => 'nav-link');
-jest.mock('react-router-dom/Link', () => 'router-link');
-
-
-jest.mock('../Logo', () => 'logo');
-jest.mock('../Search', () => 'search');
-jest.mock('../Poster', () => 'poster');
-jest.mock('../SearchButton', () => 'search-button');
-
 
 describe('Header', () => {
   beforeEach(() => {
@@ -34,7 +23,8 @@ describe('Header', () => {
     expect(Header).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = renderer.create(<Header {...props} />).toJSON();
+    const wrapper = render(
+      <Header  {...props}/> );
     expect(wrapper).toMatchSnapshot();
   });
   it('should render right values in POSTER view', () => {

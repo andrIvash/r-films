@@ -4,20 +4,15 @@ exports[`App should render correctly 1`] = `
 <div
   className="app__inner"
 >
-  <error-boundary>
-    <header
+  <ErrorBoundary>
+    <Header
       onSearch={[Function]}
-      posterData={undefined}
       toSearch={[MockFunction]}
-      view={undefined}
     />
-    <main
-      films={undefined}
-      genre={undefined}
+    <Connect(Main)
       onFilmSelect={[MockFunction]}
-      view={undefined}
     />
-    <footer />
-  </error-boundary>
+    <Footer />
+  </ErrorBoundary>
 </div>
 `;

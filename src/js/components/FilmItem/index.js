@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { Link } from 'react-router-dom';
 import type { Film } from '../../flow-types.js';
 
 type Props = {
@@ -15,18 +14,15 @@ const FilmItem = (props:Props) => {
 
   return (
     <li className='film-list__item' onClick={() => { onFilmSelect(id) }}>
-      <Link className='film-list__link' to={{ pathname: `/film/${id}` }}>
-        <div className='film-item'>
-          <div className='film-item__img-wrap'>
-            <img alt='film' className='film-item__img' src={film.poster_path} />
-          </div>
-          <div className='film-item__info'>
-            <div className='film-item__title'>{film.title}</div>
-            <div className='film-item__year'>{film.release_date.substr(0,4)}</div>
-          </div>
-          <div className='film-item__genre'>{film.genres[0]}</div>
+      <div className='film-item'>
+        <div className='film-item__img-wrap'>
+          <img alt='film' className='film-item__img' src={film.poster_path} />
         </div>
-      </Link> 
+        <div className='film-item__info'>
+          <div className='film-item__title'>{film.title}</div>
+          <div className='film-item__year'>{film.release_date.substr(0,4)}</div>
+        </div>
+      </div>
     </li>
   );
 };

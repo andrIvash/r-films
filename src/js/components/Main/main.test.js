@@ -1,16 +1,12 @@
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
-import renderer from 'react-test-renderer';
 import CombinedMain, { Main } from './index';
 import FilterContent from '../FilterContent';
 import ExtraInfo from '../ExtraInfo';
 
 const mockStore = configureMockStore();
-let props = {};
 
-jest.mock('../FilterContent', () => 'filter-content');
-jest.mock('../ExtraInfo', () => 'extra-info');
-jest.mock('../ContentInfo', () => 'content-info');
+let props = {};
 
 describe('Main', () => {
   beforeEach(() => {
@@ -27,10 +23,12 @@ describe('Main', () => {
     expect(Main).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = renderer.create(<Main {...props} />).toJSON();
+    const wrapper = render(
+      <Main {...props} /> );
     expect(wrapper).toMatchSnapshot();
   });
   it('should show an extra info ', () => {
+
     const wrapper = shallow(
       <Main {...props} /> );
     expect(wrapper.find(ExtraInfo)).toHaveLength(1);
@@ -42,6 +40,14 @@ describe('Main', () => {
     const wrapper = shallow(
       <Main {...props} /> );
     expect(wrapper.find(ExtraInfo)).not.toHaveLength(1);
+  });
+  it('should change filter when onFilterSelect emit', () => {
+    const wrapper = mount(
+      <Main {...props} /> );
+    wrapper.find(FilterContent).find('#release').simulate('change');
+    expect(props.onFilterSelect).toHaveBeenCalledTimes(1);
+    expect(props.onFilterSelect.mock.calls[0][0])
+      .toEqual('release');
   });
 });
 

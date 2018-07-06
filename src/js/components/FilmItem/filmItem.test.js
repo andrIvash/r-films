@@ -1,11 +1,7 @@
 import React from 'react';
 import FilmItem from './index';
-import renderer from 'react-test-renderer';
 
 let props = {};
-
-jest.mock('react-router-dom/Link', () => 'router-link');
-jest.mock('react-router-dom/NavLink', () => 'nav-link');
 
 describe('FilmItem', () => {
   beforeEach(()=> {
@@ -24,8 +20,8 @@ describe('FilmItem', () => {
     expect(FilmItem).toBeDefined();
   });
   it('should render correctly', () => {
-    const wrapper = renderer.create(
-      <FilmItem {...props} />).toJSON();
+    const wrapper = render(
+      <FilmItem {...props} /> );
     expect(wrapper).toMatchSnapshot();
   });
   it('should render write values ', () => {

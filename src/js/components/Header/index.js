@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Logo from '../Logo';
 import Search from '../Search';
 import Poster from '../Poster';
@@ -21,9 +20,7 @@ const topHeader = (props: Props) => {
     return (
       <div className='header__top'>
         <Logo />
-        <Link to={{ pathname: '/' }}>
-          <SearchButton handleSearch={toSearch} />
-        </Link>
+        <SearchButton handleSearch={toSearch} />
       </div>
     );
   }

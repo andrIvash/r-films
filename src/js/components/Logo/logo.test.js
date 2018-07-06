@@ -1,4 +1,5 @@
 import React from 'react';
+import 'jest-styled-components';
 import Logo from './index';
 
 describe('Logo', () => {
@@ -12,8 +13,8 @@ describe('Logo', () => {
   });
   it('should render a proper logo', () => {
     const wrapper = shallow(
-      <Logo /> );
-    expect(wrapper.find('.logo').text())
+      <Logo /> ).dive();
+    expect(wrapper.text())
       .toBe('netflixroulette');
   });
 });

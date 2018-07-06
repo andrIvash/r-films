@@ -68,37 +68,19 @@ export const filterData = () => (dispatch, getState) => {
 };
 
 export const selectFilm = id => (dispatch, getState) => {
-  dispatch(itemsIsLoading(true));
   const state = getState();
-  let selectedGenre: string;
-  let selectedFilm: Film;
-  let pr: Promise;
-  if (state.items.length) {
-    pr = new Promise( resolve => {
-      selectedFilm = state.items.find((film:Film) => film.id === id);
-      selectedGenre = selectedFilm ? selectedFilm.genres[0] : '';
-      resolve();
-    });
-  } else {
-     pr = helpers.getData(`${helpers.routes.base}/movies/${id}`).then((res) => {
-      selectedFilm = res;
-      selectedGenre = selectedFilm ? selectedFilm.genres[0] : '';
-      return res;
-    });
-  }
-  return pr.then(() => {
-    dispatch(itemsIsLoading(false));
-    dispatch(changeView(CHANGE_VIEW_POSTER));
-    dispatch(getFilms(`${helpers.routes.base}/movies`, {
-      search: selectedGenre,
-      searchBy: 'genres',
-    }));
-    return dispatch({
-        type: SELECT_FILM,
-        film: selectedFilm,
-        genre: selectedGenre,
-    });
-  }).catch(() => dispatch(itemsHasErrored(true)));
+  const selectedFilm = state.items.find((film:Film) => film.id === id);
+  const selectedGenre: string = selectedFilm ? selectedFilm.genres[0] : '';
+  dispatch(changeView(CHANGE_VIEW_POSTER));
+  dispatch(getFilms(`${helpers.routes.base}/movies`, {
+    search: selectedGenre,
+    searchBy: 'genres',
+  }));
+  return dispatch({
+      type: SELECT_FILM,
+      film: selectedFilm,
+      genre: selectedGenre,
+  });
 };
 
 
@@ -122,15 +104,10 @@ export const getFilms = (request, query) => dispatch => {
   return helpers.getData(request, query)
     .then(response => {
       dispatch(itemsIsLoading(false));
-      if (query) {
-        dispatch(changeSearchText(query.search));
-        dispatch(changeSearchFilter(query.searchBy));
-      }
       return response;
     })
     .then(response => {
-      response = response.data.length ? response.data : [];
-      dispatch(receiveFilms(response));
+      dispatch(receiveFilms(response.data));
     })
     .catch(() => dispatch(itemsHasErrored(true)));
 };
