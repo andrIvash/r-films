@@ -11,7 +11,7 @@ export default {
   },
 
   routes: {
-    base: 'http://react-cdp-api.herokuapp.com',
+    base: 'https://react-cdp-api.herokuapp.com',
   },
 
   getData: (url, query) => (
